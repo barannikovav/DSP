@@ -1,4 +1,5 @@
 \documentclass[a4paper, 12pt]{article}
+\def\MakeUppercaseUnsupportedInPdfStrings{\scshape}
 
 %%% Работа с русским языком
 \usepackage{cmap}					% поиск в PDF
@@ -73,6 +74,15 @@
 \usepackage{diagbox}
 \usepackage{ tipa }
 \usepackage{citeref}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
 
 %%% Теоремы
 \theoremstyle{plain}                    % Это стиль по умолчанию, его можно не переопределять.
