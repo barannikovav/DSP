@@ -1,0 +1,235 @@
+
+\section{Стационарная в узком смысле случайная последовательность. Эргодическая теорема Биркгофа—Хинчина}
+
+\textbf{Автор:} Старцев Александр Евгеньевич, Б-01-006
+
+\subsection{Основные понятия}
+\subsubsection{Определение стационарной (в узком смысле) случайной последовательности}
+\label{sec:def}
+
+Пусть $(\Omega, \mathscr{F}, \mathbb{P})$ - некоторое вероятностное пространство и $\xi = (\xi_1, ~\xi_2, ~...)$ - некоторая последовательность случайных величин, или \textit{случайная последовательность}. Обозначим $\theta_k\xi$ последовательность $(\xi_{k+1}, ~\xi_{k+2}, ~...)$.
+
+\begin{definition} Случайная последовательность $\xi$ называется \textit{стационарной (в узком смысле)}, если для любого $k \geq 1$ распределение вероятностей $\theta_k\xi$ и $\xi$ совпадают:
+
+{\centering 
+\begin{equation}
+\mathbb{P}\{(\xi_1, ~\xi_2, ~...) \in B\} = \mathbb{P}\{(\xi_{k+1}, ~\xi_{k+2}, ~...) \in B\}, ~~B \in \mathscr{B}(R^{\infty})
+\end{equation}
+}
+\end{definition}
+
+Простейшим примером такой последовательности $\xi$ является последовательность $\xi = (\xi_1, ~\xi_2, ~...)$, состоящяая из \textit{независимых одинаково распределенных} случайных величин. Отправляясь от такой последовательности, можно сконструировать широкий класс стационарных последовательностей $\eta = (\eta_1, ~\eta_2, ~...)$, если взять произвольную борелевскую функцию $g(x_1, ~..., ~x_n)$ и положить $\eta_k = g(\xi_k, ~\xi_{k+1}, ~..., ~\xi_{k+n})$.
+
+\subsubsection{Определение измеримого и сохраняющего меру преобразования}
+Пусть $(\Omega, \mathscr{F}, \mathbb{P})$ - некоторое полное вероятностное пространство.
+
+\begin{definition} Отображение $T$ пространства $\Omega$ в себя называется \textit{измеримым}, если для всякого $A \in \mathscr{F}$
+
+{\centering 
+\begin{equation}
+T^{-1}A = \{\omega: T\omega \in A\} \in \mathscr{F}
+\end{equation}
+}
+\end{definition}
+
+\begin{definition} Измеримое отображение $T$ называется \textit{сохраняющим меру преобразованием} (морфизмом), если для всякого $A \in \mathscr{F}$
+
+{\centering 
+\begin{equation}
+\mathbb{P}(T^{-1}A) = \mathbb{P}(A)
+\end{equation}
+}
+\end{definition}
+
+Приведем примеры сохраняющих меру преобразований.
+
+\begin{example} Пусть $\Omega = \{\omega_1, ~..., \omega_n\}$ - множество, состоящее из конечного числа точек, $n \geq 2$, $\mathscr{F}$ - все его подмножества, $T\omega_i = \omega_{i+1}$, $1 \leq i \leq n - 1$, и $T\omega_n = \omega_1$. Если $P(\omega_i) = \frac{1}{n}$, то $T$ - сохраняющее меру преобразование.
+\end{example}
+
+\begin{example} Если $\Omega = [0, ~1), ~\mathscr{F} = \mathscr{B}([0, 1)), ~\mathbb{P}$ - мера Лебега, $\lambda \in [0, 1)$, то $Tx = (x + \lambda) ~mod ~1$ является сохраняющим меру преобразованием.
+\end{example}
+
+Рассмотрим физические предпосылки, приводящие к изучению преобразований, сохраняющих меру.
+
+Будем представлять себе $\Omega$ как фазовое пространство состояний $\omega$ некоторой системы, эволюционирующей (в дискретном времени) в соответствии с заданным законом движения. Тогда, если $\omega$ есть состояние в момент $n = 1$, то $T^n\omega$, где $T$ - оператор сдвига (индуцируемый данным законом движения), есть то состояние, в которое перейдет система через $n$ шагов. Далее, если $A$ - какое-то множество состояний $\omega$, то $T^{-1}A = \{\omega: T\omega \in A\}$ есть по своему определению множество тех "начальных"  состояний $\omega$, которые через один шаг окажутся в множестве $A$. Поэтому, если интерпретировать $\Omega$ как "несжимаемую жидкость", то условие $\mathbb{P}(T^{-1}A) = \mathbb{P}(A)$ можно рассматривать как вполне естественное условие сохранения объема.
+
+\subsubsection{Эргодичность}
+Пусть $T$ - \textit{сохраняющее меру} преобразование, действующее на вероятностном пространстве $(\Omega, \mathscr{F}, \mathbb{P})$.
+
+\begin{definition} Множество $A \in \mathscr{F}$ называется \textit{инвариантным}, если $T^{-1}A = A$. Множество $A \in \mathscr{F}$ называется \textit{почти инвариантным}, если $A$ и $T^{-1}A$ отличаются на множетсво меры нуль, т.е. $\mathbb{P}(A \triangle T^{-1}A) = 0$.
+
+Нетрудно проверить, что класс инвариантых (почти инвариантных) множеств образует $\sigma$-алгебру.
+\end{definition}
+
+\begin{definition} Сохраняющее меру преобразование $T$ называется \textit{эргодическим} (или \textit{метрически транзитивным}), если каждое инвариантное множество $A$ имееет меру нуль или единица.
+\end{definition}
+
+\begin{definition} Случайная величина $\eta = \eta(\omega)$ называется \textit{инвариантной (почти инвариантной)}, если $\eta(\omega) = \eta(T\omega)$ для всех $\omega \in \Omega$ (для почти всех $\omega \in \Omega$).
+\end{definition}
+
+Следующая лемма устанавливает свзяь между инвариантными и почти инвариантными множествами.
+
+\begin{lemma} Если $A$ является почти инвариантным множеством, то найдется такое инвариантное множество $B$, что $\mathbb{P}(A \triangle B) = 0$.
+\end{lemma}
+
+\begin{proof} Пусть $B = \overline{\rm lim}T^{-n}A$. Тогда \\ $T^{-1}B = \overline{\rm lim}T^{-(n+1)}A = B$, т.е. $B \in \mathscr{J}$. Нетрудно убедиться в том, что $A \triangle B \subseteq \bigcup\limits_{k=0}^{\infty} (T^{-k}A\triangle T^{-(k+1)}A)$. \\ Но $\mathbb{P}(T^{-k}A\triangle T^{-(k+1)}A) = \mathbb{P}(A \triangle T^{-1}A) = 0$. Поэтому $\mathbb{P}(A\triangle B) = \\ = 0$. 
+\end{proof}
+
+\begin{lemma} Преобразование $T$ эргодично тогда и только тогда, когда каждое почти инвариантное множество имеет меру нуль или единица.
+\end{lemma}
+
+\begin{proof} Пусть $A \in \mathscr{J}^*$. Тогда по лемме 1 найдется инвариантное множество $B$ такое, что $\mathbb{P}(A \triangle B) = 0$. Но $T$ эргодично и, значит, $\mathbb{P}(B) = 0$ или $1$. Обратное очевидно, поскольку $\mathscr{J} \subseteq \mathscr{J}^*$. $\square$
+\end{proof}
+
+\begin{theorem} Пусть T - сохраняющее меру преобразование. Следующие условия эквивалентны:
+\begin{enumerate}
+    \item $T$ эргодично;
+    \item каждая почти инвариантная случайная величина есть константа;
+    \item каждая инвариантная случайная величина есть константа
+\end{enumerate}
+\end{theorem}
+
+\begin{proof} $(1) \Rightarrow (2)$. Пусть $T$ эргодично и $\xi$ почти инвариантна, то есть $\xi(\omega) = \xi(T\omega)$. Тогда для любого $c \in R$ множество $A_c = \{\omega: \xi(\omega) \leq c\} \in \mathscr{J}^*$ и по лемме 2 $\mathbb{P}(A_c) = 0$ или $1$. Пусть $C = sup\{c: \mathbb{P}(A_c) = 0\}$. Поскольку $A_c \uparrow \Omega$ при $c \uparrow \infty$ и $A_c \downarrow \varnothing$ при $c \downarrow -\infty$, то $|C| < \infty$. Тогда
+
+{\centering 
+$$\mathbb{P}\{\omega: \xi(\omega) < C\} = \mathbb{P}(\bigcup\limits_{k=0}^{\infty} \{\xi(\omega) \leq C - \frac{1}{n}\}) = 0$$ 
+\par}
+
+\noindent и аналогично $\mathbb{P}\{\omega: \xi(\omega) > C\} = 0$. Тем самым $\mathbb{P}\{\omega: \xi(\omega) = \\ = C\} = 1$.
+
+$(2) \Rightarrow (3)$. Очевидно
+
+$(3) \Rightarrow (1)$. Пусть $A \in \mathscr{J}$, тогда $I_A$ - нивариантная случайная величина и, значит, $I_A = 0$ или $I_A = 1$, откуда $\mathbb{P}(A) = 0$ или $1$. 
+\end{proof}
+
+\begin{remark} Утверждение теоремы остается в силе и в том случае, когда рассматриваемые в ней случайные величины \textit{ограничены}.
+\end{remark}
+
+\subsection{Эргодическая теорема Биркгофа и Хинчина}
+
+
+\begin{theorem}[Биркгоф и Хинчин] Пусть $T$ - сохраняющее меру преобразование и $\xi = \xi(\omega)$ - случайная величина с $\mathbb{E}|\xi| < \infty$. Тогда 
+
+{\centering 
+\begin{equation}
+\lim_{n\to\infty} \frac{1}{n}\sum_{k=0}^{n-1}\xi(T^{k}\omega) = \mathbb{E}(\xi|\mathscr{J})
+\end{equation}
+}
+
+Если к тому же $T$ эргодично, то
+
+{\centering 
+\begin{equation}
+\lim_{n\to\infty} \frac{1}{n}\sum_{k=0}^{n-1}\xi(T^{k}\omega) = \mathbb{E}\xi
+\end{equation}
+}
+\end{theorem}
+
+
+\begin{lemma}[максимальная эргодическая теорема] Пусть $T$ - сохраняющее меру преобразование, $\xi$ - случайная величина с \\ $\mathbb{E}|\xi| <\infty$ и 
+
+{\centering 
+$$S_k(\omega) = \xi(\omega) + \xi(T\omega) + ... + \xi(T^{k-1}\omega)$$ \\
+$$M_k(\omega) = \max\{0, ~S_1(\omega), ~..., ~S_k(\omega)\}$$}
+\noindent Тогда для любого $n \geq 1$
+
+{\centering 
+$$\mathbb{E}[\xi(\omega)I_{\{M_n > 0\}}(\omega)] \geq 0$$}
+\end{lemma}
+
+\begin{proof} Если $n > k$, то $M_n(T\omega) \geq S_k(T\omega)$ и, значит, $\xi(\omega) + M_n(T\omega) \geq \xi(\omega) + S_k(T\omega) = S_{k+1}(\omega)$. Так как очевидно, что $\xi(\omega) \geq S_1(\omega) - M_n(T\omega)$, то
+
+{\centering 
+$$\xi(\omega) \geq \max\{S_1(\omega), ~..., ~S_n(\omega)\} - M_n(T\omega)$$
+\par}
+
+Значит, поскольку $\{M_n(\omega) > 0\} = \{\max(S_1(\omega), ~..., ~S_n(\omega)) > \\ > 0\}$, то
+
+{\centering 
+\begin{equation} 
+	\begin{gathered}
+		\mathbb{E} [ \xi(\omega) I_{\{M_n > 0\}}(\omega)] \geq \mathbb{E}[(\max(S_1(\omega), ~..., ~S_n(\omega)) - M_n(T\omega))I_{\{M_n > 0\}}(\omega)]  \geq \\  \geq \mathbb{E}\{(M_n(\omega) - M_n(T\omega))I_{\{M_n(\omega) > 0\}}\} \geq \mathbb{E}\{M_n(\omega) - M_n(T\omega)\} = 0
+	\end{gathered}
+\end{equation}
+}
+
+где мы воспользовались тем, что если $T$ - сохраняющее меру преобразование, то $\mathbb{E}M_n(\omega) = \mathbb{E}M_n(T\omega)$.
+\end{proof}
+
+\begin{proof}[Доказательство теоремы] Будем предполагать $\mathbb{E}(\xi|\mathscr{J}) = 0$ (в противном случае от $\xi$ надо перейти к $\xi - \mathbb{E}(\xi|\mathscr{J})$). 
+
+Пусть $\overline{\rm \eta} = \overline{\rm lim}\frac{S_n}{n}$ и $\underline{\eta} = \underline{\rm lim}\frac{S_n}{n}$. Для доказательства достаточно установить, что
+
+{\centering 
+$$0 \leq \underline{\eta} \leq \overline{\eta} \leq 0.$$
+\par}
+
+Рассмотрим случайную величину $\overline{\eta} = \overline{\eta}(\omega)$. Поскольку $\overline{\eta} = \\ = \overline{\eta}(T\omega)$, то $\overline{\eta}$ инвариантна и, следовательно, для каждого $\varepsilon > \\ > 0$ множество $A_{\varepsilon} = \{\overline{\eta}(\omega) > \varepsilon\}$ также является инвариантным. Введем новую случайную величину
+
+{\centering 
+$$\xi^*(\omega) = (\xi(\omega) - \varepsilon)I_{A_{\varepsilon}}(\omega),$$
+\par}
+
+и пусть
+
+{\centering 
+$$S_k^*(\omega) = \xi^*(\omega) + ... + \xi^*(T^{k-1}\omega), ~M_k^*(\omega) = \max(0, ~S_1^*, ~..., S_k^*).$$
+\par}
+
+Тогда, согласно лемме, для любого $n \geq 1$
+
+{\centering 
+$$\mathbb{E}[\xi^*I_{\{M_n^* > 0\}}] \geq 0.$$
+\par}
+
+Но при $n \rightarrow \infty$
+
+{\centering 
+\begin{equation}
+	\begin{gathered}
+		\{M_n^* > 0\} = \{\max_{1 \leq k \leq n}S_k^* > 0\}\uparrow \{\sup_{ k \geq 1}S_k^* > 0\} = \{\sup_{ k \geq 1}\frac{S_k^*}{k} > 0\} =  \\
+		= \{\sup_{ k \geq 1}\frac{S_k}{k} > \varepsilon\} \cap A_{\varepsilon} = A_{\varepsilon},
+	\end{gathered}
+\end{equation}
+\par}
+
+где последнее равенство следует из того, что $\sup_{ k \geq 1}\frac{S_k}{k} \geq \overline{\eta}$, а $A_{\varepsilon} = \{\omega: \overline{\eta} > \varepsilon\}$.
+
+Далее, $\mathbb{E}|\xi^*| \leq \mathbb{E}|\xi| + \varepsilon$. Поэтому по теореме о мажорируемой сходимости
+
+{\centering 
+$$0 \leq \mathbb{E}[\xi^*I_{\{M_n^* > 0\}}] \rightarrow \mathbb{E}[\xi^*I_{A_{\varepsilon}}].$$
+\par}
+
+Итак,
+
+{\centering 
+\begin{equation}
+	\begin{gathered}
+		0 \leq \mathbb{E}[\xi^*I_{A_{\varepsilon}}] = \mathbb{E}[(\xi - \varepsilon)I_{A_{\varepsilon}}] = \mathbb{E}[\xi I_{A_{\varepsilon}}] - \varepsilon\mathbb{P}(A_{\varepsilon}) = \\
+		 = \mathbb{E}[\mathbb{E}(\xi|\mathscr{J})I_{A_{\varepsilon}}] - \varepsilon\mathbb{P}(A_{\varepsilon}) = -\varepsilon\mathbb{P}(A_{\varepsilon}),
+ 	\end{gathered}
+\end{equation}
+\par}
+
+откуда $\mathbb{P}(A_{\varepsilon}) = 0$ и, значит, $\mathbb{P}\{\overline{\eta} \leq 0\} = 1$.
+
+Аналогично, рассматривая вместо $\xi(\omega)$ величину $-\xi(\omega)$, найдем, что 
+
+{\centering 
+$$\overline{\rm lim}(-\frac{S_n}{n}) = -\underline{\rm lim}\frac{S_n}{n} = -\underline{\eta}$$
+\par}
+
+и $\mathbb{P}\{-\underline{\eta} \leq 0\} = 1$, то есть $\mathbb{P}\{\underline{\eta} \geq 0\} = 1.$ тем самым $0 \leq \underline{\eta} \leq \overline{\eta} \leq 0$, чо и доказывает первое утверждение теоремы.
+
+Для доказательства второго утверждения достаточно заметить, что поскольку $\mathbb{E}(\xi|\mathscr{J})$ - инвариантная величина, то в эргодическом случае $\mathbb{E}(\xi|\mathscr{J}) = \mathbb{E}\xi$.
+\end{proof}
+
+\begin{corollary} Сохраняющее меру преобразование $T$ эргодично в том и только в том случае, когда для любых $A, ~B \in \mathscr{F}$
+\end{corollary}
+
+{\centering 
+\begin{equation}
+\lim_{n\to\infty} \frac{1}{n}\sum_{k=0}^{n-1}\mathbb{P}(A \cap T^{-k}B) = \mathbb{P}(A)\mathbb{P}(B).
+\end{equation}
+}

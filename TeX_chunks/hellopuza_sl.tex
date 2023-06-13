@@ -1,0 +1,176 @@
+
+\section{Частотная характеристика линейного преобразования. Формула преобразования спектральной плотности.}
+
+ \textbf{Автор:} Пузанков Артем Олегович, Б-01-003
+
+\subsection{Стационарные случайные процессы \footnote{Розанов Ю. А. Стационарные случайные процессы., М.: Наука. Гл. ред. физ.-мат. лит., 1990, с. 7-9} }
+
+Пусть $\Omega$ - некоторое измеримое пространство элементов $\omega$ (элементарных событий) с $\sigma$-алгеброй $\mathfrak{A}$ $\omega$-множеств, на которой определена вероятностная мера $P(d\omega)$. Случайной величиной $\xi$ мы будем называть всякую комплексную функцию $\xi(\omega)$ на пространстве $\Omega$, измеримую относительно $\sigma$-алгебры $\mathfrak{A}$. Под случайным процессом $\xi(t)$ будем понимать совокупность случайных величин, зависящих от параметра $t$ (времени), который принимает либо все целые значения, либо все действительные значения (случаи дискретного и непрерывного времени).
+
+\begin{definition} Случайный процесс $\xi(t)$ называется \emph{стационарным в широком смысле}, если его математическое ожидание $M\xi(t)$: $$M\xi(t) = \int_{\Omega}\xi(\omega,t)P(d\omega) = m,$$ есть постоянная, не зависящая от $t$, а \emph{кореляционная функция} $B(t,s)$ (часто обозначают буквой $R$): $$B(t,s) = M\xi(t)\overline{\xi(s)} = B(t-s),$$ зависит лишь от разности $t-s$.
+\end{definition}
+
+ \begin{definition} Стационарные в широком смысле случайные процессы $\xi_1(t)$ и $\xi_2(t)$ называются \emph{стационарно связанными}, если их \emph{взаимная корелляционная функция} $$B_{12}(t,s) = M\xi_1(t)\overline{\xi_2(s)} = B_{12}(t-s)$$ зависит лишь от разности $t-s$.
+ \end{definition}
+
+\begin{definition}  Совокупность $n$ стационарных процессов $\xi_k(t), \ k = \overline{1,n}$, стационарно связанных между собой, будем называть \emph{n-мерным стационарным процессом} и изображать в виде вектора-столбца $$\xi(t) = \{\xi_k(t)\}_{k=\overline{1,n}}.$$
+\end{definition}
+
+Пусть $\xi(t) = \{\xi_k(t)\}_{k=\overline{1,n}}$ - n-мерный стационарный процесс, $H_\xi$ - линейная оболочка величин $\xi_k(t), \ k=\overline{1,n}, \ -\infty<t<\infty$, замкнутая относительно сходимости в среднем квадратичном. Если отождествить между собой величины, отличающиеся друг от друга лишь с вероятностью равной нулю, и ввести скалярное произведение элементов $h', \ h''$ из $H_\xi$, как $$(h',h'') = Mh'\overline{h''},$$ то $H_\xi$ станет гильбертовым пространством; будем называть его \emph{пространством значений} процесса $\xi(t)$.
+
+\subsection{Спектральные представления стационарных процессов \footnote{Розанов Ю. А. Стационарные случайные процессы., М.: Наука. Гл. ред. физ.-мат. лит., 1990, с. 23-27}}
+
+Пусть $\xi(t)=\{\xi_k(t)\}_{k=\overline{1,n}}$ - n-мерный стационарный в широком смысле процесс, $H_\xi$ - пространство его значений.
+
+\begin{lemma}\label{hellopuza_lemma_2.1} Пусть $M$ - некоторое множество в гильбертовом пространстве, на котором задан изометрический оператор $U$ \footnote{Оператор $U$ называется изометрическим, если $$(Uh',Uh'') = (h',h'')$$ для любых $h'$ и $h''$ из $M$.}. Тогда $U$ можно продолжить с сохранением изометричности на $H_M$ - линейное замыкание элементов из $M$.
+\end{lemma}
+
+
+\begin{proof} Покажем сначала, что изометрический оператор $U$ является линейным.
+
+Пусть элемент $h$, 
+\begin{equation} 
+	\label{h_vid} h = \sum_{k=1}^{m}c_kh_k 
+\end{equation} 
+принадлежит $M$ вместе с $h_1, h_2, \ldots, h_m$. Тогда $$(Uh,Uh') = (h,h') = \sum_{k=1}^{m}c_k(h_k,h') = \sum_{k=1}^{m}c_k(Uh_k,Uh') = \left(\sum_{k=1}^{m}c_kUh_k,Uh'\right), $$ $$\left(Uh - \sum_{k=1}^{m}c_kUh_k,Uh'\right) = 0$$ для любого элемента $h' \in M$, в частности, для $h' = h, h_1, \ldots, h_m$, и поэтому
+\begin{equation}\label{h_rav}
+\begin{split}
+    & \left(Uh-\sum_{k=1}^{m}c_kUh_k,Uh-\sum_{k=1}^{m}c_kUh_k\right) = 0, \\
+    & Uh = \sum_{k=1}^{m}c_kUh_k,
+\end{split}
+\end{equation}
+равенством (\ref{h_rav}) определим теперь оператор $U$ для всех элементов $h$ вида (\ref{h_vid}), где $h_k \in M$.
+
+ Всякий элемент $h$ из $H_m$ является пределом элементов $h_n, \ n = 1, 2, 3, \ldots$, этого вида. Имеем: $$\lim_{n \to \infty} \parallel   h_n - h\parallel   = 0,$$ $$\lim_{m,n \to \infty} \parallel  h_m - h_n\parallel   = \lim_{m,n \to \infty} \parallel  Uh_m - Uh_n\parallel   = 0,$$ и поэтому существует предел $$\lim_{n \to \infty} Uh_n.$$
+
+ Положим 
+\begin{equation}
+	 \label{h_lim} Uh = \lim_{n \to \infty} Uh_n. 
+\end{equation}
+Легко проверить, что оператор $U$, определенный равенствами (\ref{h_rav}) и (\ref{h_lim}) на всем пространстве $H_m$, будет изометрическим.
+\end{proof}
+
+
+\begin{theorem}\label{hellopuza_theor_2.1} Каждый многомерный стационарный процесс $\xi(t) = \{\xi_k(t)\}_{k=\overline{1,n}}$ допускает спектральное представление $$\xi(t) = \int e^{i \lambda t} \Phi(d \lambda)$$ в виде интеграла по спектральной случайной мере $\Phi = \{\Phi_k\}_{k=\overline{1,n}}$ (интегрирование производится в пределах $-\pi \leq \lambda \leq \pi$ в случае дискретного времени и в пределах $-\infty < \lambda < \infty$ в случае непрерывного $t$).
+\end{theorem}
+
+\subsection{Линейные преобразования стационарных процессов \footnote{Розанов Ю. А. Стационарные случайные процессы., М.: Наука. Гл. ред. физ.-мат. лит., 1990, с. 46-50}}
+
+ Пусть $\xi(t)=\{\xi_k(t)\}_{k=\overline{1,n}}$ - некоторый n-мерный стационарный процесс, спектральное разложение которого 
+\begin{equation} 
+	\xi(t)=\int e^{i \lambda t} \Phi^\xi(d \lambda), \ \ \Phi^\xi = \{\Phi^\xi_k\}_{k=\overline{1,n}}.
+ \end{equation}
+
+ Условимся говорить, что m-мерный стационарный процесс $\eta(t) = \{\eta_j(t)\}_{j=\overline{1,m}}$ получается из $\xi(t)$ \emph{линейным преобразованием}, если каждая его компонента допускает спектральное представление вида 
+\begin{equation} 
+	\label{lin_pre} \eta_j(t) = \int e^{i \lambda t} \phi_j(\lambda) \Phi^\xi(d \lambda), \ \ j = \overline{1,m}, 
+\end{equation} 
+с некоторой векторной функцией $\phi_j = \{\phi_{jk}\}^{k=\overline{1,n}}$ из пространства $L^2(F)$.
+
+ Соотношение (\ref{lin_pre}) можно записать в матричной форме: 
+\begin{equation} 
+	\label{mat_lin_pre} \eta(t) = \int e^{i \lambda t} \phi_{\eta \xi}(\lambda) \Phi^\xi(d \lambda)
+\end{equation} 
+(здесь матрица $\phi_{\eta \xi}(\lambda) = \{\phi_{jk}(\lambda)\}^{k=\overline{1,n}}_{j=\overline{1,m}}$ символически умножается на матрицу $\Phi^\xi(d \lambda) = \{\Phi^\xi_k(d \lambda)\}_{k=\overline{1,n}}$ состоящую из одного столбца). Формулы (\ref{lin_pre}) и (\ref{mat_lin_pre}) показывают, что случайные величины $\eta_j(t)$ - значения стационарного процесса $\eta(t)$ - принадлежат пространству $H_\xi$.
+
+ Будучи стационарным процессом, $\eta(t)$ имеет свое спектральное представление: 
+\begin{equation} 
+	\eta(t) = \int e^{i \lambda t} \Phi^\eta(d \lambda), \ \  \Phi^\eta = \{\Phi^\eta_j\}_{j=\overline{1,m}}. 
+\end{equation}
+
+ Из соотношения (\ref{lin_pre}) вытекает, что спектральная случайная мера $\Phi^\eta = \{\Phi^\eta_j\}_{j=\overline{1,m}}$ процесса $\eta(t)$ такова, что 
+\begin{equation} 
+	\label{pre_mera} \Phi^\eta_j(\Delta) = \int_{\Delta} \phi_j(\lambda) \Phi^\xi(d \lambda), \ j=\overline{1,m}
+ \end{equation}
+
+ В матричной форме соотношения (\ref{pre_mera}) можно записать как 
+\begin{equation} 
+	\label{mat_pre_mera} \Phi^\eta(\Delta) = \int_{\Delta} \phi_{\eta\xi}(\lambda) \Phi^\xi(d \lambda). 
+\end{equation}
+
+ Компоненты $F^{\eta\eta}_{ij}$ спектральной меры $F^{\eta\eta} = \{F^{\eta\eta}_{ij}\}^{j=\overline{1,m}}_{i=\overline{1,m}}$ процесса $\eta(t)$ выражаются через спектральную меру $F^{\xi\xi} = \{F^{\xi\xi}_{kl}\}^{l=\overline{1,n}}_{k=\overline{1,n}}$ процесса $\xi(t)$ при помощи равенств \begin{equation} 
+	F^{\eta\eta}_{\ij}(\Delta) = \int_{\Delta} \phi_i F^{\xi\xi}(d \lambda) \phi^{*}_j, \ \ i,j=\overline{1, m}, 
+\end{equation} 
+или, в матричной форме, 
+\begin{equation} 
+	F^{\eta\eta}(\Delta) = \int_{\Delta} \phi_{\eta\xi}F^{\xi\xi}(d \lambda) \phi^{*}_{\eta\xi}. 
+\end{equation}
+
+ Будем называть матричную функцию 
+\begin{equation} 
+	\phi_{\eta\xi} = \{\phi_{jk}\}^{k=\overline{1,n}}_{j=\overline{1,m}} 
+\end{equation} 
+\emph{спектральной (частотной) характеристикой} нашего линейного преобразования.
+
+ Очевидно, стационарные процессы $\xi(t)$ и $\eta(t)$ стационарно связаны между собой. Пусть их взаимная спектральная мера есть 
+\begin{equation} 
+	F^{\eta\xi} = \{F^{\eta\xi}_{jk}\}^{k=\overline{1,n}}_{j=\overline{1,m}}. 
+\end{equation} 
+Имеем
+\begin{equation}
+\label{spec_mera}
+\begin{split}
+    & F^{\eta\eta}(d \lambda) = \phi_{\eta\xi}(\lambda)F^{\xi\xi}(d \lambda)\phi^{*}_{\eta\xi}(\lambda), \\
+    & F^{\eta\xi}(d \lambda) = \phi_{\eta\xi}(\lambda)F^{\xi\xi}(d \lambda).
+\end{split}
+\end{equation}
+
+ Соотношения (\ref{spec_mera}) не только необходимы, но и достаточны для того, чтобы многомерный стационарный процесс $\eta(t)$ получался из многомерного стационарного процесса $\xi(t)$ при помощи линейного преобразования со спектральной характеристикой $\phi_{\eta\xi}$.
+
+\begin{lemma}\label{hellopuza_lemma_3.1} Пусть стационарный процесс $\eta(t) = \{\eta_j(t)\}_{j=\overline{1,m}}$ стационарно связан с процессом $\xi(t) = \{\xi_k(t)\}_{k=\overline{1,n}}$, а стационарный процесс $\zeta(t) = \{\zeta_j(t)\}_{j=\overline{1,m}}$ получается из $\xi(t)$ линейным преобразованием, причем их спектральные меры удовлетворяют условиям 
+	\begin{equation} 
+		\label{spec_usl} F^{\eta\eta}(d \lambda) = F^{\zeta\zeta}(d \lambda), \ \ F^{\eta\xi}(d \lambda) = F^{\zeta\xi}(d \lambda). 
+	\end{equation} 
+Тогда процессы $\eta(t)$ и $\zeta(t)$ тождественны.
+	
+\end{lemma}
+
+\begin{proof} Равенства
+\begin{equation}
+\label{op_T}
+\begin{split}
+    & T\zeta_j(t) = \eta_j(t), \ j=\overline{1,m}, \\
+    & T\xi_k(t) = \xi_k(t), \ k=\overline{1,n}, \ -\infty < t < \infty,
+\end{split}
+\end{equation}
+определяют на элементах $\zeta_i(t)$ и $\xi_k(t)$ пространства $H_\xi$ изометрический оператор $T$: $$M\zeta_j(t)\overline{\zeta_{j'}(t')} = \int e^{i \lambda (t - t')} F^{\zeta\zeta}_{jj'}(d \lambda) = \int e^{i \lambda (t - t')} F^{\eta\eta}_{jj'}(d \lambda) = M \eta_j(t)\overline{\eta_{j'}(t')}$$ и, аналогично, $$M\zeta_j(t)\overline{\xi_k(t')} = M\eta_j(t)\overline{\xi_k(t')}.$$
+
+ По лемме~\ref{hellopuza_lemma_2.1} оператор $T$ можно продолжить с сохранением изометричности на все пространство $H_\xi$. Но в силу равенств (\ref{op_T}) оператор $T$ является тождественным (он переводит случайные величины $\xi_k(t)$ в самих себя), и поэтому $$\zeta_j(t) = \eta_j(t), \ j=\overline{1,m},$$ при всех $t$, что и требовалось доказать.
+\end{proof}
+
+\begin{theorem}\label{hellopuza_theor_3.1} Пусть многомерные стационарные процессы $\eta(t)$ и $\xi(t)$ стационарно связаны.
+
+ Для того чтобы процесс $\eta(t)$ получался из $\xi(t)$ линейным преобразованием со спектральной характеристикой $\phi_{\eta\xi}$, необходимо и достаточно, чтобы спектральные меры $F^{\eta\eta}, \ F^{\eta\xi}$ и $F^{\xi\xi}$ этих процессов удовлетворяли условию (\ref{spec_mera}).
+\end{theorem}
+
+\begin{proof} Пусть $$\xi(t) = \int e^{i \lambda t} \Phi^\xi(d \lambda).$$ Определим стационарный процесс $\zeta(t)$ равенством 
+	\begin{equation} 
+		\label{int_zeta} \zeta(t) = \int e^{i \lambda t} \phi_{\eta\xi}(\lambda) \Phi(d \lambda). 
+	\end{equation}
+
+ Интеграл в (\ref{int_zeta}) существует, так как существует интеграл $$\int \phi_{\eta\xi}F^{\xi\xi}(d \lambda) \phi^{*}_{\eta\xi} = \int F^{\eta\eta}(d \lambda).$$
+
+ Очевидно, спектральные меры процессов $\zeta(t), \ \eta(t)$ и $\xi(t)$ удовлетворяют условиям (\ref{spec_usl}), откуда по лемме~\ref{hellopuza_lemma_3.1} вытекает, что процесс $\zeta(t)$ на самом деле совпадает с $\eta(t)$. Теорема доказана.
+\end{proof}
+
+
+\begin{remark}\label{hellopuza_remark_1} Стационарный m-мерный процесс $\eta(t)$, стационарно связанный с n-мерным процессом $\xi(t)$, получается из него линейным преобразованием тогда и только тогда, когда при некотором $t_0$ значения $\eta_j(t_0), \ j=\overline{1,m}$, процесса $\eta(t)$ принадлежат пространству $H_\xi$ значений процесса $\xi(t)$; при этом $\eta_j(t) = U_{t-t_0}\eta_j(t_0), \ j=\overline{1,m}$, где $U_t$ - унитарное семейство процессса $\xi(t)$.
+\end{remark}
+
+\begin{remark}\label{hellopuza_remark_2} Если стационарный процесс $\xi(t)$ имеет спектральную плотность $f^{\xi\xi}$, то процесс $\eta(t)$, получающийся из $\xi(t)$ линейным преобразованием со спектральной характеристикой $\phi_{\eta\xi}$, также имеет спектральную плотность, причем, как это следует из (\ref{spec_mera}), $$f^{\eta\eta} = \phi_{\eta\xi}f^{\xi\xi}\phi^{*}_{\eta\xi}, \ \ f^{\eta\xi} = \phi_{\eta\xi}f^{\xi\xi}$$ (здесь $f^{\eta\xi}$ - взаимная спектральная плотность).
+\end{remark}
+
+\begin{remark}\label{hellopuza_remark_3} Если процесс $\eta(t)$ получается из процесса $\xi(t)$ линейным преобразованием со спектральной характеристикой $\phi_{\eta\xi}$, которая для почти всех $\lambda$ является невырожденной матрицей, то в свою очередь $\xi(t)$ можно получить из $\eta(t)$ линейным преобразованием, причем $$\phi_{\xi\eta} = \phi_{\eta\xi}^{-1}.$$
+\end{remark}
+
+\begin{example} Пусть $\xi(t)$ - стационарный процесс с непрерывным временем, $$\xi(t) = \int_{-\infty}^{\infty} e^{i \lambda t} \Phi(d \lambda),$$ спектральная мера $F$ которого удовлевторяет условию $\int_{-\infty}^{\infty} \lambda^2 F(d \lambda) < \infty.$
+
+ Рассмотрим стационарный процесс $\eta(t)$, получающийся из $\xi(t)$ линейным преобразованием со спектральной характеристикой $\phi(\lambda) = i \lambda$, $$\eta(t) = \int_{-\infty}^{\infty} e^{i \lambda t} (i \lambda) \Phi(d \lambda).$$
+
+ Легко заметить, что процесс $\eta(t)$ получается формальным дифференцированием процесса $\xi(t)$ по времени: $$\eta(t) = \frac{d}{dt}\xi(t).$$
+
+ Этому соотношению можно придать строгий смысл. Функция $i \lambda e^{i \lambda t}$ при каждом фиксированном $t$ есть предел в среднем квадратичном функций $\phi_\epsilon(\lambda) = \frac{1}{\epsilon}\left[e^{i \lambda(t+\epsilon)} - e^{i \lambda t}\right]$ при $\epsilon \to 0$, $$\lim_{\epsilon \to 0} \int_{-\infty}^{\infty} \left|i \lambda e^{i \lambda t} - \phi_\epsilon(\lambda) \right|^2 F(d \lambda) = 0,$$ и поэтому $\eta(t)$ есть предел в среднем квадратичном случайных величин $\frac{1}{\epsilon} \left[\xi(t + \epsilon) - \xi(t)\right]$: $$\lim_{\epsilon \to 0} M \left|\eta(t) - \frac{\xi(t + \epsilon) - \xi(t)}{\epsilon}\right|^2 = 0.$$
+
+ Процесс $\eta(t)$ называют производной (в среднем квадратичном) стационарного процесса $\xi(t)$.
+\end{example}
+

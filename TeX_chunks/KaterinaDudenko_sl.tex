@@ -1,0 +1,168 @@
+
+\section{Статистическая оценка математического ожидания гауссовской стационарной последовательности}
+
+ \textbf{Автор:} Дуденко Екатерина Игоревна, Б-01-001
+
+\subsection{Гауссовский случайный процесс.}
+\begin{definition}(Лекции по случайным процессам А.В. Гасников \cite{GasnikovLectionsRP})
+Гауссовский процесс - это процесс, все конечномерные распре-
+деления которого нормальные (гауссовские). Это значит, что любой
+случайный вектор, составленный из сечений такого процесса, имеет
+нормальное распределение.
+\end{definition}
+
+Напомним, что случайный вектор $X \in \mathbb{\bf{R}} ^ n$ является гауссовским с
+математическим ожиданием $m$ и корреляционной матрицей $R \in \mathbb{\bf{R}} ^{n \times n}$
+(обозначается $X \in \mathbb{N}(m, R)$), если его характеристическая функция за-
+дается формулой:
+
+\begin{equation*}
+    \varphi_X(s)  \stackrel{def}{=} \mathbb{E}e^{i\langle{s,X}\rangle} = exp(i\langle{s,m}\rangle - \frac{1}{2}\langle{s,Rs}\rangle), s \in \mathbb{\bf{R}}^n
+\end{equation*}
+
+Если $det R \neq 0$ , то $X$ обладает плотностью распределения:
+\begin{equation*}
+    p_X(u) = \frac{1}{\sqrt{(2\pi)^n det R}} exp(-\frac{1}{2}\langle{u,R^{-1}u}\rangle), u \in \mathbb{\bf{R}^n}
+\end{equation*}
+
+\subsection{Стационарные последовательности.}
+
+\begin{definition}(Ширяев вероятность \cite{ShiryaevVeroyatnost1})
+Случайная последовательность $\xi = (\xi_1, \xi_2, ...)$ называется стационарной в узком смысле, если для любого множества $B \in \mathbb{\bf{B}}(\mathbb{\bf{R}}^{\infty})$ и любого $n \geq 1$
+\begin{equation}
+\mathbf{P}\{(\xi_1, \xi_2, ...) \in B \} = \mathbf{P}\{ (\xi_{n+1}, \xi_{n+2}, ...) \in B \}
+\end{equation}
+\end{definition}
+Отсюда, в частности, вытекает, что если $\mathbf{M}\xi_1^2 < \infty$, то $\mathbf{M}\xi_n$ не зависит от $n$: $\mathbf{M}\xi_n=\mathbf{M}\xi_1$
+
+\begin{definition}(Ширяев вероятность \cite{ShiryaevVeroyatnost1})
+Последовательность комплексных случайных величин $\xi = (\xi_n)_{n\in\mathbb{Z}}$ с $\mathbf{M}|\xi_n|^2 < \infty, n\in\mathbb{Z}$, называется стационарной (в широком смысле), если для всех $n \in \mathbb{\bf{Z}}$ 
+
+\begin{equation}
+\begin{gathered}
+\mathbf{M}\xi_n = \mathbf{M}\xi_0 \\
+cov(\xi_{k+n}, \xi_k) = cov(\xi_n, \xi_0), \  k\in\mathbb{\bf{Z}}.
+\end{gathered}
+\end{equation}
+
+\end{definition}
+
+\begin{theorem}(Лекции по случайным процессам А.В. Гасников \cite{GasnikovLectionsRP}) 
+Гауссовский процесс является стационарным в широком смысле тогда и только тогда, когда он является стационарным в узком смысле.
+\end{theorem}
+
+\subsection{Спектральное представление стационарных последовательностей.}
+
+Если $\xi = (\xi_n)$ - стационарная последовательность с $\mathbf{M}\xi_n = 0, n \in \mathbb{\bf{Z}},$ то, найдется такая конечная мера $F = F(\delta)$ на, $([-\pi, \pi), \mathscr{B}([-\pi, \pi))),$ что ковариационнная функция $R(n) = cov(\xi_{k+n}, \xi_k)$ допускает спектральное представление
+\begin{equation}
+R(n) = \int_{-\pi}^{\pi} e^{i\lambda n}F(d\lambda).
+\end{equation}
+Следующий результат дает соответствующее спектральное представление самой последовательности.
+\begin{equation}\label{spkt}
+\xi_n = \int_{-\pi}^{\pi} e^{i\lambda n}Z(d\lambda).
+\end{equation}
+
+При этом $\mathbf{M}|Z(\delta)|^2 = F(\delta)$.
+
+\begin{theorem}\label{t1}(Ширяев вероятность \cite{ShiryaevVeroyatnost1})
+Пусть $\xi = (\xi_n)\, n \in \mathbb{Z}\,$ стационарная последовательность с $\mathbf{M}\xi_n = 0$, ковариационной функцией $R(n) = \int_{-\pi}^{\pi}   e^{i\lambda n}F(d\lambda)$ и спектральным разложением $\xi_n = \int_{-\pi}^{\pi} e^{i\lambda n)Z(d\lambda}$. Тогда:
+\begin{equation}\label{eq1}
+\frac{1}{n}\sum_{k=0}^{n-1}\xi_k \xrightarrow{L^2}Z(\{ 0\})
+\end{equation}
+$$
+\text{и}
+$$
+\begin{equation}\label{eq2}
+\frac{1}{n}\sum_{k=0}^{n-1} R(k) \xrightarrow{}F(\{ 0\})
+\end{equation}
+\end{theorem}
+
+
+
+\begin{proof} 
+
+В силу (\ref{spkt})
+
+
+\[	
+\frac{1}{n} \sum_{k=0}^{n-1}\xi_k = \int_{-\pi^\pi}\sum_{k=0}^{n-1}e^{ik\lambda}Z(d\lambda) = \int_{-\pi}^{\pi}\varphi_n(\lambda)Z(\lambda), \\
+\]
+\[
+\text{где } \varphi_n(\lambda) = \frac{1}{n}\sum_{k=0}^{n-1}e^{ik\lambda} =
+\begin{cases*}
+1, \lambda = 0,\\
+\frac{1}{n}*\frac{e^{in\lambda} - 1}{e^{i\lambda} - 1}, \lambda \neq 0.
+\end{cases*}
+\]
+$$
+\text{Поскольку } |\sin\lambda| \geq \frac{2}{\pi}|\lambda| \text{ для } |\lambda|\leq\frac{\pi}{2}, \text{ то}
+$$
+$$
+ |\varphi_n(\lambda)|= \Bigg|\frac{\sin{\frac{n\lambda}{2}}}{n\sin{\frac{\lambda}{2}}}\Bigg| \leq \frac{\pi}{2}
+\Bigg|\frac{\sin{\frac{n\lambda}{2}}}{\frac{n\lambda}{2}}\Bigg| \leq \frac{\pi}{2}.
+$$
+$$
+\text{Далее, } \varphi_n(\lambda) \xrightarrow{L^2} I_{\{0\}}(\lambda), \text{ поэтому } 
+$$
+$$
+\int_{-\pi}^{\pi}\varphi_n(\lambda)Z(d\lambda) \xrightarrow{L^2} \int_{-\pi}^{\pi}  I_{\{0\}}(\lambda) Z(d\lambda) = Z({0}),
+$$
+$$
+\text{что и доказывает (\ref{eq1}). Аналогичным образом доказывается и утверждение (\ref{eq2})}
+$$
+\end{proof}
+
+
+
+\begin{corollary}
+Если спектральная функция непрерывна в нуле, т. е. $F(\{0\}) = 0$, то $Z(\{0\}) = 0$ и в силу (\ref{eq1}), (\ref{eq2})
+\begin{equation}
+\frac{1}{n}\sum_{k=0}^{n-1} R(k) \xrightarrow{}0 \Rightarrow \frac{1}{n}\sum_{k=0}^{n-1}\xi_k(k) \xrightarrow{L^2}0 
+\end{equation}
+\end{corollary}
+
+\begin{proof} 
+
+Поскольку
+\begin{equation*}
+\Bigg| \frac{1}{n}\sum_{k=0}^{n-1}R(k)\Bigg|^2 = \Bigg|\mathbf{M}\Big(\frac{1}{n}\sum_{k=0}^{n-1}\xi_k\Big) \xi_0\Bigg|^2 \leq \mathbf{M}|\xi_0|^2\mathbf{M}\Big( \frac{1}{n}\sum_{k=0}^{n-1}\xi_k\Big)^2,
+\end{equation*}
+То верна и обратная импликация:
+\begin{equation*}
+\frac{1}{n}\sum_{k=0}^{n-1}\xi_k \xrightarrow{L^2}0 \Rightarrow \frac{1}{n}\sum_{k=0}^{n-1}R(k) \xrightarrow {} 0.
+\end{equation*}
+Таким образом, условие $\frac{1}{n}\sum_{k=0}^{n-1} R(k) \xrightarrow{}0$ является необходимым и достаточным для сходимости (в среднеквадратичном смысле) средних арифметических $\frac{1}{n}\sum_{k=0}^{n-1}\xi_k(k)$ к нулю. 
+
+\end{proof}
+
+
+\begin{corollary}
+Отсюда следует, что для стационарной в широком смысле последовательности $\xi = (\xi_n)$ такой, что ее математическое ожидание есть $m$ $(\mathbf{M}\xi_0=m)$, то
+\begin{equation}
+\frac{1}{n}\sum_{k=0}^{n-1} R(k) \xrightarrow{}0 \Leftrightarrow \frac{1}{n}\sum_{k=0}^{n-1}\xi_k(k) \xrightarrow{L^2}m.
+\end{equation}
+где $R(n) = \mathbf{M}(\xi_n - \mathbf{M}\xi_n)(\xi_0 - \mathbf{M}\xi_0)$.
+\end{corollary}
+
+\subsection{Статистическое оценивание.}
+Пусть $\xi = (\xi_n)$, $n \in \mathbf{\bf{Z}}$ стационарная в широком смысле случайная последовательность с математическим ожиданием $\mathbf{M}\xi_n = m$ и ковариацией $R(n) = \int_{-\pi}^{\pi} e^{i\lambda n}F(d\lambda)$.
+
+Пусть $x_0, x_1, ..., x_{N-1}$ - полученные в ходе наблюдения случайных величин $\xi_0, \xi_1, ..., \xi_{N-1}$. По ним нужно построить 'хорошую' оценку (неизвестного) среднего значения $m$.
+
+Положим
+\begin{equation}
+m_N(X) = \frac{1}{N}\sum_{k=0}^{N-1}x_k.
+\end{equation}
+
+Тогда из элементарных свойств математического ожидания следует, что эта оценка является 'хорошей' оценкой величины $m$ в том смысле, что 'в среднем по всем реализациям $x_0, ..., x_{N-1}$'  она является $несмещенной$, т. е
+
+\begin{equation}
+\mathbf{M}m_N(\xi) = \mathbf{M}(\frac{1}{N}\sum_{k=0}^{N-1}\xi_k) = m.
+\end{equation}
+
+Более того из теоремы \ref{t1} вытекает, что при условии $\frac{1}{N}\sum_{k=0}^{N-1} R(k) \xrightarrow{} 0, N \xrightarrow{} \infty$, рассматриваемая оценка является также и {\em состоятельной} (в среднеквадратичном смысле), т. е.
+
+\begin{equation}
+\mathbf{M}|m_N(\xi) - m|^2 \xrightarrow{} 0, N \xrightarrow{} \infty.
+\end{equation}
+Таким образом, получено требуемое.

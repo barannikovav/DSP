@@ -1,0 +1,112 @@
+
+
+\section{Метод моментов для определения уравнений относительно математического ожидания и дисперсии (модель авторегрессии --- скользящего среднего)}
+
+\textbf{Автор:} Отмахов Артем Денисович, Б-01-001
+
+\subsection{Введение}
+\begin{itemize}
+    \item Все случайные величины (СВ) заданы на общем вероятностном пространстве $(\Omega, \mathscr{F}, \mathbb{P})$
+    \item Для некоторой случайной последовательности (СП) $\{X_n\}$ вводим следующие обозначения:
+    $$
+        m_X(n) = \mathbb{M}(X_n)
+    $$
+    $$
+        D_X(n) = \mathbb{D}(X_n) = \mathbf{cov}(X_n,~X_n) = \mathbb{M}((X_n - m_X(n))(X_n - m_X(n))^*)
+    $$
+    \item $\{\xi_n\}$ --- многомерная СП, т.е. $\xi_n \in \mathbb{R}^p$ при каждом $n \geq 0$
+    \item Последовательность независимых СВ $\{\varepsilon_n\}$, $\varepsilon_n \in \mathbb{R}^q$ при $n \geq 1$: $\varepsilon_n$ --- стандартный $q$-мерный белый шум, т.е. $m_{\varepsilon}=0$, $D_{\varepsilon}=I$
+    \item $\eta \in \mathbb{R}^p$ --- случайный вектор начальных условий
+    \item $A_n \in \mathbb{R}^{p \times p}$, $B_n \in \mathbb{R}^{p \times q}$ --- известные неслучайные матрицы
+    \item $\{\eta, \varepsilon_1, \dots, \}$ являются независимыми в совокупности
+\end{itemize}
+
+
+\subsection{Уравнение моментов для авторегрессии (АР) первого порядка}
+\begin{definition} 
+	СП $\{\xi_n,~n \geq 0\}$ удовлетворяет \textit{многомерному линейному разностному стохастическому уравнению с начальным условием} $\eta$, если
+	\begin{equation}
+	    \label{eq:recurrent}
+	    \begin{cases}
+	        \xi_n = A_n\xi_{n-1} + B_n\varepsilon_n, ~~ n \geq 1,\\
+	        \xi_0 = \eta,
+	    \end{cases}
+	\end{equation}
+\end{definition}
+Рекуррентные соотношения \eqref{eq:recurrent} позволяют провести моделирование СП $\{\xi_n\}$, а также вычислить моментные характеристики первого и второго порядка $m_{\xi}(n)$ и $D_{\xi}(n)$ при заданных характеристиках $\{\varepsilon_n\}$ и начальном условии $\eta$.
+\vspace{1mm}
+
+\begin{theorem} 
+	Если СП $\xi_n$  удовлетворяет системе \eqref{eq:recurrent}, то для $m_\xi(n)$ и $D_\xi(n)$ выполнено:
+	\begin{equation}
+	    \label{eq:method_of_moments}
+	    \begin{cases}
+	        m_\xi(n) = A_n m_\xi(n-1) + B_n m_\varepsilon(n), n \geq 1,\\
+	        m_\xi(0) = m_\eta,\\
+	        D_\xi(n) = A_n D_\xi(n-1) A_n^* + B_n D_\varepsilon(n) B_n^*, n \geq 1,\\
+	        D_\xi(0) = D_\eta,
+	    \end{cases}
+	\end{equation}
+	где $m_{\eta} = \mathbb{M}(\eta)$, $R_{\eta} = \mathbf{cov}(\eta,~\eta)$.
+\end{theorem}
+
+\begin{proof} 
+	Значения в 0 получаются применением к второму уравнению системы \eqref{eq:recurrent} оператора математического ожидания и дисперсии соответственно.
+	
+	Возьмем среднее от правой и левой части первого уравнения в системе \eqref{eq:recurrent} и воспользуемся линейностью математического ожидания:
+	\begin{align*}
+	    m_\xi(n) = \mathbb{E}(\xi_n) &=  \mathbb{E}(A_n \xi_{n-1} + B_n \varepsilon_n) = \\ A_n\mathbb{E}(\xi_{n-1}) + B_n\mathbb{E}(\varepsilon_n) &= A_n m_\xi(n-1) + B_n m_\varepsilon(n)
+	\end{align*}
+	
+	Применим оператор дисперсии к правой и левой части первого уравнения в системе \eqref{eq:recurrent} и воспользуемся его линейностью для независимых СВ $\xi_{n-1}$, $\varepsilon_n$:
+	\begin{align*}
+	    D_\xi(n) = \mathbb{D}(\xi_n)) =  \mathbb{D}(A_n \xi_{n-1} + B_n \varepsilon_n) &= \mathbf{cov}(A_n\xi_{n-1}, A_n\xi_{n-1}) + \mathbf{cov}(B_n\varepsilon_{n}, B_n\varepsilon_{n}) \\ = A_n \mathbf{cov}(\xi_{n-1}, \xi_{n-1}) A_n^* + B_n \mathbf{cov}(\varepsilon_{n}, \varepsilon_{n}) B_n^* &= A_n D_\xi(n-1) A_n^* + B_n D_\varepsilon(n) B_n^*
+	\end{align*}
+\end{proof}
+
+\begin{definition} 
+	Уравнения системы \eqref{eq:method_of_moments} называются \textit{уравнениями метода моментов}.
+\end{definition}
+\vspace{1mm}
+
+\begin{remark}
+Если система стационарна ($A_n = A$, $B_n = B$), то первое уравнение системы \eqref{eq:recurrent} имеет вид:
+$$
+    \xi_n = A \xi_{n-1} + B \varepsilon_n,
+$$
+что представляет собой \textit{уравнение АР первого порядка}.
+\end{remark}
+
+
+\subsection*{АРСС-модель p-го порядка (авторегрессии --- скользящего среднего)}
+Пусть АРСС-последовательность $\{\xi_n\}$ определена уравнением
+\begin{equation}
+    \label{eq:arma}
+    \xi_n + b_1 \xi_{n-1} + \dots + b_p \xi_{n-p} = a_0 \varepsilon_n + a_1 \varepsilon_{n-1} + \dots + a_q \xi_{n-q}
+\end{equation}
+где $b_p \neq 0$, $q = p - 1$, а $p \geq 1$ --- порядок авторегрессионной части модели \eqref{eq:arma}. Тогда $\xi_n = \xi_1(n)$, где $\xi_1(n)$ --- первая компонента p-мерной СП $\xi(n) = \{\xi_1(n),~\dots~,~ \xi_p(n)\}^*$, удовлетворяющей векторному разностному стохастическому уравнению
+\begin{equation}
+    \label{eq:basis}
+    \xi(n) = A \xi(n-1) + B \varepsilon_n,
+\end{equation}
+где: 
+\begin{equation}
+    A = \begin{pmatrix}
+            -b_1 & -b_2 & \dots & -b_{p-1} & -b_p \\
+            1 & 0 & \dots & 0 & 0 \\
+            0 & 1 & \dots & 0 & 0 \\
+            \dots & \dots & \dots & \dots & \dots \\
+            0 & 0 & \dots & 1 & 0 \\
+        \end{pmatrix},~
+        B = \begin{pmatrix}
+            a_0 \\ d_q \\ d_{q-1} \\ \dots \\ d_1
+        \end{pmatrix},
+\end{equation}
+а параметры $\{d_k, k=1,~\dots~,~q\}$ вычисляются по рекуррентным формулам:
+\begin{equation}
+    d_q = \tilde{a}_q,~d_k = \tilde{a}_k - \sum\limits_{i=k}^{q-1} \tilde b_{i+1}d_{k+q-i}, ~~ k = q-1,~\dots,1,
+\end{equation}
+где обозначено $\tilde{a}_k = -a_k / b_p$, $k = 1,~\dots,q$, $\tilde{b}_i = b_i / b_p$, $i = 2,~\dots,p$.
+
+Заметим, что \eqref{eq:basis} является уравнением АР первого порядка для p-мерной СП $\{\xi(n)\}$. Таким образом, приведенные соотношения фактически показывают, что скалярная АРСС-модель p-го порядка эквивалентна p-мерной АР-модели первого порядка.
+Поэтому для исследования АРСС-последовательности можно использовать методы, предназначенные для работы с векторными стохастическими линейными разностными уравнениями (например, рассмотренный выше метод моментов). 

@@ -1,0 +1,147 @@
+
+\section{Теорема Герглотца}
+
+\textbf{Автор:} Павлова Ирина Денисовна, Б-01-001
+
+\subsection{Введение}
+
+Случайная последовательность $\xi = (\xi_1, \xi_2, ...)$ называется стационарной в \textit{узком смысле}, если для любого множества $B \in \mathcal{B}(R^{\infty})$ и любого $n \geq 1$
+\begin{equation}\label{eq1} 
+    P \{ (\xi_1, \xi_2, ..) \in B\} = P\{(\xi_{n+1}, \xi_{n+2}, ...) \in B\}.
+\end{equation}
+Отсюда, в частности, вытекает, что если $\mathbf{E}\xi_1^2 < \infty,$ то  $\mathbf{E}\xi_n$ не зависит от $n$:
+\begin{equation}\label{eq2} 
+    \mathbf{E}\xi_n = \mathbf{E}\xi_1,
+\end{equation}
+
+а ковариация $\mathbf{cov}(\xi_{n+m}, \xi_n) = \mathbf{E}(\xi_{n+m} - \mathbf{E}\xi_{n+m})(\xi_n - \mathbf{E}\xi_n)$ зависит лишь от $m$:
+
+\begin{equation}\label{eq3} 
+    \mathbf{cov}(\xi_{n+m}, \xi_n) = \mathbf{cov}(\xi_{1+m}, \xi_1).
+\end{equation}
+
+В теореме ниже будут использоваться так называемые стационарные в \textit{широком смысле} последовательности (с конечным вторым моментом), для которых условие \ref{eq1} заменяется условиями \ref{eq2} и \ref{eq3}.
+
+\begin{definition}
+    Пусть $\mathcal{B}(R)$ --- наименьшая $\sigma$-алгебра $\sigma(\mathcal{A})$, содержащая систему $\mathcal{A}$. Эта $\sigma$-алгебра называется \textit{борелевской} алгеброй множеств числовой прямой, а ее множества - \textit{борелевскими}.
+\end{definition}
+
+
+\begin{definition}
+Последовательность комплекснозначных случайных величин $\xi = (\xi_n)_{n \in \textbf{Z}}$ с $\textbf{E}|\xi_n|^2 < \infty, n \in \textbf{Z}$, называется \textit{стационарной} (в широком смысле), если для всех $n \in \textbf{Z}$
+
+$$\textbf{E}\xi_n = \textbf{E}\xi_0,$$
+\begin{equation}\label{eq4}
+    \textbf{cov}(\xi_{n+k}, \xi_k) = \textbf{E}(\xi_n, \xi_0), \quad k \in \textbf{Z}
+\end{equation}
+
+
+В дальнейшем будем предполагать $\textbf{E}\xi_{0} = 0$. 
+
+
+Обозначим 
+\begin{equation}\label{eq5} 
+    R(n)=\textbf{cov}(\xi_n, \xi_0), \quad n \in \textbf{Z},
+\end{equation}
+и (в предположении $R(0) = \textbf{E}|\xi_0|^2 \neq 0$)
+\begin{equation}\label{eq6} 
+    \rho (n) = \frac{R(n)}{R(0)}, \quad n \in \textbf{Z}.
+\end{equation}
+
+
+Функцию $R(n)$ будем называть ковариационной функцией, a $\rho(n)$ –– \textit{корреляционной функцией} (стационарной в широком смысле) последовательности $\xi$.
+
+Непосредственно из определения \ref{eq5} следует, что ковариационная функция $R(n)$ является \textit{неотрицательно определенной} т.е. для любых комплексных чисел $a_1, ..., a_m$ и любых $t_1, ..., t_m \in \textbf{Z}, m \geq 1,$
+
+\begin{equation}\label{eq7}
+    \sum\limits_{i, j = 1}^{m} a_i \overline{a_j} R(t_i-t_j) \geq 0
+\end{equation}
+
+%В свою очередь отсюда (или непосредственно из \ref{eq5}) нетрудно вывести следующие свойства ковариационной функции:
+% Свойства ковариационной функции:
+% \begin{eqnarray}\label{8}
+%     \begin{gathered}
+%         R(0) \geq 0, \quad R(-n) = \overline{R(n)}, \quad |R(n)| \leq R(0), \\
+%         |R(n)-R(m)|^2 \leq 2R(0)[R(0)- Re R(n-m)].
+%     \end{gathered}
+% \end{eqnarray}
+
+
+\end{definition}
+
+\begin{definition}
+    Семейство вероятностных мер $\mathcal{P} = \{ \mathbf{P_{\alpha}}; \alpha \in \mathcal{U} \}$ назовем \textit{относительно компактным}, если любая последовательность мер из $\mathcal{P}$ содержит подпоследовательность,слабо сходящуюся к некоторой вероятностной мере.
+\end{definition}
+
+\begin{definition}
+    Семейство вероятностных мер $\mathcal{P} = \{ \mathbf{P_{\alpha}; \alpha \in \mathcal{U} }\}$ называется плотным, если для каждого $\varepsilon > 0$ можно показать такой компакт $K \subseteq E$ такой, что 
+    $$ \underset{\alpha \in \mathcal{U}}{sup} \mathbf{P_{\alpha}} (E \setminus K ) 	\leq \varepsilon.$$
+\end{definition}
+
+\begin{definition}
+    Семейство функций распределения $\mathcal{F} = \{ F_{\alpha} ; \alpha \in \mathcal{U} \}$, определенных на $R^n, n \geq 1$, называется \textit{относительно компактным (плотным)}, если таковым является соответствующее семейство вероятностных мер $\mathcal{P} = \{ \mathbf{P_{\alpha}; \alpha \in \mathcal{U}} \}$, где $P_{\alpha}$ --- мера, построенная по $\mathbf{F_{\alpha}}$.
+\end{definition}
+
+\begin{theorem}[Герглотц]
+Пусть $R(n)$ –– ковариационная функция
+стационарной (в широком смысле) случайной последовательности
+с нулевым средним. Тогда на $([-\pi, \pi), \mathcal{B}([ -\pi, \pi)))$ найдется такая конечная мера $F=F(B), B \in \mathcal{B}([ -\pi, \pi))$, что для любого $n \in \mathbf{Z}$
+\begin{equation}\label{eq9} 
+    R(n)= \int\limits_{-\pi}^{\pi} e^{i\lambda n} F(d \lambda),
+\end{equation}
+где интеграл $\int\limits_{-\pi}^{\pi} e^{i\lambda n} F(d \lambda)$ понимается как интеграл Лебега-Стилтьеса по множеству $[-\pi, \pi)$.
+\end{theorem}
+
+\begin{proof}
+Положим для $N \geq 1 $ и $\lambda \in [-\pi, \pi]$
+\begin{equation}\label{eq10} 
+    f_N (\lambda) = \frac{1}{2\pi N} \sum_{k=1}^{N} \sum_{l=1}^{N} R(k-l) e^{-i k \lambda} e^{i l \lambda}.
+\end{equation}
+В силу неотрицательной определенности $R(n)$ функция $f_N(\lambda)$ неотрицательна. Поскольку число тех пар $(k, l),$ для которых $k-l=m,$ есть $N-|m|,$ то
+\begin{equation}\label{eq11} 
+    f_N (\lambda) = \frac{1}{2\pi} \sum_{|m| < N} \Big( 1-\frac{|m|}{N} \Big) R(m) e^{-i m \lambda}.
+\end{equation}
+
+Пусть 
+$$f_N=\int\limits_{B} f_N(\lambda)d\lambda, B \in \mathcal{B}([ -\pi, \pi)).$$
+Тогда 
+\begin{equation}\label{eq12} 
+    \int\limits_{-\pi}^{\pi} e^{i\lambda n} F_N(d\lambda) = \int\limits_{-\pi}^{\pi} e^{i \lambda n}f_N(\lambda)d\lambda = 
+    \begin{cases}
+        \Big( 1 - \frac{|n|}{N}\Big) R(n),  & |n| < N, \\
+        0, & |n| \geq N.
+    \end{cases}
+\end{equation}
+
+
+Меры $F_N, N \geq 1,$ сосредоточены на интервале $[-\pi, \pi]$ и $F_N ([-\pi, \pi]) = R(0) < \infty$ для любого $N \geq 1.$ Следовательно, семейство мер $\{F_N\}, N \geq 1, $ плотно, и по теореме Прохорова (теорема 1 \textsection 2 гл.  \RomanNumeralCaps{3}) существуют подпоследовательность $\{N_k\} \subseteq $ и мера $F$ такие, что $F_{N_k} \stackrel{\omega}{\longrightarrow} F.$ (Понятия плотности, относительной компактности, слабой сходимости и теорема Прохорова очевидным образом с вероятностных мер переносятся на любые коечные меры.)
+
+
+Тогда из \ref{eq12} следует, что 
+$$\int\limits_{-\pi}^{\pi} e^{i\lambda n} F(d \lambda) = \lim_{N_k\to\infty} \int\limits_{-\pi}^{\pi} e^{i\lambda n} F_{N_{k}} (d\lambda) = R(n).$$
+Построенная мера $F$ сосредоточена на интервале $[-\pi, \pi].$ Не изменяя интеграла $\int\limits_{-\pi}^{\pi} e^{i \lambda n} F (d\lambda),$ можно \textit{переопределить} меру $F$, перенеся <<массу>> $F(\{\pi\}),$ сосредоточенную в точке $\pi,$ в точку $-\pi.$ Так полученная новая мера (обозначим ее снова через $F$) будет уже сосредоточенной на интервале $[-\pi, \pi).$
+\end{proof}
+
+
+\begin{remark}
+Меру $F = F(B),$ участвующую в представлении \ref{eq9}, называют \textit{спектральной мерой}, а функцию $F(\lambda)=F([-\pi, \lambda])$ - \textit{спектральной функцией} стационарной последовательности с ковариационной функцией $R(n).$
+\end{remark}
+
+\begin{remark}
+Спектральная мера $F$ \textit{однозначно} определяется по ковариационной функции. В самом деле, пусть $F_1$ и $F_2$ --- две спектральные меры и 
+$$\int\limits_{-\pi}^{\pi} e^{i \lambda n} F_1(d \lambda) = \int\limits_{-\pi}^{\pi} e^{i \lambda n} F_2(d \lambda), \quad n \in \mathbf{Z}.$$
+
+Поскольку любая ограниченная непрерывная функция $g(\lambda)$ может быть равномерно приближена на $[-\pi, \pi)$ тригонометрическими полиномами, то 
+$$\int\limits_{-\pi}^{\pi} g(\lambda)F_1(d\lambda) = \int\limits_{-\pi}^{\pi} g(\lambda)F_2(d\lambda),$$
+откуда следует, что $F_1(B) = F_2(B)$ для любых $B \in \mathcal{B}([-\pi, \pi)).$
+\end{remark}
+\begin{remark}
+Если $\xi = (\xi_n)$ --- стационарная последовательность, состоящая из \textit{действительных} случайных величин $\xi_n$, то $R(n)=R(-n)$ и поэтому
+$$R(n)= \frac{R(n) + R(-n)}{2} = \int\limits_{-\pi}^{\pi} \cos \lambda n F(d\lambda).$$
+
+\end{remark}
+
+\begin{theorem}[Прохорова]
+    Пусть $\wp = \{ \mathbf{P}_\alpha; \alpha \in  \mathcal{U} \}$ --- семейство вероятностных мер, заданных на полном сепарабельном метрическом пространстве $(E, \xi, \rho)$. Семейство $\wp$ является относительно компактным тогда и только тогда, когда оно является плотным.
+\end{theorem}
+

@@ -1,0 +1,321 @@
+
+
+\section{Теорема о продолжении конечной неотрицательной счетно-аддитивной меры с полукольца на сигма-кольцо}
+
+\textbf{Автор:} Отращенко Алексей Иванович, Б-01-006
+
+\subsection{Определения и обозначения}
+
+\begin{definition} Класс - множество множеств
+	\end{definition}
+
+\begin{definition} $\sigma(\textbf{E})$ - $\sigma$-кольцо, порожденное классом $\textbf{E}$ есть  наименьшее $\sigma$ - кольцо, содержащее $\textbf{E}$
+	\end{definition}
+
+\begin{definition} Непустой класс $\textbf{M}$ множеств называется монотонным, если, какова бы ни была содержащаяся в нем монотонная последовательность множеств  $E_n$
+$$
+	\lim_n E_n \in \textbf{M} 
+$$
+\end{definition}
+
+\begin{definition} $\textbf{M(E)}$ - монотонный класс, порожденный классом $\textbf{E}$ есть  наименьший монотонный класс, содержащий $\textbf{E}$
+	\end{definition}
+
+\begin{definition} Непустой класс $\textbf{Е}$ множеств называется наследственным классом, если каковы бы ни были множества $E$ и $F$, такие, что $E \in \textbf{Е}$ и $F \in E$, непременно $F \in \textbf{Е}$. Если $\textbf{Е}$ -какой-нибудь класс множеств, то наследственное $\sigma$-кольцо, порожденное классом $\textbf{Е}$, т. е. наименьшее наследственное $\sigma$-кольцо, содержащее $\textbf{Е}$, будет обозначаться $\textbf{H(E)}$.
+	\end{definition}
+
+\begin{definition} Мера - функция, определенная на классе
+	\end{definition}
+
+\begin{definition} Мера $\mu$ на классе S называется $\sigma$ - аддитивной, если 
+$$
+\forall A_i \in S: \forall i, j : i \neq j : A_i \cap A_j = \varnothing \Rightarrow \mu(\cup_{i = 1}^{\infty} A_i) = \sum_{i = 1}^{\infty}A_i
+$$
+\end{definition}
+
+\begin{definition} Мера $\mu$ на классе S называется $\sigma$ - конечной, если существует счетное множество измеримых $\{A_i\}; \mu(A) < \infty$ таких, что
+\begin{enumerate}
+	\item $\mu(A_i) < \infty$
+	\item $\forall E \in S: E = \cup_{i = 1}^{\infty} A_i$
+\end{enumerate}
+\end{definition}
+
+\begin{definition} Мера $\mu$ называется полной, если из $E \in \textbf{R}$, $F \in E$ и $\mu(E) = 0$ следует, что $F \in \textbf{R}$, $\mu(F) = 0$ 
+	\end{definition}
+
+\newpage
+
+\subsection{Используемые свойства мер}
+
+\begin{theorem}
+\label{theor_2}
+\cite{HalmoshTheoryM1953}
+Если $\mu$ - счетно-аддитивная мера на кольце $\textbf{R}$, $E \in \textbf{R}$, $\{E_i\}$ - конечный или счетный класс множеств $\textbf{R}$ такой, что $E \in \cup_i E_i$, то
+$$
+	\mu(E) \leq \sum_i \mu(E_i)
+$$
+\end{theorem}
+
+\begin{theorem}
+\label{theor_4}
+\cite{HalmoshTheoryM1953}
+Если $\mu$ - счетно-аддитивная мера на кольце $\textbf{R}$, $\{E_n\}$ - возрастающая последовательность множеств из $\textbf{R}$ и $\lim_n E_n \in \textbf{R} $, то 
+$$
+\mu(\lim_n E_n) = \lim_n \mu(E_n)
+$$
+\end{theorem}
+
+\begin{theorem}
+\label{theor_5}
+\cite{HalmoshTheoryM1953}
+Если $\mu$ - счетно-аддитивная мера на кольце $\textbf{R}$, $\{E_n\}$ - убывающая последовательность множеств из $\textbf{R}$ из которых хотя бы одно имеет конечную меру, и  $\lim_n E_n \in \textbf{R} $, то 
+$$
+\mu(\lim_n E_n) = \lim_n \mu(E_n)
+$$
+\end{theorem}
+
+
+\subsection{Внешние меры}
+
+\subsubsection{Используемые теоремы}
+
+\begin{theorem_sub}[Свойство монотонных классов]
+\cite{HalmoshTheoryM1953}
+\label{monoton}
+Если $\textbf{R}$ - кольцо, то $\textbf{M(R)} = \sigma(\textbf{R})$. Следовательно, если монотонный класс содержит кольцо $\textbf{R}$, то он содержит и $\sigma(\textbf{R})$
+\end{theorem_sub}
+
+\subsubsection{Введение}
+
+\begin{definition} Внешней мерой называется действительная функция множества $\mu^{*}$, заданная на каком-либо наследственном $\sigma$-кольце $\textbf{H}$ и принимающая конечные или бесконечные значения, если она неотрицательна, монотонна, счетно-полуаддитивна и обращается в нуль на пустом множестве. Заметим, что внешняя мера всегда конечно-полуаддитивна. %Конечные и $\sigma$-конечные внешние меры определяются точно так же, как соответствующие меры.
+	\end{definition}
+
+\begin{theorem_sub}
+\cite{HalmoshTheoryM1953}
+\label{to_mu_star}
+Если $\mu$ - мера на каком-либо кольце $\textbf{R}$, то функция $\mu^{*}$, заданная на $\textbf{H(R)}$ посредством равенства
+$$
+	\mu^{*}(E) = inf\{ \sum_{n = 1}^{\infty}\mu(E_n): E_n \in \textbf{R}, n = 1, 2, ..., E \subset  \cup_{n = 1}^{\infty}E_n\}
+$$
+представляет собой внешнюю меру, совпадающую на $\textbf{R}$ c $\mu$; если $\mu$ $\sigma$ - конечна, то такова же и $\mu^{*}$. $\mu^{*}$ называют мерой индуцированной мерой $\mu$ 
+\end{theorem_sub}
+
+Словесно $\mu^{*}(E)$ может быть определена как нижняя грань сумм вида $\sum_{n = 1}^{\infty}\mu(E_n)$, где последовательность множеств $\{E_n\}$ из $\textbf{R}$ выбирается так, чтобы и $\cup_{n = 1}^{\infty}E_n$ содержало $E$. Так определенная внешняя мера $\mu^{*}$ называется внешней мерой, индуцированной мерой $\mu$. 
+
+\begin{proof}	Если $E \in \textbf{R}$, то $E \in E \cup 0 \cup 0 ...$ и, следовательно, $\mu^{*}(E) \leq \mu(E) + \mu(0) + ... = \mu(E)$. С другой стороны, если $E \in R$, $E_n \in R$, $n = 1, 2, ...$ и $E \subset \cup_{n = 1}^{\infty}E_n$, то согласно теореме \ref{theor_2}, $\mu(E) \leq \sum_{n = 1}^{\infty}\mu(E_n)$, так что $\mu(E) \leq \mu^{*}(E)$
+Таким образом, $\mu^{*}$ представляет собой продолжение функции $\mu$, т. е. $\mu^{*}(E) = \mu(E)$, когда $E \in \textbf{R}$ отсюда в частности, следует, что  $\mu^{*}(0) = 0$
+
+Если $E \in \textbf{H(R)}, F \in \textbf{H(R)}$ и $E \subset F$, то всякая последовательность множеств из $\textbf{R}$ покрывающая $F$ покрывает и $E$, поэтому $\mu^{*}(E) \leq \mu^{*}(F)$ 
+
+Для того чтобы доказать, что $\mu^{*}$ счетно-полуаддитивна, возьмем множества $E$ и $E_i$ из $\textbf{H(R)}$, такие, что $E \subset \cup_{i = 1}^{\infty} E_i$. Пусть $\varepsilon$ - произвольное положительное число; тогда для всякого целого положительного $i$ выберем последовательность множеств $\{ E_{ij} \}$ из $\textbf{R}$ таким образом, чтобы 
+$$
+	E_i \subset \cup_{j = 1}^{\infty}E_{ij} \text{  и  } \sum_{j = 1}^{\infty}\mu(E_{ij}) \leq \mu^{*}(E_i) + \frac{\varepsilon}{2^{i}}
+$$
+Возможность выбора такой последовательности вытекает из определения $\mu^{*}(E_i)$. Тогда, так как все $E_{ij}$ образуют счетный класс множеств из $\textbf{R}$, покрывающий $E$, то 
+$$
+	\mu^{*}(E) \leq \sum_{i = 1}^{\infty} \sum_{j = 1}^{\infty}\mu(E_{ij}) \leq \sum_{i = 1}^{\infty}\mu^{*}(E_i) + \varepsilon
+$$
+
+Так как $\varepsilon$ выбрано произвольно, то
+$$
+	\mu^{*}(E) \leq \sum_{i = 1}^{\infty}\mu^{*}(E_i)
+$$
+Предположим, что мера $\mu$ $\sigma$-конечна, и возьмем любое множество $Е$ из $\textbf{Н(R)}$. Согласно определению $\textbf{Н(R)}$, в $\textbf{R}$ существует последовательность множеств $\{E_i\}$, такая, что $E \subset \cup_{i = 1}^{\infty} E_i$. Так как $\mu$ $\sigma$-конечна, то для каждого $i = 1, 2, ...$ в $\textbf{R}$ найдется последовательность множеств  $E_{ij}$, для которой
+$$
+	E_i \subset \cup_{j = 1}^{\infty}E_{ij} \text{  и  } \mu(E_{ij}) < \infty
+$$
+Отсюда получаем
+$$
+	E \subset \cup_{i = 1}^{\infty} \cup_{j = 1}^{\infty}E_{ij} \text{  и  } \mu^{*}(E_{ij}) = \mu(E_{ij}) < \infty
+$$
+\end{proof}
+
+\subsubsection{Измеримые множества}
+
+Пусть на некотором наследственном $\sigma$ - кольце $\textbf{H}$ задана внешняя мера $\mu^{*}$. Множество $E$ из $\textbf{H}$ называется $\mu^{*}$ - измеримым, если 
+$$
+	\forall A \in \textbf{H} \Rightarrow \mu^{*}(A \cap E) + \mu^{*}(A \cap \bar{E})
+$$
+
+\begin{theorem_sub}
+\cite{HalmoshTheoryM1953}
+\label{ring}
+Если  $\mu^{*}$ - внешняя мера на наследственном $\sigma$ - кольце $\textbf{H}$, то класс $\bar{\textbf{S}}$ всех $\mu^{*}$ - измеримых множеств есть кольцо. 
+\end{theorem_sub}
+
+\begin{proof}
+
+Если $E$ и $F$ принадлежат $\bar{\textbf{S}}$ и $A \in \textbf{H}$, то
+$$
+	\mu^{*}(A) = \mu^{*}(A \cap E) + \mu^{*}(A \cap \bar{E})	
+$$
+$$
+	\mu^{*}(A \cap E) = \mu^{*}(A \cap E \cap F) + \mu^{*}(A \cap E \cap \bar{F})
+$$
+$$
+	\mu^{*}(A \cap \bar{E}) = \mu^{*}(A \cap \bar{E} \cap F) + \mu^{*}(A \cap \bar{E} \cap \bar{F})
+$$
+
+Подставив второе и третье уравнения в первое, получим
+\begin{equation}\label{alexey_eq_1}
+	\mu^{*}(A) = \mu^{*}(A \cap E \cap F) + \mu^{*}(A \cap E \cap \bar{F}) + \mu^{*}(A \cap \bar{E} \cap F) + \mu^{*}(A \cap \bar{E} \cap \bar{F})
+\end{equation}
+
+Если в последнем равенстве взять $A \cap (E \cup F)$ вместо $A$, то получим
+\begin{equation}\label{alexey_eq_2}
+	\mu^{*}(A \cap (E \cup F)) = \mu^{*}(A \cap E \cap F) + \mu^{*}(A \cap E \cap \bar{F}) + \mu^{*}(A \cap \bar{E} \cap F)
+\end{equation}
+
+Так как $\bar{E} \cap \bar{F} = \overline{E \cup F}$, то подстановка (\ref{alexey_eq_2}) в (\ref{alexey_eq_1})
+
+$$
+	\mu^{*}(A) = \mu^{*}(A \cap (E \cup F)) + \mu^{*}(A \cap \overline{E \cup F})
+$$
+
+Откуда следует, что $E \cup F \in \bar{\textbf{S}}$
+
+Подобным же образом, заменив $A$ в (1) на $A \cap \overline{E \setminus F} = A \cap (\bar{E} \cup F)$, получаем
+\begin{equation}\label{alexey_eq_3}
+	\mu^{*}(A \cap \overline{E \setminus F}) = \mu^{*}(A \cap E \cap F) + \mu^{*}(A \cap \bar{E} \cap F) + \mu^{*}(A \cap \bar{E} \cap \bar{F})
+\end{equation}
+
+Но $E \cap \bar{F} = E \setminus F$, поэтому подставляя (\ref{alexey_eq_3}) в (\ref{alexey_eq_1}):
+
+$$
+	\mu^{*}(A) = \mu^{*}(A \cap (E \setminus F)) + \mu^{*}(A \cap \overline{E \setminus F})
+$$
+
+Значит $E \setminus F \in \bar{\textbf{S}}$. Так как пустое множество $\mu^{*}$ - измеримо, то $ \bar{\textbf{S}}$ -  кольцо
+\end{proof}
+
+%--------------------------------------------------------------------------------------------------------------------------------
+
+\begin{theorem_sub}
+\cite{HalmoshTheoryM1953}
+\label{sigma-ring}
+Если  $\mu^{*}$ - внешняя мера на наследственном $\sigma$ - кольце $\textbf{H}$, то класс $\bar{\textbf{S}}$ всех $\mu^{*}$ - измеримых множеств есть $\sigma$ - кольцо. 
+
+Если $A \in \textbf{H}$, $\{E_n\}$ - последовательность непересекающихся множеств из $\textbf{S}$ и $E = \cup_{n = 1}^{\infty}E_n$, то
+
+$$
+	\mu^{*} (A \cap E) = \sum_{n = 1}^{\infty}\mu^{*}(A \cap E_n)
+$$
+
+\end{theorem_sub}
+
+\begin{proof}
+
+Если в (\ref{alexey_eq_2}) взять  $E_1$ и $E_2$ соответственно вместо $E$ $F$, получим
+
+
+$$
+	\mu^{*}(A \cap (E_1 \cup E_2)) = \mu^{*}(A \cap E_1) + \mu^{*}(A \cap E_2)
+$$
+
+Методом индукции $\forall n, n \in \mathds{N}$ доказывается
+
+$$
+	\mu^{*}(A \cap (\cup_{i = 1}^{n}E)) = \sum_{n = 1}^{n}\mu^{*}(A \cap E_n)
+$$
+ 
+Если мы положим 
+
+$$
+	F_n = \cup_{i = 1}^{n}E_i; n = 1, 2, 3 ...
+$$
+
+То, согласно теореме \ref{ring}, будем иметь
+ 
+ $$
+ 	\mu^{*}(A) = \mu^{*}(A \cap F_n) + \mu^{*}(A \cap \bar{F_n}) \geq \sum_{i = 1}^{n}\mu^{*}(A \cap E_i) + \mu^{*}(A \cap \bar{E})
+ $$
+ 
+Так как это неравенство верно при любом  $n$, то
+ 
+$$
+ 	\mu^{*}(A) \geq \sum_{i = 1}^{\infty}\mu^{*}(A \cap E_i) + \mu^{*}(A \cap \bar{E}) \geq \mu^{*}(A \cap E) + \mu^{*}(A \cap \bar{E})
+$$
+
+Мы видим, что $E \in \bar{\textbf{S}}$  (так что класс $\bar{\textbf{S}}$ замкнут относительно образования счетных объединений непересекающихся множеств) и, следовательно,
+
+\begin{equation}\label{alexey_eq_4}
+	\sum_{i = 1}^{\infty}\mu^{*}(A \cap E_i) + \mu^{*}(A \cap \bar{E}) = \mu^{*}(A \cap E) + \mu^{*}(A \cap \bar{E})
+\end{equation}
+
+Взяв $A \cap E$ вместо $A$ в (\ref{alexey_eq_4}), мы придем ко второму утверждению теоремы. Но всякое счетное объединение множеств из кольца может быть представлено как счетное объединение непересекающихся множеств из этого кольца, следовательно, $\bar{\textbf{S}}$, есть $\sigma$ - кольцо
+\end{proof}
+%----------------------------------------------------------------------------------------------------------------
+
+\begin{theorem_sub}
+\cite{HalmoshTheoryM1953}
+\label{to_mu_bar}
+	Если $\mu^{*}$ - внешняя мера на наследственном $\sigma$ -  кольце $\textbf{H}$ и $\bar{\textbf{S}}$ - класс всех $\mu^{*}$ - измеримых множеств, то всякое множество нулевой внешней меры принадлежит $\bar{\textbf{S}}$ и функция множества $\bar{\mu}$, определенная на $\bar{\textbf{S}}$ равенством $\bar{\mu}(E) = \mu^{*}(E)$, представляет собой полную меру на $\bar{\textbf{S}}$
+\end{theorem_sub}
+
+\begin{proof}
+
+Если  $E \in \textbf{H}$ и $\mu^{*}(E) = 0$, то каково бы ни было $A$ из $\textbf{H}$,
+$$
+	\mu^{*}(A) = \mu^{*}(E) + \mu^{*}(A) \geq \mu^{*}(A \cap E) + \mu^{*}(A \cap \bar{E}),	
+$$
+так что $E \in \bar{\textbf{S}}$. Счетная аддитивность $\bar{\mu}$ на $\bar{\textbf{S}}$ будет следовать из равенства (\ref{alexey_eq_4}), если взять в нем $E$ вместо $A$. Если, наконец, $E \in \bar{\textbf{S}},$ $F \subset E$ и $\bar{\mu}(E)) = \mu^{*}(E) = 0$, то $\bar{\mu}(F) = \mu^{*}(F) = 0$, значит, $\bar{\mu}$ - полная мера
+
+\end{proof}
+
+%----------------------------------------------------------------------------------------------------------------
+
+\subsubsection{Свойства индуцированных мер}
+
+\begin{theorem_sub}
+\cite{HalmoshTheoryM1953}
+\label{mu_star_measur}
+Всякое множество из $\sigma(\textbf{R})$ $\mu^{*}$-измеримо
+\end{theorem_sub}
+
+\begin{proof}
+
+Если $E \in \textbf{R}, A \in \textbf{R}$ и $\varepsilon > 0$, то, согласно определению $\mu^{*}$, существует последовательность $\{E_n\}$ множеств из $\textbf{R}$, такая, что $A \subset \cup_{n = 1}^{\infty} E_n$ и
+$$
+	\mu^{*}(A) + \varepsilon \geq \sum_{n = 1}^{\infty}\mu(E_n) = \sum_{n = 1}^{\infty}(\mu(E_n \cap E) + \mu(E_n \cap \bar{E})) \geq \mu^{*}(A \cap E) + \mu^{*}(A \cap \bar{E})
+$$
+Так как это неравенство справедливо при любом $\varepsilon$, то $E$ оказывается $\mu^{*}$ - измеримым. Другими словами, было доказано, что $\textbf{R} \subset \bar{\textbf{S}}$, а так как $\bar{\textbf{S}}$ - $\sigma$ - кольцо, то $\sigma(\textbf{R})\subset \bar{\textbf{S}}$
+\end{proof}
+
+\newpage
+
+\subsection{Теорема о продолжении}
+
+\subsubsection{Используемые теоремы}
+
+\begin{theorem}
+\cite{ShamarovDRP}
+\label{intro}
+$\forall$ полукольца $\textbf{S}$ c $\sigma$ - аддитивной конечной неотрицательной мерой $\mu$, $\exists$! $\sigma$ - аддитивная неотрицательная конечная мера $\bar{\mu}$ на $\bar{S} = \{\bigsqcup_{k = 1}^{n}A_k | n \in \mathds{N}, A_k \in S\}$, то есть на продолжении полукольца $\textbf{S}$ на кольцо
+\end{theorem}
+
+\subsubsection{Основная теорема}
+
+\begin{theorem}
+Если $\mu$ — конечная, $\sigma$ - аддитивна неотрицательная мера, заданная на некотором полукольце $\textbf{S}$, то существует единственная мера $\mu$, заданная на $\sigma$-кольце $\sigma(\textbf{R(S)})$, такая, что $\bar{\mu}(E) = \mu(E)$ для множеств $E$ из $\textbf{S}$; при этом мера $\bar{\mu}$ $\sigma$-конечна, $\sigma$ - аддитивна и неотрицательная. 
+\end{theorem}
+
+Мера $\bar{\mu}$ называется расширением меры $\mu$. 
+
+\begin{proof}
+
+Существование и единственность меры $\mu^{'}$ обладающей выше перечисленными свойствами на $\textbf{R(S)}$ следует из теоремы \ref{intro} . Значит, нужно доказать существование и единственность расширения $\bar{\mu}$ на $\sigma(\textbf{R(S)}) \equiv \sigma(\textbf{R})$, согласованной с $\mu^{'}$. Всюду, где это не может вызвать недоразумение, мы будем писать $\mu(E)$ вместо $\bar{\mu}(E)$ даже для множеств $E$ из $\sigma(\textbf{R})$ 
+
+Существование 
+
+Из теоремы \ref{to_mu_star} существует внешняя мера $\mu^{*}$ на $\textbf{H(R)}$, порожденная мерой $\mu^{'}$. Из теоремы \ref{to_mu_bar} следует существование $\sigma$ - конечной $\sigma$ - аддитивной нетрицательной меры $\bar{\mu}$ на классе $\bar{S}$ всех $\mu^{*}$ - измеримых множеств. Из теоремы \ref{mu_star_measur} следует, что $\sigma({\textbf{R}}) \subset \bar{S}$, значит получили существование $\bar{\mu}$ на $\sigma({\textbf{R}})$, согласованной с $\mu^{'}$
+
+Единственность
+
+Допустим, что на $\sigma(\textbf{R})$ заданы две меры $\mu_1$, и $\mu_2$, обладающие тем свойством, что $\mu_1(E) = \mu_2(E)$, коль скоро $E \in \textbf{R}$. Пусть $M$ -- класс всех тех множеств из $\sigma(\textbf{R})$, на которых $\mu_1$ и $\mu_2$ совпадают. Если одна из этих мер конечна и если $\{E_n\}$ - монотонная последовательность множеств из $M$, то, так как 
+$$
+	\mu_i (\lim_n E_n) = \lim_n \mu_i(E_n); i = 1, 2, 
+$$
+Мы приходим к заключению, что $\lim_n E_n \in \textbf{M}$. (Здесь существенно используется тот факт, что при любом $n$ одно из чисел $\mu_1(E_n)$ и $\mu_2(E_n)$, а вместе с ним и другое, конечно; см. теоремы \ref{theor_4} и \ref{theor_5}) Таким образом, класс $\textbf{M}$ монотонный, и так как он содержит $\textbf{R}$, то, согласно теореме \ref{monoton}, $\textbf{M}$ охватывает $\sigma(\textbf{R})$. 
+
+\end{proof}
+

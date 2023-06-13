@@ -1,0 +1,139 @@
+
+% for numerated formulas
+\newcommand{\formula}[2]
+{
+    \begin{equation}\label{#1}
+        #2
+    \end{equation}
+}
+
+\newcommand{\defHead}[2]
+{
+    {\bf\large Определение: #1} \\ $ [ $ Источник: #2 $ ] $ \\
+}
+
+\newcommand{\thHead}[2]
+{
+    {\bf\large Теорема: #1} \\ $ [ $ Источник: #2 $ ] $ \\
+}
+
+\newcommand{\refShamarovLecture}[1]
+{
+    Лекции Н.Н. Шамарова по ДСП в МФТИ, 2023. Лекция \textnumero #1
+}
+
+\newcommand{\refShiryaevBook}[1]
+{
+    А.Н. Ширяев, \guillemotleft Вероятность - 1 \guillemotright, стр. #1.
+}
+
+\newcounter{PicsCounter}
+\setcounter{PicsCounter}{1}
+
+\newcommand{\pic}[3]{
+    \begin{center}
+        \begin{minipage}[h!]{#1}
+            \begin{center}
+
+                \includegraphics[width = \textwidth]{#2}
+                \textit{Рис \arabic{PicsCounter}. #3}
+
+            \end{center}
+        \end{minipage}
+    \end{center}
+
+    \stepcounter{PicsCounter}
+}
+
+\newcounter{TablesCounter}
+\setcounter{TablesCounter}{1}
+
+\newcommand{\tableLable}[1]{
+    \textit{Таблица \arabic{TablesCounter}: #1}
+
+    \stepcounter{TablesCounter}
+}
+
+\newcommand{\defeq}{\stackrel{\text{def}}{=}}
+
+\section{Представление мер произвольного экспериментального распределения (многомерного) с помощью мер Дирака}
+
+\textbf{Автор:} Матренин Василий Николаевич, Б-01-008
+
+\subsection{Необходимые определения}
+
+\defHead{Простая случайная величина}{\refShiryaevBook{54}}
+Всякая числовая функция $ \xi = \xi \left(\omega\right) $, определенная на (конечном) пространстве
+элементарных событий $ \Omega $, будет называться \textit{(простой) случайной величиной}. \\ [0.2cm]
+
+\defHead{Экспериментальный ансамбль}{\refShamarovLecture{1}}
+Совокупность элементарных экспериментов, в ходе которых случайная величина принимает конкретные значения,
+называется \textit{экспериментальным ансамблем}. \\ [0.2cm]
+
+\begin{table}[h!]
+    \begin{center}
+
+        \tableLable{Экспериментальный ансамбль}
+        \begin{tabular}{|l|c|c|c|>{\centering}m{3.5cm}|c|}
+        \hline
+        $N_{\text{элем}}$ & 1     & 2     & 3     & \dots & $N_{\text{Э}}$       \\ \hline
+        $\xi$             & $x_1$ & $x_2$ & $x_3$ & \dots & $x_{N_{\text{Э}}}$   \\ \hline
+        \end{tabular}
+
+    \end{center}
+\end{table}
+
+
+\defHead{Интегральная функция распределения}{\refShamarovLecture{1}}
+Числовая функция вещественной переменной:
+
+\[
+F_{\xi, \text{Э}} \left(c\right) = P \left(\xi \leqslant c\right) =
+\frac{\text{\small Кол-во элементарных экспериментов, в которых} \, \xi \leqslant c}
+     {\text{\small Общее кол-во элем. эксп-ов в ансамбле, отвечающем эксп-у Э}} =
+\frac{|\left\{x_n : x_n \leqslant c|\right\}}{N_{\text{Э}}}
+\]
+
+Называется \textit{интегральной функцией распределения}. \\
+
+Свойства $ F_{\xi, \text{Э}} \left(c\right) $:
+\begin{enumerate}
+    \item Неотрицательность
+    \item Принимает конечное число значений, $ 0 \leqslant F \left(c\right) \leqslant 1 $
+    \item Монотонно возрастает
+    \item $ \lim_{x\to -\infty} F \left(c\right) = 0 $
+    \item $ \lim_{x\to +\infty} F \left(c\right) = 1 $
+
+    %%% Copied from: https://www.overleaf.com/project/63e73389cd80241abecca9c8
+    В Колмогоровской версии, доказательство будет выглядеть так:\\
+    Из определения интегральной функции распределения следует, что равенство F(x) = P(X < x) равносильно $F(x) = P(-\infty < X < x)$. Поэтому 
+    \[\lim_{x \rightarrow + \infty} = \lim_{x \rightarrow + \infty} P(X < x) = \lim_{x \rightarrow + \infty} P(-\infty < X < + \infty) = 1 \]
+    Так как событие $(-\infty < X < +\infty)$ состоит в том, что случайная величина Х в результате исхода испытания примет какое-то действительное число, является событием достоверным.\\
+    ч.т.д
+    %%%
+
+\newpage
+
+    \item Имеет одностороннюю непрерывность справа
+
+    %%% Copied from: https://www.overleaf.com/project/63e73389cd80241abecca9c8
+    %%% with little changes
+    В Колмогоровской версии, доказательство будет выглядеть так:\\
+    Функция распределения непрерывна слева: $\lim_{x \rightarrow a - 0} F (x) = F (a) $\\
+    Пусть $a_n$ - возрастающая последовательность и $\lim_{n \rightarrow \infty} a_n = a$. Определим событие $A = \{\xi < a\}$, и события $A_n = \{x < a_n\}$. Очевидно, что для последовательности событий $A_n$ справедливо:
+    \[A_1 \subset A_2 \subset ... \subset A_n \subset ... \text{ и} \bigcup_{n=1}^\infty A_n = A\]
+    С учётом монотонности функции распределения:
+    \[\lim_{x \rightarrow +\infty} F (x) = \lim_{n \rightarrow \infty} P(A_n) = P(A) = F (a)\]
+    ч.т.д.\\
+    %%%
+
+\end{enumerate}
+
+\defHead{Интегральная функция совместного распределения упорядоченных вещественных случайных величин}
+{\refShamarovLecture{1}}
+Аналогично можно ввести интегральную функцию совместного распределения упорядоченных вещественных случайных
+величин. Например, для пары величин $ \left(\xi_1, \xi_2\right) $ : \\ [0.2cm]
+\[
+F_{\xi_1, \xi_2, \text{Э}} \left(c_1, c_2\right) = P \left(\xi_1 \leqslant c_1, \xi_2 \leqslant c_2\right) =
+\frac{|\left\{ n | x_{1n} \leqslant c_1, x_{2n} \leqslant c_2 \right\}|}{N_{\text{Э}}}
+\]

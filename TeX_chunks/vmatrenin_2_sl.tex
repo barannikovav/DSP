@@ -1,0 +1,129 @@
+
+\subsection{Мера произвольного экспериментального распределения}
+
+Рассмотрим многомерный экспериментальный ансамбль:
+
+\begin{table}[h!]
+    \begin{center}
+
+        \tableLable{Многомерный экспериментальный ансамбль}
+        \begin{tabular}{|l|c|>{\centering}m{2cm}|c|>{\centering}m{2cm}|c|}
+        \hline
+        \diagbox{$\overrightarrow{\xi_{\text{Э}}}$}{$n$} & 1 & \dots & k & \dots & $N$ \\ \hline
+        $ \xi_1 $ & $x_{11}$ & \dots & $x_{1k}$ & \dots & $x_{1N}$ \\ \hline
+        \multicolumn{6}{|c|}{\dots} \\ \hline
+        $ \xi_j $ & $x_{j1}$ & \dots & $x_{jk}$ & \dots & $x_{jN}$ \\ \hline
+        \multicolumn{6}{|c|}{\dots} \\ \hline
+        \end{tabular}
+
+    \end{center}
+\end{table}
+
+Формула распределения будет иметь вид:
+\begin{align*}
+   &\overline{F_{\text{Э}}} = \frac{1}{N} =
+    \frac{| \left\{ k \in \{1 ... N\} \right\} |}
+         {| \left\{ \left(x_{1k} \leqslant x_k\right) \land \dots \land
+                    \left(x_{dk} \leqslant x_d\right) \right\} |} =
+    \mathds{P}_{\text{ЭА}}\left( \xi_1 \leqslant x_1, \dots \xi_d \leqslant x_d \right) =
+    \mathds{P}_{\text{ЭА}} = \\
+   &\mathds{P}_{\text{ЭА}}\left( \overrightarrow{\xi} \in
+        (-\overrightarrow{\infty}, \overrightarrow{x}] = \prod_{j = 1}^{d} ( -\infty, x_j ] \right) =
+    \mu_F\left(( -\overrightarrow{\infty}, \overrightarrow{x} ]\right)
+\end{align*}
+
+Тогда:
+\[
+\begin{CD}
+    \overrightarrow{x_k} = \begin{pmatrix} x_{1k} \\ \vdots \\ x_{dk} \end{pmatrix} \in \mathds{R}^d
+        \xrightarrow{F} \ \left[0, 1\right]
+\end{CD}
+\]
+
+Обозначим:
+\[
+    \left[ \overrightarrow{a}, \overrightarrow{b} \right] = \prod_{j = 1}^{d} (a_j, b_j]
+\]
+
+Тогда:
+\begin{multline*}
+    \mu\left(\left[ \overrightarrow{a}, \overrightarrow{b} \right]\right) =
+        \left(
+            F\left(\overrightarrow{b}\right) -
+            F\begin{pmatrix} a_1 \\ b_2 \\ \vdots \\ b_n \end{pmatrix}
+        \right) -
+        \left(
+            F\begin{pmatrix} b_1 \\ a_2 \\ \vdots \\ b_n \end{pmatrix} -
+            F\begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ b_n \end{pmatrix}
+        \right) -
+        \left(
+            F\begin{pmatrix} b_1 \\ b_2 \\ a_3 \\ \vdots \\ b_n \end{pmatrix} -
+            F\begin{pmatrix} a_1 \\ b_2 \\ a_3 \\ \vdots \\ b_n \end{pmatrix}
+        \right) - \\
+        \left(
+            F\begin{pmatrix} b_1 \\ a_2 \\ a_3 \\ \vdots \\ b_n \end{pmatrix} -
+            F\begin{pmatrix} a_1 \\ a_2 \\ a_3 \\ \vdots \\ b_n \end{pmatrix}
+        \right) -
+        \dots \defeq
+    \left( \left( F \Big|_{x_1 = a_1}^{x_1 = b_1} \right) \Big|_{x_2 = a_2}^{x_2 = b_2} \dots \right)
+    \Big|_{x_d = a_d}^{x_d = b_d} = \sum\left(-1\right)^{\overrightarrow{x}}
+        F\left( \overrightarrow{x} \right)
+\end{multline*}
+
+\newpage
+
+\thHead{Теорема об одномерной функции распределения}
+{\refShamarovLecture{4}}
+Экспериментальный ансамбль (ЭА) $ \rightleftarrows F_{\text{Э}} \rightleftarrows \mu_F $,
+где $ F_{\text{Э}} : \mathds{R}^d \longmapsto \left[0, 1\right] $;
+$ \mu_F : \left(\mathcal{PI} \right)^d \longmapsto \left[0, 1\right] $, \linebreak
+$\sigma$-аддитивная на п/к \\ [0.2cm]
+
+Заметим, что:
+\[
+    F_{\text{Э}}\left(\overrightarrow{x}\right) =
+    P_{\text{Э}}\left\{ \overrightarrow{\xi} \in ( -\overrightarrow{\infty}, \overrightarrow{x} ] \right\};
+\]
+\[
+    \mu_{F_{\text{Э}}} = \mu_{\text{Э}}(\overrightarrow{a}, \overrightarrow{b}] \mapsto
+    \mu_{\text{Э}}(\overrightarrow{a}, \overrightarrow{b}] =
+    P_{\text{Э}}\left\{ \overrightarrow{\xi} \in (\overrightarrow{a}, \overrightarrow{b}] \right\}
+\]
+
+При этом:
+\[
+    \mu_{\text{Э}}\left( \bigsqcup_{i = 1}^I (\overrightarrow{a_i}, \overrightarrow{b_i}] \right) =
+    \sum_{i = 1}^I\mu(\overrightarrow{a_i}, \overrightarrow{b_i}]
+\]
+
+Тогда рассмотрим $ \mathcal{M} = \prod_{j = 1}^d [ x_{j1}, +\infty ) \subset \mathds{R}^d $, для которого:
+\[
+    \mu_{\text{Э}}\left(\mathcal{M}\right) = P_{\text{Э}}\left(\xi \in \mathcal{M}\right) =
+    \frac{1}{N}\left|\left\{ k \,|\, \overrightarrow{x_k} \in \mathcal{M} \right\}\right| = \mu_F =
+    \Bigg| \text{В частности, при} \, N = 1 \Bigg| = \delta_{\overrightarrow{x_1}},
+\]
+
+где $ \delta_{\overrightarrow{x_1}} $ - \textit{Дираковская мера}: $ \delta_{\overrightarrow{x_1}} :
+\mathcal{M} \mapsto \mathds{1} \left(\overrightarrow{x_1}\right) =
+\begin{cases} 1,\, \overrightarrow{x_1} \in \mathcal{M} \\ 0,\, \overrightarrow{x_1} \in
+\mathds{R}^d \setminus \mathcal{M} \end{cases} $ \\ [1.0cm]
+
+Так как: $ \mu_{\text{Э}}( \overrightarrow{a}, \overrightarrow{b} ] = \frac{1}{N}
+\left|\left\{ k \,|\, \overrightarrow{x_k} \in (\overrightarrow{a}, \overrightarrow{b}] \right\}\right| $,
+то видно, что:
+
+\[
+    \mu_{Э}\left(\mathcal{M}\right) = \frac{1}{N}
+    \left|\left\{ k \in \left\{1, \dots, N\right\} \,|\, \overrightarrow{x_k}
+                  \in \mathcal{M} \right\}\right|
+\]
+
+{\bf\large Замечание:} \\ $ [ $ Источник: \refShamarovLecture{4} $ ] $ \\
+$ \forall \,\, \mu_{\text{Э}} $ есть линейная комбинация не более $ N $ дираковских мер: \\
+\[
+    \mu_{\text{Э}} =
+    \frac{1}{N} \left|\left( \bigsqcup_{n = 1}^N \left\{n\right\} \cap
+        \left\{k \,|\, \overrightarrow{x_k} \in \mathcal{M}\right\} \right)\right| =
+    \frac{1}{N} \sum_{n = 1}^{N}\delta_{x_n}\left(\mathcal{M}\right) =
+    \frac{1}{N} \left(\sum_{n = 1}^{N} \delta_{\overrightarrow{x_n}}\right)\left(\mathcal{M}\right)
+\]

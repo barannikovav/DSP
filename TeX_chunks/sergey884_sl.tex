@@ -1,0 +1,212 @@
+
+
+\section{Спектральная плотность процесса, удовлетворяющего уравнениям авторегрессии — скользящего среднего (метод формирующих фильтров)}
+
+\textbf{Автор:} Агафонов Сергей Алексеевич, Б-01-001
+
+\subsection{Спектральное представление ковариационной функции}
+
+\begin{definition} Случайная последовательность $\xi=\left(\xi_1, \xi_2, \ldots\right)$ называется стационарной в узком смысле, если для любого множества $B \in \mathscr{B}\left(R^{\infty}\right)$ и любого $n \geqslant 1$:
+\begin{equation}\label{sergey884_eq_1}
+\left\{\left(\xi_1, \xi_2, \ldots\right) \in B\right\}=\left\{\left(\xi_{n+1}, \xi_{n+2}, \ldots\right) \in B\right\} . 
+\end{equation}
+\end{definition}
+Отсюда, в частности, вытекает, что если $\xi_1^2<\infty$, то $\xi_n$ не зависит от $n$ :
+\begin{equation}\label{sergey884_eq_2}
+\xi_n=\xi_1
+\end{equation}
+а ковариация
+$$
+\left(\xi_{n+m}, \xi_n\right)=\left(\xi_{n+m}-\xi_{n+m}\right)\left(\xi_n-\xi_n\right) \text { зависит лишь }
+$$
+oт $m$ :
+\begin{equation}\label{sergey884_eq_3}
+\left(\xi_{n+m}, \xi_n\right)=\left(\xi_{1+m}, \xi_1\right)
+\end{equation}
+Здесь будут исследоваться так называемые стационарные в широком смысле последовательности (с конечным вторым моментом), для которых условие (\ref{sergey884_eq_1}) заменяется условиями (\ref{sergey884_eq_2}) и (\ref{sergey884_eq_3}).
+
+Рассматриваемые случайные величины $\xi_n$ будут предполагаться определенными для $n \in \mathbf{Z}=\{0, \pm 1, \ldots\}$ и к тому же комплекснозначными. Последнее предположение не только не усложняет теорию, но и наоборот делает ее более изящной. При этом, разумеется, результаты для действительных случайных величин легко могут быть получены в качестве частного случая из соответствующих результатов для комплексных величин.
+
+Пусть $H^2=H^2(\Omega, \mathscr{F}, \quad$ ) - пространство (комплекснозначных) случайных величин $\xi=\alpha+i \beta, \alpha, \beta \in R$, с $|\xi|^2<\infty$, где $|\xi|^2=\alpha^2+\beta^2$. Если $\xi, \eta \in H^2$, то положим
+\begin{equation}\label{sergey884_eq_4}
+(\xi, \eta)=\xi \bar{\eta}
+\end{equation}
+где $\bar{\eta}=\alpha-i \beta-$ комплексно-сопряженная величина к $\eta=\alpha+i \beta$, и
+\begin{equation}\label{sergey884_eq_5}
+\parallel \xi\parallel =(\xi, \xi)^{1 / 2} .
+\end{equation}
+\newpage
+
+Қак и для действительных случайных величин, пространство $H^2$  со скалярным произведением $(\xi, \eta)$ и нормой $\parallel \xi\parallel $ является полны. . В соответствии с терминологией функционального анализа пространство $H^2$ называется унитарным (иначе - комплексным) сильбертовым пространством (случайных величин, рассматриваемых на вероятностном пространстве $(\Omega, \mathscr{F}, \quad))$.
+Если $\xi, \eta \in H^2$, то их ковариацией назовем величину
+\begin{equation}\label{sergey884_eq_6}
+(\xi, \eta)=(\xi-\xi) \overline{(\eta-\eta)}
+\end{equation}
+Из (\ref{sergey884_eq_4}) и (\ref{sergey884_eq_6}) следует, что если $\xi=\eta=0$, то
+\begin{equation}\label{sergey884_eq_7}
+(\xi, \eta)=(\xi, \eta)
+\end{equation}
+\begin{definition} Последовательность комплекснозначных случайных величин $\xi=\left(\xi_n\right)_{n \in \mathbf{Z}}$ с $\left|\xi_n\right|^2<\infty, n \in \mathbf{Z}$, называется стационарной (в широком смысле), если для всех $n \in \mathbf{Z}$
+\begin{equation}\label{sergey884_eq_8}
+\begin{gathered}
+\xi_n=\xi_0, \\
+\left(\xi_{n+k}, \xi_k\right)=\left(\xi_n, \xi_0\right), \quad k \in \mathbf{Z} .
+\end{gathered}
+\end{equation}
+\end{definition}
+Для простоты изложения в дальнейшем будем предполагать $\xi_0=0$. Это предположение не умаляет общности, но в то же самое время дает возможность (согласно (\ref{sergey884_eq_7})), отождествляя ковариацию со скалярным произведением, более просто применять методы и результаты теории гильбертовых пространств.
+Обозначим
+\begin{equation}\label{sergey884_eq_9}
+R(n)=\left(\xi_n, \xi_0\right), \quad n \in \mathbf{Z}
+\end{equation}
+и (в предположении $R(0)=\left|\xi_0\right|^2 \neq 0$ )
+\begin{equation}\label{sergey884_eq_10}
+\rho(n)=\frac{R(n)}{R(0)}, \quad n \in \mathbf{Z}
+\end{equation}
+Функцию $R(n)$ будем называть ковариационной функцией, а $\rho(n)-$ корреляционной функцией (стационарной в широком смысле) последовательности $\xi$.
+
+Непосредственно из определения (\ref{sergey884_eq_7}) следует, что ковариационная функция $R(n)$ является неотрицательно определенной, т. е. для любых комплексных чисел $a_1, \ldots, a_m$ и любых $t_1, \ldots, t_m \in \mathbf{Z}, m \geqslant 1$,
+\begin{equation}\label{sergey884_eq_11}
+\sum_{i, j=1}^m a_i \bar{a}_j R\left(t_i-t_j\right) \geqslant 0 .
+\end{equation}
+В свою очередь отсюда (или непосредственно из (\ref{sergey884_eq_9})) нетрудно вывести следующие свойства ковариационной функции:
+\begin{equation}\label{sergey884_eq_12}
+\begin{gathered}
+R(0) \geqslant 0, \quad R(-n)=\overline{R(n)}, \quad|R(n)| \leqslant R(0) \\
+|R(n)-R(m)|^2 \leqslant 2 R(0)[R(0)-\operatorname{Re} R(n-m)] .
+\end{gathered}
+\end{equation}
+\newpage
+\subsection{Последовательности}
+Приведем некоторые примеры стационарных последовательностей $\xi=\left(\xi_n\right)_{n \in \mathbf{Z}}$. (В дальнейшем слова «в широком смысле», а также указание на то, что $n \in \mathbf{Z}$, часто будут опускаться.)\newline
+
+\textbf{Белый шум.}
+
+Пусть $\varepsilon=\left(\varepsilon_n\right)$ - последовательность ортонормированных случайных величин, $\quad \varepsilon_n=0, \quad \varepsilon_i \varepsilon_j=\delta_{i j}$, где $\delta_{i j}-$ символ Кронекера. Понятно, что такая последовательность является стационарной и
+$$
+R(n)= \begin{cases}1, & n=0 \\ 0, & n \neq 0 .\end{cases}
+$$
+Отметим, что эта функция $R(n)$ может быть представлена в виде
+\begin{equation}\label{sergey884_eq_13}
+R(n)=\int_{-\pi}^\pi e^{i \lambda n} d F(\lambda)
+\end{equation}
+где
+\begin{equation}\label{sergey884_eq_14}
+F(\lambda)=\int_{-\pi}^\lambda f(\nu) d \nu, \quad f(\lambda)=\frac{1}{2 \pi}, \quad-\pi \leqslant \lambda<\pi .
+\end{equation}
+Спектор оказался абсолютно непрерывным с постоянной «спектральной» плотностью \\ $f(\lambda) \equiv 1 / 2 \pi$. В этом смысле можно сказать, что последовательность $\varepsilon=\left(\varepsilon_n\right)$ «составлена из гармоник, интенсивность которых одна и та же». Именно это обстоятельство и послужило поводом называть последовательность $\varepsilon=\left(\varepsilon_n\right)$ «белым шумом» по аналогии с («физическим») белым цветом, составленным из различных цветов одной и той же интенсивности.\newline
+
+\textbf{Последовательности скользяцего среднего.}
+
+Отправляясь от белого шума $\varepsilon=\left(\varepsilon_n\right)$, образуем новую последовательность
+\begin{equation}\label{sergey884_eq_15}
+\xi_n=\sum_{k=-\infty}^{\infty} a_k \varepsilon_{n-k}
+\end{equation}
+где $a_k$ - комплексные числа такие, что $\sum_{k=-\infty}^{\infty}\left|a_k\right|^2<\infty$.
+Из (\ref{sergey884_eq_15}) находим
+$$
+\left(\xi_{n+m}, \xi_m\right)=\left(\xi_n, \xi_0\right)=\sum_{k=-\infty}^{\infty} a_{n+k} \bar{a}_k
+$$
+так что $\xi=\left(\xi_k\right)$ является стационарной последовательностью, которую принято называть последовательностью, образованной с помощью (двустороннего) скользящего среднего из последовательности $\varepsilon=\left(\varepsilon_k\right)$.
+
+В том частном случае, когда все $a_k$ с отрицательными индексами равны нулю и, значит,
+$$
+\xi_n=\sum_{k=0}^{\infty} a_k \varepsilon_{n-k}
+$$
+последовательность $\xi=\left(\xi_n\right)$ называют последовательностью одностороннего скользящего среднего. Если к тому же все $a_k=0$ при $k>p$, т. е. если
+\begin{equation}\label{sergey884_eq_16}
+\xi_n=a_0 \varepsilon_n+a_1 \varepsilon_{n-1}+\ldots+a_p \varepsilon_{n-p},
+\end{equation}
+то $\xi=\left(\xi_n\right)$ называется последовательностью скользящего среднего порядка $р$
+
+Можно показать, что для последовательности (\ref{sergey884_eq_16}) ковариационная функция $R(n)$ имеет вид $R(n)=\int_{-\pi}^\pi e^{i \lambda n} f(\lambda) d \lambda$, где спектральная плотность равна
+\begin{equation}\label{sergey884_eq_17}
+f(\lambda)=\frac{1}{2 \pi}\left|P\left(e^{-i \lambda}\right)\right|^2
+\end{equation}
+$\mathrm{c}$
+$$
+P(z)=a_0+a_1 z+\ldots+a_p z^p
+$$\newline
+
+\textbf{Авторегрессионная схема.}
+
+Пусть снова $\varepsilon=\left(\varepsilon_n\right)$ белый шум. Будем говорить, что случайная последовательность $\xi=\left(\xi_n\right)$ подчиняется авторегрессионной схеме порядка $q$, если для $n \in \mathbf{Z}$
+\begin{equation}\label{sergey884_eq_18}
+\xi_n+b_1 \xi_{n-1}+\ldots+b_q \xi_{n-q}=\varepsilon_n
+\end{equation}
+При каких условиях на коэффициенты $b_1, \ldots, b_q$ можно утверждать, что уравнение (\ref{sergey884_eq_18}) имеет стационарное решение? Чтобы ответить на этот вопрос, рассмотрим сначала случай $q=1$ :
+\begin{equation}\label{sergey884_eq_19}
+\xi_n=\alpha \xi_{n-1}+\varepsilon_n
+\end{equation}
+где $\alpha=-b_1$. Если $|\alpha|<1$, то нетрудно проверить, что стационарная последовательность $\tilde{\xi}=\left(\tilde{\xi}_n\right)$ с
+\begin{equation}\label{sergey884_eq_20}
+\bar{\xi}_n=\sum_{j=0}^{\infty} \alpha^j \varepsilon_{n-j}
+\end{equation}
+является решением уравнения (\ref{sergey884_eq_19}). (Ряд в правой части (\ref{sergey884_eq_20}) сходится в среднеквадратическом смысле.) Покажем теперь, что в классе стационарных последовательностей $\xi=\left(\xi_n\right)$ (с конечным вторым моментом) это решение является единственным. В самом деле, из (\ref{sergey884_eq_19}) последовательными итерациями находим, что
+$$
+\xi_n=\alpha \xi_{n-1}+\varepsilon_n=\alpha\left[\alpha \xi_{n-2}+\varepsilon_{n-1}\right]+\varepsilon_n=\ldots=\alpha^k \xi_{n-k}+\sum_{j=0}^{k-1} \alpha^j \varepsilon_{n-j}
+$$
+
+Отсюда следует, что
+$$
+\left[\xi_n-\sum_{j=0}^{k-1} \alpha^j \varepsilon_{n-j}\right]^2=\left[\alpha^k \xi_{n-k}\right]^2=\alpha^{2 k} \quad \xi_{n-k}^2=\alpha^{2 k} \quad \xi_0^2 \rightarrow 0, \quad k \rightarrow \infty .
+$$
+Таким образом, при $|\alpha|<1$ стационарное решение уравнения (\ref{sergey884_eq_19}) существует и представляется в виде одностороннего скользящего среднего (\ref{sergey884_eq_20}).
+Аналогичный результат имеет место и в случае произвольного $q>1$ : если все нули полинома
+\begin{equation}\label{sergey884_eq_21}
+Q(z)=1+b_1 z+\ldots+b_q z^q
+\end{equation}
+лежат вне единичного круга, то уравнение авторегрессии (\ref{sergey884_eq_18}) имеет, и притом единственное, стационарное решение, представимое в виде одностороннего скользящего среднего. При этом ковариационная функция $R(n)$ представима в виде
+\begin{equation}\label{sergey884_eq_22}
+R(n)=\int_{-\pi}^\pi e^{i \lambda n} d F(\lambda), \quad F(\lambda)=\int_{-\pi}^\lambda f(\nu) d \nu
+\end{equation}
+где
+\begin{equation}\label{sergey884_eq_23}
+f(\lambda)=\frac{1}{2 \pi} \cdot \frac{1}{\left|Q\left(e^{-i \lambda}\right)\right|^2}
+\end{equation}
+В частном случае $q=1$ из (\ref{sergey884_eq_19}) легко находим, что $\xi_0=0$,
+$$
+\left|\xi_0\right|^2=\frac{1}{1-|\alpha|^2}, \quad R(n)=\frac{\alpha^n}{1-|\alpha|^2}, \quad n \geqslant 0
+$$
+$(R(n)=\overline{R(-n)}$ для $n<0)$. При этом
+$$
+f(\lambda)=\frac{1}{2 \pi} \cdot \frac{1}{\left|1-\alpha e^{-i \lambda}\right|^2}
+$$
+
+Отсюда следует, что
+$$
+\left[\xi_n-\sum_{j=0}^{k-1} \alpha^j \varepsilon_{n-j}\right]^2=\left[\alpha^k \xi_{n-k}\right]^2=\alpha^{2 k} \quad \xi_{n-k}^2=\alpha^{2 k} \quad \xi_0^2 \rightarrow 0, \quad k \rightarrow \infty .
+$$
+Таким образом, при $|\alpha|<1$ стационарное решение уравнения (\ref{sergey884_eq_19}) существует и представляется в виде одностороннего скользящего среднего (\ref{sergey884_eq_20}).
+Аналогичный результат имеет место и в случае произвольного $q>1$ : если все нули полинома
+$$
+Q(z)=1+b_1 z+\ldots+b_q z^q
+$$
+лежат вне единичного круга, то уравнение авторегрессии (\ref{sergey884_eq_18}) имеет, и притом единственное, стационарное решение, представимое в виде одностороннего скользящего среднего. При этом ковариационная функция $R(n)$ представима в виде
+$$
+R(n)=\int_{-\pi}^\pi e^{i \lambda n} d F(\lambda), \quad F(\lambda)=\int_{-\pi}^\lambda f(\nu) d \nu
+$$
+где
+$$
+f(\lambda)=\frac{1}{2 \pi} \cdot \frac{1}{\left|Q\left(e^{-i \lambda}\right)\right|^2}
+$$
+В частном случае $q=1$ из (\ref{sergey884_eq_19}) легко находим, что $\xi_0=0$,
+$$
+\left|\xi_0\right|^2=\frac{1}{1-|\alpha|^2}, \quad R(n)=\frac{\alpha^n}{1-|\alpha|^2}, \quad n \geqslant 0
+$$
+$(R(n)=\overline{R(-n)}$ для $n<0)$. При этом
+$$
+f(\lambda)=\frac{1}{2 \pi} \cdot \frac{1}{ \left| 1 - \alpha e^{-i\lambda} \right|^2 } .
+$$\newline
+
+\textbf{Смешанная модель авторегрессии и скользящего среднего.}
+
+Если предположить, что в правой части уравнения (\ref{sergey884_eq_18}) вместо $\varepsilon_n$ стоит величина $a_0 \varepsilon_n+a_1 \varepsilon_{n-1}+\ldots+a_p \varepsilon_{n-p}$, то получим так называемую смешанную модель авторегрессии и скользящего среднего порядка $(p, q)$ :
+\begin{equation}\label{sergey884_eq_24}
+\xi_n+b_1 \xi_{n-1}+\ldots+b_q \xi_{n-q}=a_0 \varepsilon_n+a_1 \varepsilon_{n-1}+\ldots+a_p \varepsilon_{n-p} .
+\end{equation}
+При тех же предположениях относительно нулей полинома $Q(z)$ далее показывается, что уравнение (\ref{sergey884_eq_24}) имеет стационарное решение $\xi=\left(\xi_n\right)$, для которого ковариационная функция равна $R(n)=\int_{-\pi}^\pi e^{i \lambda n} d F(\lambda)$ с $F(\lambda)=\int_{-\pi}^\lambda f(\nu) d \nu$, где
+$$
+f(\lambda)=\frac{1}{2 \pi}\left|\frac{P\left(e^{-i \lambda}\right)}{Q\left(e^{-i \lambda}\right)}\right|^2
+$$
+

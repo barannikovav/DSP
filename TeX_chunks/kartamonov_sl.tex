@@ -1,0 +1,506 @@
+
+\section{$n$-мерная функция распределения}
+
+\textbf{Автор:} Артамонов Кирилл Сергеевич, Б-01-007
+
+\subsection{Способы задания вероятностных мер на измеримых пространствах}
+\label{par_3}
+
+1. Измеримое пространство $(R, {B}(R))$. Пусть ${P}={P}(A)-$ вероятностная мера, определенная на борелевских множествах $A$ числовой прямой. Возьмем $A=(-\infty, x]$ и положим
+
+$$
+F(x)={P}(-\infty, x], \quad x \in R .
+$$
+
+Так определенная функция обладает следующими свойствами:
+
+1) $F(x)$ - неубывающая функция;
+
+2) $F(-\infty)=0, F(+\infty)=1$, где
+
+$$
+F(-\infty)=\lim _{x \downarrow-\infty} F(x), \quad F(+\infty)=\lim _{x \uparrow \infty} F(x)
+$$
+
+3) $F(x)$ непрерывна справа и имеет пределы слева в каждой точке $x \in R$.
+
+Первое свойство очевидно, последние два вытекают из свойства непрерывности вероятностной меры.
+
+\begin{definition}\label{def_1_par_3}
+Всякая функция $F=F(x)$, удовлетворяющая перечисленным условиям 1)-3), называется функцией распределения (на числовой прямой $R$ ).
+\end{definition}
+
+Итак, каждой вероятностной мере ${P}$ на $(R, {B}(R))$ соответствует (в силу (1)) некоторая функция распределения. Оказывается, что имеет место и обратное утверждение. 
+
+\begin{theorem}\label{theo_1_par_3}
+Пусть $F=F(x)$ - некоторая функция распределения на числовой прямой $R$. Тогда на $(R, {B}(R))$ существует и притом единственная вероятностная мера ${P}$ такая, что для любых $-\infty \leqslant a<b<\infty$
+
+$$
+{P}(a, b]=F(b)-F(a)
+$$
+\end{theorem}
+
+\subsubsection{Измеримое пространство $\left(R^{n}, {B}\left(R^{n}\right)\right)$.}
+
+Как и в случае действительной прямой, предположим, что ${P}$ - некоторая вероятностная мера на $\left(R^{n}, {B}\left(R^{n}\right)\right)$.
+
+Обозначим
+
+$$
+F_{n}\left(x_{1}, \ldots, x_{n}\right)={P}\left(\left(-\infty, x_{1}\right] \times \ldots \times\left(-\infty, x_{n}\right]\right),
+$$
+
+или, в более компактной форме,
+
+$$
+F_{n}(x)={P}(-\infty, x]
+$$
+
+где $x=\left(x_{1}, \ldots, x_{n}\right),(-\infty, x]=\left(-\infty, x_{1}\right] \times \ldots \times\left(-\infty, x_{n}\right]$.
+
+Введем разностный оператор $\Delta_{a_{i} b_{i}}: R^{n} \rightarrow R$, действующий по формуле $\left(a_{i} \leqslant b_{i}\right)$
+
+$$
+\begin{aligned}
+& \Delta_{a_{i} b_{i}} F_{n}\left(x_{1}, \ldots, x_{n}\right)=F_{n}\left(x_{1}, \ldots, x_{i-1}, b_{i}, x_{i+1}, \ldots, x_{n}\right)- \\
+& -F_{n}\left(x_{1}, \ldots, x_{i-1}, a_{i}, x_{i+1}, \ldots, x_{n}\right) \text {. }
+\end{aligned}
+$$
+
+Простой подсчет показывает, что
+
+$$
+\Delta_{a_{1} b_{1}} \ldots \Delta_{\alpha_{n} b_{n}} F_{n}\left(x_{1}, \ldots, x_{n}\right)={P}(a, b]
+$$
+
+где $(a, b]=\left(a_{1}, b_{1}\right] \times \ldots \times\left(a_{n}, b_{n}\right]$. Отсюда, в частности, видно, что, в отличие от одномерного случая, вероятность ${P}(a, b]$, вообще говоря, не равна разности $F_{n}(b)-F_{n}(a)$. Поскольку ${P}(a, b] \geqslant 0$, то из (7) следует, что для любых $a=\left(a_{1}, \ldots, a_{n}\right)$, $b=\left(b_{1}, \ldots, b_{n}\right)$
+
+$$
+\Delta_{a_{1} b_{1}} \ldots \Delta_{a_{n} b_{n}} F_{n}\left(x_{1}, \ldots, x_{n}\right) \geqslant 0
+$$
+
+Из непрерывности вероятности ${P}$ вытекает также, что $F_{n}\left(x_{1}, \ldots, x_{n}\right)$ непрерывна справа по совокупности переменных, т. е. если $x^{(k)} \downarrow x, x^{(k)}$ $=\left(x_{1}^{(k)}, \ldots, x_{n}^{(k)}\right)$, то
+
+$$
+F_{n}\left(x^{(k)}\right) \downarrow F_{n}(x), \quad k \rightarrow \infty
+$$
+
+Ясно также, что
+
+$$
+F_{n}(+\infty, \ldots,+\infty)=1 \quad \quad \text{и} \quad \quad \lim _{x \downarrow y} F_{n}\left(x_{1}, \ldots, x_{n}\right)=0
+$$
+
+если по крайней мере одна из координат у $y$ принимает значение $-\infty$.
+
+
+\begin{definition}\label{def_2_par_3} Всякую функцию $F=F_{n}\left(x_{1}, \ldots, x_{n}\right)$, удовлетворяющую условиям (8)-(11), будем называть n-мерной функцией распределения (в пространстве $R^{n}$ ).
+\end{definition}
+
+Используя те же самые рассуждения, что и в теореме 1 , можно доказать справедливость следующего результата.
+
+
+\begin{theorem}\label{theor_2_par_3}
+Пусть $F=F\left(x_{1}, \ldots, x_{n}\right)$ - некоторая функция распределения в $R^{n}$. Тогда на $\left(R^{n}, {B}\left(R^{n}\right)\right)$ существует и притом единственная вероятностная мера ${P}$ такая, что
+
+$$
+{P}(a, b]=\Delta_{a_{1} b_{1}} \ldots \Delta_{a_{n} b_{n}} F_{n}\left(x_{1}, \ldots, x_{n}\right)
+$$
+
+Приведем некоторые примеры $n$-мерных функций распределения. Пусть $F^{1}, \ldots, F^{n}$ - одномерные функции распределения (на $R$ ) и
+
+$$
+F_{n}\left(x_{1}, \ldots, x_{n}\right)=F^{1}\left(x_{1}\right) \ldots F^{n}\left(x_{n}\right) .
+$$
+
+Ясно, что эта функция непрерывна справа и удовлетворяет условиям на функцию распределения. Нетрудно проверить также, что
+
+$$
+\Delta_{a_{1} b_{1}} \ldots \Delta_{a_{n} b_{n}} F_{n}\left(x_{1}, \ldots, x_{n}\right)=\prod\left[F^{k}\left(b_{k}\right)-F^{k}\left(a_{k}\right)\right] \geqslant 0 .
+$$
+
+Следовательно, $F_{n}\left(x_{1}, \ldots, x_{n}\right)$ - некоторая функция распределения.
+
+Особо важен случай, когда
+
+$$
+F^{k}\left(x_{k}\right)= \begin{cases}0, & x_{k}<0 \\ x_{k}, & 0 \leqslant x_{k} \leqslant 1, \\ 1, & x_{k}>1 .\end{cases}
+$$
+
+В этом случае для всех $0 \leqslant x_{k} \leqslant 1, k=1, \ldots, n$,
+
+$$
+F_{n}\left(x_{1}, \ldots, x_{n}\right)=x_{1} \ldots x_{n} .
+$$
+
+Соответствующую этой $n$-мерной функции распределения вероятностную меру называют $n$-мерной мерой Лебега на $[0,1]^{n}$.
+\end{theorem}
+
+
+\subsubsection{Измеримое пространство $\left(R^{\infty}, {B}\left(R^{\infty}\right)\right)$.}
+\begin{theorem}[Колмогорова о продолжении мер в $\left(R^{\infty}, {B}\left(R^{\infty}\right)\right)$]\label{theor_3_par_3} . Пyсть $P_{1}, P_{2}, \ldots$ - nocлeдовательность вероятностных мер на $(R, {B}(R)), \quad\left(R^{2}, {B}\left(R^{2}\right)\right)$, ..., обладающих свойством согласованности (16). Тогда существует и притом единственная вероятностная мера ${P}$ на $\left(R^{\infty}, {B}\left(R^{\infty}\right)\right)$ такая, что для каждого $n=1,2, \ldots$
+
+$$
+{P}\left({I}_{n}(B)\right)=P_{n}(B), \quad B \in {B}\left(R^{n}\right)
+$$
+\end{theorem}
+
+\begin{proof} Пусть $B^{n} \in {B}\left(R^{n}\right)$ и ${I}_{n}\left(B^{n}\right)-$ цилиндр с «основанием» $B^{n}$. Припишем этому цилиндру меру ${P}\left({I}_{n}\left(B^{n}\right)\right)$, полагая ее равной $P_{n}\left(B^{n}\right)$
+
+Покажем, что в силу условия согласованности такое определение является корректным, т. е. значение ${P}\left({F}_{n}\left(B^{n}\right)\right)$ не зависит от способа представления цилиндрического множества ${F}_{n}\left(B^{n}\right)$. В самом деле, пусть один и тот же цилиндр представлен двумя способами:
+
+$$
+{I}_{n}\left(B^{n}\right)={I}_{n+k}\left(B^{n+k}\right)
+$$
+
+Отсюда следует, что если $\left(x_{1}, \ldots, x_{n+k}\right) \in R^{n+k}$, то
+
+$$
+\left(x_{1}, \ldots, x_{n}\right) \in B \Leftrightarrow\left(x_{1}, \ldots, x_{n+k}\right) \in B^{n+k}
+$$
+
+\centering{и, значит}
+
+$$
+\begin{aligned}
+& P_{n}\left(B^{n}\right)=P_{n+1}\left(\left(x_{1}, \ldots, x_{n+1}\right):\left(x_{1}, \ldots, x_{n}\right) \in B^{n}\right)=\ldots \\
+& \ldots=P_{n+k}\left(\left(x_{1}, \ldots, x_{n+k}\right):\left(x_{1}, \ldots, x_{n}\right) \in B\right)=P_{n+k}\left(B^{n+k}\right) .
+\end{aligned}
+$$
+\end{proof}
+
+Обозначим ${A}\left(R^{\infty}\right)$ совокупность всех цилиндрических множеств $\widehat{B}^{n}=$ $={F}_{n}\left(B^{n}\right), B^{n} \in {B}\left(R^{n}\right), n=1,2 \ldots$ Нетрудно видеть, что ${A}\left(R^{\infty}\right)-$ алгебра. Пусть теперь $\widehat{B}^{1}, \ldots, \widehat{B}^{k}-$ непересекающиеся множества из ${A}\left(R^{\infty}\right)$. Без ограничения общности можно считать, что все они таковы, что для некоторого $n \widehat{B}_{i}={I}_{n}\left(B_{i}^{n}\right), i=1, \ldots, k$, где $B_{1}^{n}, \ldots, B_{k}^{n}$ - непересекающиеся множества из ${B}\left(R^{n}\right)$. Тогда
+
+$$
+{P}\left(\sum_{i=1}^{k} \widehat{B}_{i}\right)={P}\left(\sum_{i=1}^{k} {I}_{n}\left(B_{i}^{n}\right)\right)=P_{n}\left(\sum_{i=1}^{k} B_{i}^{n}\right)=\sum_{i=1}^{k} P_{n}\left(B_{i}^{n}\right)=\sum_{i=1}^{n} {P}\left(\widehat{B}_{i}\right),
+$$
+
+т. е. функция множеств ${P}-$ конечно-аддитивна на алгебре ${A}\left(R^{\infty}\right)$.
+
+Покажем, что ${P}$ непрерывна в «нуле» (а, значит, и $\sigma$-аддитивна на ${A}\left(R^{\infty}\right)$;, т. е. если последовательность множеств $\widehat{B}_{n} \downarrow \varnothing$, $n \rightarrow \infty$, то ${P}\left(\widehat{B}_{n}\right) \rightarrow 0, n \rightarrow \infty$
+
+Предположим противное, т. е. пусть $\lim _{n} {P}\left(\widehat{B}_{n}\right)=\delta>0$. Без ограничения общности можно считать, что последовательность $\left\{\widehat{B}_{n}\right\}$ такова, что
+
+$$
+\widehat{B}_{n}=\left\{x:\left(x_{1}, \ldots, x_{n}\right) \in B_{n}\right\}, \quad B_{n} \in {B}\left(R^{n}\right) .
+$$
+
+Воспользуемся следующим свойством вероятностных мер $P_{n}$ на $\left(R^{n}, {B}\left(R^{n}\right)\right)$ : если $B_{n} \in {B}\left(R^{n}\right)$, то для заданного $\delta>0$ можно найти такой компакт $A_{n} \in {B}\left(R^{n}\right)$, что $A_{n} \subseteq B_{n}$ и $P_{n}\left(B_{n} \backslash A_{n}\right) \leqslant \delta / 2^{n+1}$. Поэтому, если $\widehat{A}_{n}=\left\{x:\left(x_{1}, \ldots, x_{n}\right) \in A_{n}\right\}$, то
+
+$$
+{P}\left(\widehat{B}_{n} \backslash \widehat{A}_{n}\right)=P_{n}\left(B_{n} \backslash A_{n}\right) \leqslant \delta / 2^{n+1} .
+$$
+
+Образуем множество $\widehat{C}_{n}=\bigcap_{k=1}^{n} \widehat{A}_{k}$, и пусть $C_{n}$ таковы, что
+
+$$
+\widehat{C}_{n}=\left\{x:\left(x_{1}, \ldots, x_{n}\right) \in C_{n}\right\}
+$$
+
+Тогда, учитывая, что множества $\widehat{B}_{n}$ убывают, находим
+
+$$
+{P}\left(\widehat{B}_{n} \backslash \widehat{C}_{n}\right) \leqslant \sum_{k=1}^{n} {P}\left(\widehat{B}_{n} \backslash \widehat{A}_{k}\right) \leqslant \sum_{k=1}^{n} {P}\left(\widehat{B}_{k} \backslash \widehat{A}_{k}\right) \leqslant \delta / 2 .
+$$
+
+Но по предположению $\lim _{n} {P}\left(\widehat{B}_{n}\right)=\delta>0$, и, значит, $\lim _{n} {P}\left(\widehat{C}_{n}\right) \geqslant \delta / 2>0$. Покажем, что это противоречит тому, что $\widehat{C}_{n} \downarrow \varnothing$.
+
+Действительно, выберем в множествах $\widehat{C}_{n}$ по точке $\hat{x}^{(n)}=\left(x_{1}^{(n)}, x_{2}^{(n)}, \ldots\right)$. Тогда для каждого $n \geqslant 1\left(x_{1}^{(n)}, \ldots, x_{n}^{(n)}\right) \in C_{n}$.
+
+Пусть $\left(n_{1}\right)$ - некоторая подпоследовательность последовательности $(n)$ такая, что $x_{1}^{\left(n_{1}\right)} \rightarrow x_{1}^{0}$, где $x_{1}^{0}-$ некоторая точка в $C_{1}$. (Такая подпоследовательность существует, поскольку все $x_{1}^{\left(n_{1}\right)} \in C_{1}$, а $C_{1}-$ компакт.) Из последовательности $\left(n_{1}\right)$ выберем подпоследовательность $\left(n_{2}\right)$ такую, что $\left(x_{1}^{\left(n_{2}\right)}, x_{2}^{\left(n_{2}\right)}\right) \rightarrow\left(x_{1}^{0}, x_{2}^{0}\right) \in C_{2}$. Аналогичным образом пусть $\left(x_{1}^{\left(n_{k}\right)}, \ldots, x_{k}^{\left(n_{k}\right)}\right) \rightarrow$ $\rightarrow\left(x_{1}^{0}, \ldots, x_{k}^{0}\right) \in C_{k}$. Образуем, наконец, диагональную последовательность $\left(m_{k}\right)$, где $m_{k}$ есть $k$-й член в последовательности $\left(n_{k}\right)$. Тогда для любого $i=1,2, \ldots x_{i}^{\left(m_{k}\right)} \rightarrow x_{i}^{0}$ при $m_{k} \rightarrow \infty$, причем точка $\left(x_{1}^{0}, x_{2}^{0}, \ldots\right) \in \widehat{C}_{n}$ для любого $n=1,2, \ldots$, что, очевидно, противоречит предположению о том, что $\widehat{C}_{n} \downarrow \varnothing, n \rightarrow \infty$.
+
+Итак, функция множеств ${P}$ на алгебре ${A}\left(R^{\infty}\right)$ является $\sigma$-аддитивной и, значит, по теореме Каратеодори может быть продолжена до (вероятностной) меры на $\left(R^{\infty}, {B}\left(R^{\infty}\right)\right)$.
+
+\subsubsection{Измеримые пространства $\left(R^{T}, {B}\left(R^{T}\right)\right)$.}
+ Пусть $T-$ произвольное множество индексов $t \in T$ и $R_{t}$ - числовая прямая, соответствующая индексу t. Рассмотрим произвольный конечный неупорядоченный набор $\tau=\left[t_{1}, \ldots, t_{n}\right]$ различных индексов $t_{i}, t_{i} \in T, n \geqslant 1$, и пусть $P_{\tau}$ - вероятностная мера на $\left(R^{\tau}, {B}\left(R^{\tau}\right)\right)$ с $R^{\tau}=R_{t_{1}} \times \ldots \times R_{t_{n}}$.
+
+Будем говорить, что семейство вероятностных мер $\left\{P_{\tau}\right\}$, где $\tau$ пробегает множество всех конечных неупорядоченных наборов, является согласованныц, если для любых наборов $\tau=\left[t_{1}, \ldots, t_{n}\right]$ и $\sigma=\left[s_{1}, \ldots, s_{k}\right]$ таких, что $\sigma \subseteq \tau$
+
+$$
+\begin{aligned}
+& P_{\sigma}\left\{\left(x_{s_{1}}, \ldots, x_{s_{k}}\right):\left(x_{s_{1}}, \ldots, x_{s_{k}}\right) \in B\right\}= \\
+& =P_{\tau}\left\{\left(x_{t_{1}}, \ldots, x_{t_{n}}\right):\left(x_{s_{1}}, \ldots, x_{s_{k}}\right) \in B\right\}
+\end{aligned}
+$$
+
+для любого $B \in {B}\left(R^{\sigma}\right)$.
+
+\begin{theorem}[Колмогорова о продолжении мер в $\left(R^{T}, {B}\left(R^{T}\right)\right)$] Пусть $\left\{P_{\tau}\right\}$ - семейство согласованных вероятностных мер на $\left(R^{\tau}, {B}\left(R^{\tau}\right)\right)$. Тогда существует и притом единственная вероятностная мера ${P}$ на $\left(R^{T}, {B}\left(R^{T}\right)\right)$ такая, что 
+
+$$
+{P}\left({I}_{\tau}(B)\right)=P_{\tau}(B)
+$$
+
+для всех неупорядоченных наборов $\tau=\left[t_{1}, \ldots, t_{n}\right]$ различных индексов
+$$
+t_i \in T, B \in {B}\left(R^{T}\right) \quad \quad \text{и} \quad \quad {I}_{\tau}(B) = {x \in R^T : (\left(x_{t_{1}}, x_{t_{2}}, \ldots\right) \in B)} $$
+\end{theorem}
+
+\begin{proof} Пусть множество $\widehat{B} \in {B}\left(R^{T}\right)$. Согласно теореме~\ref{theor_2_par_3}, найдется не более чем счетное множество $S=\left\{s_{1}, s_{2}, \ldots\right\} \subseteq T$ такое, что $\widehat{B}=\left\{x:\left(x_{S_{1}}, x_{S_{2}}, \ldots\right) \in B\right\}$, где $B \in {B}\left(R^{S}\right), R^{S}=R_{S_{1}} \times R_{S_{2}} \times \ldots$ Иначе говоря, $\widehat{B}={I}_{S}(B)$ - цилиндрическое множество с «основанием» $B \in {B}\left(R^{S}\right)$.
+
+На таких цилиндрических множествах $\widehat{B}={I}_{S}(B)$ определим функцию множеств ${P}$, полагая
+
+$$
+{P}\left({I}_{S}(B)\right)=P_{S}(B)
+$$
+
+где $P_{S}-$ та вероятностная мера, существование которой гарантируется теоремой~\ref{theor_3_par_3}.
+
+Мы утверждаем, что $P$ - именно та мера, о существовании которой говорится в теореме. Чтобы установить это, надо, во-первых, проверить, что определение корректно, т. е. приводит к одному и тому же значению ${P}(\widehat{B})$ при разных способах представления $\widehat{B}$, и, во-вторых, что эта функция множеств счетно-аддитивна.
+
+Итак, пусть $\widehat{B}={I}_{S_{1}}\left(B_{1}\right)$ и $\widehat{B}={I}_{S_{2}}\left(B_{2}\right)$. Ясно, что тогда $\widehat{B}={I}_{S_{1} \cup S_{2}}\left(B_{3}\right)$ с некоторым $B_{3} \in {B}\left(R^{S_{1} \cup S_{2}}\right)$, и поэтому достаточно лишь убедиться в том, что если $S \subseteq S^{\prime}$ и $B \in {B}\left(R^{S}\right)$, то $P_{S^{\prime}}\left(B^{\prime}\right)=P_{S}(B)$, где
+
+$$
+B^{\prime}=\left\{\left(x_{s_{1}^{\prime}}, x_{s_{2}^{\prime}}, \ldots\right):\left(x_{S_{1}}, x_{S_{2}}, \ldots\right) \in B\right\}
+$$
+
+c $S^{\prime}=\left\{s_{1}^{\prime}, s_{2}^{\prime}, \ldots\right\}, S=\left\{s_{1}, s_{2}, \ldots\right\}$.
+
+Но в силу условия согласованности это равенство непосредственно вытекает из теоремы 3 , что и доказывает независимость значений ${P}(\widehat{B})$ от способа представления множества $\widehat{B}$.
+
+Далее, для проверки свойства счетной аддитивности функции множеств ${P}$ предположим, что $\left\{\widehat{B}_{n}\right\}$ - некоторая последовательность попарно непересекающихся множеств из ${B}\left(R^{T}\right)$. Тогда найдется такое не более чем счетное множество $S \subseteq T$, что для любого $n \geqslant 1 \widehat{B}_{n}={I}_{S}\left(B_{n}\right)$, где $B_{n} \in {B}\left(R^{S}\right)$. Поскольку $P_{S}-$ вероятностная мера, то
+
+$$
+\begin{aligned}
+& {P}\left(\sum \widehat{B}_{n}\right)={P}\left(\sum {I}_{S}\left(B_{n}\right)\right)=P_{S}\left(\sum B_{n}\right)=\sum P_{S}(B_n) = \sum{P}\left( {I}_{S}\left(B_{n}\right)\right) = \sum{P}\left(\widehat{B}_{n}\right)
+\end{aligned}
+$$
+
+
+Наконец, требуемое свойство непосредственно следует из самой конструкции меры ${P}$.
+\end{proof}
+
+
+\subsection{Случайные элементы}
+\label{par_5}
+
+1. Наряду со случайными величинами в теории вероятностей и ее приложениях рассматривают случайные объекты более общей природы, например, случайные точки, векторы, функции, процессы, поля, множества, меры и т. д. В связи с этим желательно иметь понятие случайного объекта произвольной природы.
+
+
+\begin{definition}
+Пусть $(\Omega, {F})$ и $(E, {E})$ - два измеримых пространства. Будем говорить, что функция $X=X(\omega)$, определенная на $\Omega$ и принимающая значения в $E$, есть ${F} / {E}-$измеримая функция, или случайный элемент (со значениями в $E$ ), если для любого $B \in {E}$
+
+$$
+\{\omega: X(\omega) \in B\} \in {F} .
+$$
+\end{definition}
+
+Иногда случайные элементы (со значениями в $E$ ) называют также E-значньми случайными величинами.
+
+Рассмотрим частные случаи этого определения.
+
+% Если $(E, {G})=(R, {B}(R))$, то определение случайного элемента совпадает с определением случайной величины (\S 4).
+
+Пусть $(E, {E})=\left(R^{n}, {B}\left(R^{n}\right)\right)$. Тогда случайный Элемент $X(\omega)$ есть «случайная точка»в $R^{n}$. Если $\pi_{k}$ - проекция $R^{n}$ на $k$-ю координатную ось, то $X(\omega)$ можно представить в виде
+
+$$
+X(\omega)=\left(\xi_{1}(\omega), \ldots, \xi_{n}(\omega)\right)
+$$
+
+где $\xi_{k}=\pi_{k} \circ X$
+
+Из условия вытекает, что $\xi_{k}$ - обычные случайные величины. Действительно, для любого $B \in {B}(R)$
+
+$$
+\begin{aligned}
+& \left\{\omega: \xi_{k}(\omega) \in B\right\}= \\
+& \begin{array}{l}
+=\left\{\omega: \xi_{1}(\omega) \in R, \ldots, \xi_{k-1}(\omega) \in R, \xi_{k}(\omega) \in B, \xi_{k+1}(\omega) \in R, \ldots, \xi_{n}(\omega) \in R\right\}= \\
+\quad=\{\omega: X(\omega) \in(R \times \ldots \times R \times B \times R \times \ldots \times R)\} \in {F},
+\end{array}
+\end{aligned}
+$$
+
+Поскольку множество $R \times \ldots \times R \times B \times R \times \ldots \times R \in {B}\left(R^{n}\right)$.
+
+\begin{definition}
+Всякий упорядоченный набор случайных величин $\left(\eta_{1}(\omega), \ldots, \eta_{n}(\omega)\right)$ будем называть $n$-мерным случайным вектором.
+\end{definition}
+
+В соответствии с этим определением всякий случайный элемент $X(\omega)$ со значениями в $R^{n}$ является $n$-мерным случайным вектором. Справедливо и обратное: всякий случайный вектор $X(\omega)=\left(\xi_{1}(\omega), \ldots, \xi_{n}(\omega)\right)$ есть случайный элемент в $R^{n}$. Действительно, если $B_{k} \in {B}(R), k=1, \ldots, n$, то
+
+$$
+\left\{\omega: X(\omega) \in\left(B_{1} \times \ldots \times B_{n}\right)\right\}=\prod_{k=1}^{n}\left\{\omega: \xi_{k}(\omega) \in R_{k}\right\} \in {F} .
+$$
+
+Но наименьшая $\sigma$-алгебра, содержащая множества $B_{1} \times \ldots \times B_{n}$, совпадает c ${B}\left(R^{n}\right)$. Тогда из очевидного обобщения леммы 1 из $\$ 4$ сразу получаем, что для любого $B \in {B}\left(R^{n}\right)$ множество $\{\omega: X(\omega) \in B\}$ принадлежит ${F}$.
+
+Пусть $(E, {E})=({Z}, {B}({Z}))$, где ${Z}-$ множество комплексных чисел $z=x+i y, x, y \in R$, а ${B}({Z})$ - наименьшая $\sigma$-алгебра, содержащая множества вида
+\newline
+$\left\{z: z=x+i y, a_{1}<x \leqslant b_{1}, a_{2}<y \leqslant b_{2}\right\}$. 
+\newline
+Из предыдущего рассмотрения следует, что комплекснозначная случайная величина $Z(\omega)$ представляется в виде $Z(\omega)=X(\omega)+i Y(\omega)$, где $X(\omega)$ и $Y(\omega)-$ случайные величины. Поэтому $Z(\omega)$ называют также комплексными случайными величинами.
+
+Пусть $(E, {E})=\left(R^{T}, {B}\left(R^{T}\right)\right)$, где $T$ - некоторое подмножество числовой прямой. В этом случае всякий случайный Элемент $X=X(\omega)$, представимый, очевидно, в виде $X=\left(\xi_{t}\right)_{t \in T}$ с $\xi_{t}=\pi_{t} \circ X$, называют случайной функцией с временным интервалом $T$.
+
+Так же, как и для случайных векторов, устанавливается, что всякая случайная функция является в то же самое время случайным процессом в смысле следующего определения.
+
+\begin{definition}\label{def_3_par_5}
+ Пусть $T$ - некоторое подмножество числовой прямой. Совокупность случайных величин $X=\left(\xi_{t}\right)_{t \in T}$ называется случайным (стохастическим) процессом с временным интервалом $T$.
+
+Если $T=\{1,2, \ldots\}$, то $X=\left(\xi_{1}, \xi_{2}, \ldots\right)$ называют случайным процессом с дискретным временем или случайной последовательностью.
+
+Если $T=[0,1],(-\infty, \infty),[0, \infty), \ldots$, то $X=\left(\xi_{t}\right)_{t \in T}$ называют случайным процессом с непрерывным временем.
+\end{definition}
+
+\begin{definition} Пусть $X=\left(\xi_{t}\right)_{t \in T}-$ случайный процесс. Для каждого фиксированного $\omega \in \Omega$ функция $\left(\xi_{t}(\omega)\right)_{t \in T}$ называется реализацией или траекторией процесса, соответствующей исходу $\omega$.
+\end{definition}
+
+\begin{definition} Пусть $X=\left(\xi_{t}\right)_{t \in T}-$ случайный процесс. Вероятностная мера $P_{X}$ на $\left(R^{T}, {B}\left(R^{T}\right)\right)$ с
+
+$$
+P_{X}(B)={P}\{\omega: X(\omega) \in B\}, \quad B \in {B}\left(R^{T}\right)
+$$
+
+называется распределением вероятностей процесса $X$. Вероятности
+
+$$
+P_{t_{1}, \ldots, t_{n}}(B) \equiv {P}\left\{\omega:\left(\xi_{t_{1}}, \ldots, \xi_{t_{n}}\right) \in B\right\}
+$$
+
+c $t_{1}<t_{2}<\ldots<t_{n}, t_{i} \in T$, называются конечномерными вероятностями (или распределениями вероятностей). Функции
+
+$$
+F_{t_{1}, \ldots, t_{n}}\left(x_{1}, \ldots, x_{n}\right) \equiv {P}\left\{\omega: \xi_{t_{1}} \leqslant x_{1}, \ldots, \xi_{t_{n}} \leqslant x_{n}\right\}
+$$
+
+с $t_{1}<t_{2}<\ldots<t_{n}, t_{i} \in T$, называются конечномерными функциями распределения процесса $X=\left(\xi_{t}\right)_{t \in T}$.
+\end{definition}
+
+\subsection{Построение процесса с заданными конечномерными распределениями}
+\label{par_9}
+
+1. Пусть $\xi=\xi(\omega)$ - случайная величина, заданная на вероятностном пространстве $(\Omega, {F}, P)$ и
+
+$$
+F_{\xi}(x)={P}\{\omega: \xi(\omega) \leqslant x\}
+$$
+
+- ее функция распределения. Понятно, что $F_{\xi}(x)$ является функцией распределения на числовой прямой в смысле определения \ref{def_1_par_3}.
+
+Поставим сейчас следующий вопрос. Пусть $F=F(x)-$ некоторая функция распределения на $R$. Спрашивается, существует ли случайная величина, имеющая функцию $F(x)$ своей функцией распределения?
+
+Одна из причин, оправдывающих эту постановку вопроса, состоит в следующем. Многие утверждения теории вероятностей начинаются словами: «Пусть $\xi$ - случайная величина с функцией распределения $F(x)$, тогда...». Поэтому, чтобы утверждения подобного типа были содержательными, надо иметь уверенность, что рассматриваемый объект действительно существует. Поскольку для задания случайной величины нужно прежде всего задать область ее определения $(\Omega, {F})$, а для того, чтобы говорить о ее распределении, надо иметь вероятностную меру ${P}$ на $(\Omega, {F})$, то правильная постановка вопроса о существовании случайной величины с заданной функцией распределения $F(x)$ такова:
+
+Существуют ли вероятностное пространство  $(\Omega, {F}, {P})$и случайная величина $\xi=\xi(\omega)$ на нем такие, что
+
+$$
+{P}\{\omega: \xi(\omega) \leqslant x\}=F(x) \text { ? }
+$$
+
+Покажем, что ответ на этот вопрос положительный и, в сущности, он содержится в теореме~\ref{theo_1_par_3}.
+
+Действительно, положим
+
+$$
+\Omega=R, {F}={B}(R) .
+$$
+
+Тогда из теоремы \ref{theo_1_par_3} следует, что на $(R, {B}(R))$ существует (и притом единственная) вероятностная мера ${P}$, для которой ${P}(a, b]=F(b)-F(a)$, $a<b$.
+
+Положим $\xi(\omega) \equiv \omega$. Тогда
+
+$$
+{P}\{\omega: \xi(\omega) \leqslant x\}={P}\{\omega: \omega \leqslant x\}={P}(-\infty, x]=F(x) .
+$$
+
+Таким образом, требуемое вероятностное пространство и искомая случайная величина построены.
+
+2. Поставим теперь аналогичный вопрос для случайных процессов.
+
+Пусть $X=\left(\xi_{t}\right)_{t \in T}-$ случайный процесс (в смысле определения \ref{def_3_par_5}), заданный на вероятностном пространстве $(\Omega, {F}, {P})$ для $t \in T \subseteq R$.
+
+C физической точки зрения наиболее важной вероятностной характеристикой случайного процесса является набор $\left\{F_{t_{1}, \ldots, t_{n}}\left(x_{1}, \ldots, x_{n}\right)\right\}$ его конечномерных функций распределения
+
+$$
+F_{t_{1}, \ldots, t_{n}}\left(x_{1}, \ldots, x_{n}\right)={P}\left\{\omega: \xi_{t_{1}} \leqslant x_{1}, \ldots, \xi_{t_{n}} \leqslant x_{n}\right\}
+$$
+
+заданных для всех наборов $t_{1}, \ldots, t_{n}$ с $t_{1}<t_{2}<\ldots<t_{n}$.
+
+Видно, что для каждого набора $t_{1}, \ldots, t_{n}$ с $t_{1}<t_{2}<\ldots<t_{n}$ функции $F_{t_{1}, \ldots, t_{n}}\left(x_{1}, \ldots, x_{n}\right)$ являются $n$-мерными функциями распределения (в смысле определения~\ref{def_2_par_3}) и что набор $\left\{F_{t_{1}, \ldots, t_{n}}\left(x_{1}, \ldots, x_{n}\right)\right\}$ удовлетворяет следующим условиям согласованности (\ref{par_3}):
+
+$$
+\begin{aligned}
+F_{t_{1}, \ldots, t_{k}, \ldots, t_{n}}\left(x_{1}, \ldots, \infty, \ldots,\right. & \left.x_{n}\right)= \\
+& =F_{t_{1}, \ldots, t_{k-1}, t_{k+1}, \ldots, t_{n}}\left(x_{1}, \ldots, x_{k-1}, x_{k+1}, \ldots, x_{n}\right) .
+\end{aligned}
+$$
+
+
+\begin{theorem}[Колмогорова о существовании процесса]. Пусть $\left\{F_{t_{1}, \ldots, t_{n}}\left(x_{1}, \ldots, x_{n}\right)\right\}$, где $t_{i} \in T \subseteq R, t_{1}<t_{2}<\ldots<t_{n}, n \geqslant 1$, - заданное семейство конечномерных функций распределения, удовлетворяющих условиям согласованности (2). Тогда существуют вероятностное пространство $\left(\Omega, {F}\right.$, P) и случайный процесс $X=\left(\xi_{t}\right)_{t \in T}$ такие, что
+
+$$
+{P}\left\{\omega: \xi_{t_{1}} \leqslant x_{1}, \ldots, \xi_{t_{n}} \leqslant x_{n}\right\}=F_{t_{1}, \ldots, t_{n}}\left(x_{1}, \ldots, x_{n}\right) .
+$$
+\end{theorem}
+
+\begin{proof} Положим
+
+$$
+\Omega=R^{T}, \quad {F}={B}\left(R^{T}\right),
+$$
+
+т. е. возьмем в качестве пространства $\Omega$ пространство действительных функций $\omega=\left(\omega_{t}\right)_{t \in T}$ с $\sigma$-алгеброй, порожденной цилиндрическими множествами.
+
+Пусть $\tau=\left[t_{1}, \ldots, t_{n}\right], t_{1}<t_{2}<\ldots<t_{n}$. Тогда, согласно теореме~\ref{theor_2_par_3}, в пространстве $\left(R^{n}, {B}\left(R^{n}\right)\right)$ можно построить (и притом единственную) вероятностную меру $P_{\tau}$ такую, что
+
+$$
+P_{\tau}\left\{\left(\omega_{t_{1}}, \ldots, \omega_{t_{n}}\right): \omega_{t_{1}} \leqslant x_{1}, \ldots, \omega_{t_{n}} \leqslant x_{n}\right\}=F_{t_{1}, \ldots, t_{n}}\left(x_{1}, \ldots, x_{n}\right) .
+$$
+
+Из условий согласованности вытекает, что семейство $\left\{P_{\tau}\right\}$ также является согласованным. Согласно \ref{par_3}, на пространстве $\left(R^{T}, {B}\left(R^{T}\right)\right)$ существует вероятностная мера ${P}$ такая, что
+
+$$
+{P}\left\{\omega:\left(\omega_{t_{1}}, \ldots, \omega_{t_{n}}\right) \in B\right\}=P_{\tau}(B)
+$$
+
+для всякого набора $\tau=\left[t_{1}, \ldots, t_{n}\right], t_{1}<\ldots<t_{n}$.
+
+Отсюда следует также, что выполнено условие требуемое условие. Таким образом, в качестве искомого случайного процесса $X=\left(\xi_{t}(\omega)\right)_{t \in T}$ можно взять процесс, определенный следующим образом:
+
+$$
+\xi_{t}(\omega)=\omega_{t}, \quad t \in T
+$$
+\end{proof}
+
+\begin{remark}
+Построенное вероятностное пространство $\left(R^{T}, {B}\left(R^{T}\right), {P}\right)$ часто называют каноническим, а такое задание случайного процесса - координатным способом построения процесса.
+\end{remark}
+
+\begin{corollary} Пусть $F_{1}(x), F_{2}(x), \ldots$ - последовательность одномерных функций распределения. Тогда существуют вероятностное пространство $(\Omega, {F}$, P) и последовательность независимых случайных величин $\xi_{1}, \xi_{2}, \ldots$ такие, что
+
+$$
+{P}\left\{\omega: \xi_{i}(\omega) \leqslant x\right\}=F_{i}(x)
+$$
+\end{corollary}
+
+B частности, существует вероятностное пространство $(\Omega, {F}, {P})$, на котором определена бесконечная последовательность бернуллевских случайных величин. В качестве $\Omega$ можно здесь взять пространство
+
+$$
+\Omega=\left\{\omega: \omega=\left(a_{1}, a_{2}, \ldots\right), a_{i}=0 u \Omega u 1\right\}
+$$
+
+(ср. также с теоремой \ref{theor_2_par_3}).
+
+Для доказательства следствия достаточно положить 
+\newline
+$F_{1, \ldots, n}\left(x_{1}, \ldots, x_{n}\right)$ $=F_{1}\left(x_{1}\right) \ldots F_{n}\left(x_{n}\right)$
+\newline
+и применить теорему \ref{theo_1_par_3} .
+
+
+
+\begin{corollary} Пусть $T=\{0,1,2, \ldots\} \quad u\left\{P_{k}(x ; B)\right\}$ - семейство неотрицательных функций, определенных для $k \geqslant 1, x \in R, B \in {B}(R)$ и таких, ито функция $P_{k}(x ; B)$ есть вероятностная мера по $B$ (при фиксированных $k$ u ) и измерима по х (при фиксированных $k$ и $B$ ). Пусть, кроме того, $\pi=\pi(\cdot)$ - вероятностная мера на $(R, {B}(R))$.
+
+Тогда можно построить вероятностное пространство $(\Omega, {F}, {P})$ с семейством случайных величин $X=\left\{\xi_{0}, \xi_{1}, \ldots\right\}$ на нем таких, что
+
+$$
+\begin{aligned}
+{P}\left\{\xi_{0} \leqslant x_{0}, \xi_{1} \leqslant x_{1}, \ldots, \xi_{n}\right. & \left.\leqslant x_{n}\right\}= \\
+& =\int_{-\infty}^{x_{0}} \pi\left(d y_{0}\right) \int_{-\infty}^{x_{1}} P_{1}\left(y_{0} ; d y_{1}\right) \ldots \int_{-\infty}^{x_{n}} P_{n}\left(y_{n-1} ; d y_{n}\right) .
+\end{aligned}
+$$
+\end{corollary}
+
+

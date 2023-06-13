@@ -1,0 +1,159 @@
+
+\section{Модель авторегрессии скользящего среднего}
+
+\textbf{Автор:}  Волков Вадим Леонидович, Б-01-007
+
+\subsection{Белый шум}
+Пусть $\varepsilon=\left(\varepsilon_{n}\right)$ - последовательность ортонормированных случайных величин, \\ $\mathbb{E} \varepsilon_{n}=0, ~ \mathbb{E} \varepsilon_{i} \varepsilon_{j}=\delta_{i j}$, где $\delta_{i j}-$ символ Кронекера. Понятно, что такая последовательность является стационарной и
+
+$$
+R(n)= \begin{cases}1, & n=0 \\ 0, & n \neq 0\end{cases}
+$$
+
+Отметим, что эта функция $R(n)$ может быть представлена в виде
+
+$$
+R(n)=\int_{-\pi}^{\pi} e^{i \lambda n} d F(\lambda)
+\eqno(1)
+$$
+
+где
+
+$$
+F(\lambda)=\int_{-\pi}^{\lambda} f(\nu) d \nu, \quad f(\lambda)=\frac{1}{2 \pi}, \quad-\pi \leqslant \lambda<\pi .
+\eqno(2)
+$$
+
+
+\subsection{Последовательности скользящего среднего} 
+Отправляясь от белого шума $\varepsilon=\left(\varepsilon_{n}\right)$, образуем новую последовательность
+
+$$
+\xi_{n}=\sum_{k=-\infty}^{\infty} a_{k} \varepsilon_{n-k}
+\eqno(3) 
+$$
+
+где $a_{k}$ - комплексные числа такие, что $\sum\limits_{k=-\infty}^{\infty} \left|a_{k}\right|^{2}<\infty$.
+
+В том частном случае, когда все $a_{k}$ с отрицательными индексами равны нулю и, значит,
+
+$$
+\xi_{n}=\sum_{k=0}^{\infty} a_{k} \varepsilon_{n-k}
+$$
+
+Последовательность $\xi=\left(\xi_{n}\right)$ называют последовательностью одностороннего скользящего среднего. Если к тому же все $a_{k}=0$ при $k>p$, т. е. если
+
+$$
+\xi_{n}=a_{0} \varepsilon_{n}+a_{1} \varepsilon_{n-1}+\ldots+a_{p} \varepsilon_{n-p}
+\eqno(4)
+$$
+
+то $\xi=\left(\xi_{n}\right)$ называется последовательностью скользящего среднего порядка $p$
+
+Для последовательности (4) ковариационная функция $R(n)$ имеет вид $\\ R(n)=\int_{-\pi}^{\pi} e^{i \lambda n} f(\lambda) d \lambda$, где спектральная плотность равна
+
+$$
+f(\lambda)=\frac{1}{2 \pi}\left|P\left(e^{-i \lambda}\right)\right|^{2}
+\eqno(5)
+$$
+
+с
+
+$$
+P(z)=a_{0}+a_{1} z+\ldots+a_{p} z^{p}
+$$
+
+Покажем, почему это так.  $F_{\varepsilon}(\lambda)-$ ассоциируется с белым шумом. 
+
+$R(n)=\int_{-\pi}^{\pi} e^{i \lambda n} d F(\lambda) =
+\sum\limits_{k=-\infty}^{\infty} a_{k} \int_{-\pi}^{\pi} e^{i \lambda (n-k)} d F_{\varepsilon}(\lambda)  = \lim\limits_{N\to\infty} \sum\limits_{k=-N}^{N} a_{k} \int_{-\pi}^{\pi} e^{i \lambda (n-k)} d F_{\varepsilon}(\lambda) = \lim\limits_{N\to\infty} \int_{-\pi}^{\pi} (\sum\limits_{k=-N}^{N} a_{k} e^{-ik\lambda}) e^{in\lambda} d F_{\varepsilon}(\lambda) = \int_{-\pi}^{\pi} (\sum\limits_{k=-\infty}^{\infty} a_{k} e^{-ik\lambda}) e^{in\lambda} d F_{\varepsilon}(\lambda) 
+= \int_{-\pi}^{\pi} e^{in\lambda} P(e^{-i\lambda}) d F_{\varepsilon}(\lambda) $
+
+\subsection{Авторегрессионная схема}
+Пусть снова $\varepsilon=\left(\varepsilon_{n}\right)-$ белый шум. Будем говорить, что случайная последовательность $\xi=\left(\xi_{n}\right)$ подчиняется авторегрессионной схеме порядка $q$, если для $n \in \mathbf{Z}$
+
+$$
+\xi_{n}+b_{1} \xi_{n-1}+\ldots+b_{q} \xi_{n-q}=\varepsilon_{n}
+\eqno(6)
+$$
+
+При каких условиях на коэффициенты $b_{1}, \ldots, b_{q}$ можно утверждать, что уравнение (6) имеет стационарное решение? Чтобы ответить на этот вопрос, рассмотрим сначала случай $q=1$ :
+
+$$
+\xi_{n}=\alpha \xi_{n-1}+\varepsilon_{n}
+\eqno(7)
+$$
+
+где $\alpha=-b_{1}$. Если $|\alpha|<1$, то нетрудно проверить, что стационарная последовательность $\tilde{\xi}=\left(\tilde{\xi}_{n}\right)$ с
+
+$$
+\tilde{\xi}_{n}=\sum_{j=0}^{\infty} \alpha^{j} \varepsilon_{n-j}
+\eqno(8)
+$$
+
+является решением уравнения (7). (Ряд в правой части (8) сходится в среднеквадратическом смысле.) Покажем теперь, что в классе стационарных последовательностей $\xi=\left(\xi_{n}\right)$ (с конечным вторым моментом) это решение является единственным. В самом деле, из (7) последовательными итерациями находим, что
+
+$$
+\xi_{n}=\alpha \xi_{n-1}+\varepsilon_{n}=\alpha\left[\alpha \xi_{n-2}+\varepsilon_{n-1}\right]+\varepsilon_{n}=\ldots=\alpha^{k} \xi_{n-k}+\sum_{j=0}^{k-1} \alpha^{j} \varepsilon_{n-j}
+$$
+
+Отсюда следует, что
+
+$$
+\mathbb{E}\left[\xi_{n}-\sum_{j=0}^{k-1} \alpha^{j} \varepsilon_{n-j}\right]^{2}=\mathbb{E}\left[\alpha^{k} \xi_{n-k}\right]^{2}=\alpha^{2 k} \mathbb{E} \xi_{n-k}^{2}=\alpha^{2 k} \mathbb{E} \xi_{0}^{2} \rightarrow 0, \quad k \rightarrow \infty .
+$$
+
+Таким образом, при $|\alpha|<1$ стационарное решение уравнения (7) существует и представляется в виде одностороннего скользящего среднего (8).
+
+Аналогичный результат имеет место и в случае произвольного $q>1$ : если все нули полинома
+
+$$
+Q(z)=1+b_{1} z+\ldots+b_{q} z^{q}
+\eqno(9)
+$$
+
+лежат вне единичного круга, то уравнение авторегрессии (6) имеет, и притом единственное, стационарное решение, представимое в виде одностороннего скользящего среднего. При этом ковариационная функция $R(n)$ представима в виде
+
+$$
+R(n)=\int_{-\pi}^{\pi} e^{i \lambda n} d F(\lambda), \quad F(\lambda)=\int_{-\pi}^{\lambda} f(\nu) d \nu
+\eqno(10)
+$$
+
+где
+
+$$
+f(\lambda)=\frac{1}{2 \pi} \cdot \frac{1}{\left|Q\left(e^{-i \lambda}\right)\right|^{2}} .
+\eqno(11)
+$$
+
+Покажем, почему это так. $F_{\varepsilon}(\lambda)-$ ассоциируется с белым шумом.    
+
+$\sum\limits_{l=0}^{q} b_{l} \xi_{n-q} = \int_{-\pi}^{\pi} ( \sum\limits_{l=0}^{q} b_{l} e^{i \lambda (n-l)}) d F(\lambda) = \int_{-\pi}^{\pi} e^{in \lambda}\varphi(\lambda) d F(\lambda) = \int_{-\pi}^{\pi} e^{in \lambda} d F_{\varepsilon}(\lambda),  \newline \text{где } \varphi(\lambda) = \sum\limits_{l=0}^{q} b_{l} e^{-il\lambda}$
+
+В частном случае $q=1$ из (7) легко находим, что $\mathrm{E} \xi_{0}=0$,
+
+$$
+\mathrm{E}\left|\xi_{0}\right|^{2}=\frac{1}{1-|\alpha|^{2}}, \quad R(n)=\frac{\alpha^{n}}{1-|\alpha|^{2}}, \quad n \geqslant 0
+$$
+
+$(R(n)=\overline{R(-n)}$ для $n<0)$. При этом
+
+$$
+f(\lambda)=\frac{1}{2 \pi} \cdot \frac{1}{\left|1-\alpha e^{-i \lambda}\right|^{2}} .
+$$
+
+
+
+\subsection{Смешанная модель авторегрессии и скользящего среднего}
+Если предположить, что в правой части уравнения (6) вместо $\varepsilon_{n}$ стоит величина $a_{0} \varepsilon_{n}+a_{1} \varepsilon_{n-1}+\ldots+a_{p} \varepsilon_{n-p}$, то получим так называемую смешанную модель авторегрессии и скользящего среднего порядка $(p, q)$ :
+
+$$
+\xi_{n}+b_{1} \xi_{n-1}+\ldots+b_{q} \xi_{n-q}=a_{0} \varepsilon_{n}+a_{1} \varepsilon_{n-1}+\ldots+a_{p} \varepsilon_{n-p}
+\eqno(12)
+$$
+
+При тех же предположениях относительно нулей полинома $Q(z)$, что и в примере авторегрессионной схемы, уравнение (12) имеет стационарное решение $\xi=\left(\xi_{n}\right)$, для которого ковариационная функция равна $R(n)=\int_{-\pi}^{\pi} e^{i \lambda n}  d F(\lambda)$ с $F(\lambda)=\int_{-\pi}^{\lambda} f(\nu) d \nu$, где
+
+$$
+f(\lambda)=\frac{1}{2 \pi}\left|\frac{P\left(e^{-i \lambda)}\right.}{Q\left(e^{-i \lambda}\right)}\right|^{2}
+$$

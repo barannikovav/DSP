@@ -1,0 +1,245 @@
+	
+	\section{Статистическая оценка ковариационной функции гауссовской стационарной последовательности}
+	
+	\textbf{Автор:} Овсянников Михаил Александрович, Б-01-008
+		
+		\subsection{Необходимые определения и общая оценка}
+		\begin{Definition}[Стационарная (в широком смысле) случайная последовательность]{А.Н.Ширяев Вероятность, стр. 403}
+			Последовательность комплексных случайных величин $\xi = (\xi_n)_{n \in \mathbb{Z}}$ с $\mathbb{E}|\xi_n|^2 < \infty$, $n \in \mathbb{Z}$, называется стационарной (в широком смысле), если для всех $n \in \mathbb{Z}$:
+			\begin{itemize}
+				\item $\mathbb{E}\xi_n = \mathbb{E}\xi_0$,
+				\item $\cov (\xi_{k + n}, \xi_k) = \cov(\xi_n, \xi_0)$, $k \in \mathbb{Z}$.
+			\end{itemize}
+		\end{Definition}
+		
+		Для простоты изложения в дальнейшем будем полагать, не умаляя общности, что $\mathbb{E}\xi_0 = 0$.
+		
+		\begin{Definition}[Ковариационная функция]{А.Н.Ширяев Вероятность, стр. 403}
+			Функцию $R(n) = \cov(\xi_n, \xi_0)$, $n \in \mathbb{Z}$, будем называть ковариационной функцией стационарной (в широком смысле) последовательности $\xi$.
+		\end{Definition}
+	
+		Непосредственно из определения ковариационной функции следует ряд интересных свойств:
+		\begin{itemize}
+			\item Неотрицательная определенность: $\forall a_1, \ldots, a_m \in \mathbb{C}$ и $t_1, \ldots, t_m \in \mathbb{Z}$, $m \geqslant 1$
+			
+			\begin{equation*}
+				\sum\limits_{i, j = 1}^m a_i \overline{a}_j R(t_i - t_j) \geqslant 0
+			\end{equation*}
+		
+			\item $R(-n) = \overline{R(n)}$
+			
+			\item $|R(n)| \leqslant R(0)$
+			
+			\item $|R(n) - R(m)|^2 \leqslant 2 R(0) \left[R(0) - \text{Re}R(n - m)\right]$
+		\end{itemize}
+	
+	
+		\begin{Definition}[Гауссовский вектор]{Лекции Н.Н.Шамарова от 2023 года. Лекция №10}
+			Случайный вектор задается его распределением $\mu_T$ ($|T| < \infty$, $\dim\mathbb{R}^T = |T|$).
+			
+			Случайный вектор $\xi = (\xi_1, \ldots, \xi_n)$ называется гауссовским, если существует неотрицательный симметричный оператор $C \in L(\mathbb{R}^T, \mathbb{R}^T)$ и существует $a \in \mathbb{R}^T$ такие, что
+			
+			\begin{equation*}
+				\int\limits_{\mathbb{R}^T} e^{i(x,y)_{\mathbb{R}^T}} \mu(dx) \stackrel{\text{def}}{=} \widetilde{\mu}(y) = e^{i(a,y)_{\mathbb{R}^T} - \frac{1}{2}(Cy, y)_{\mathbb{R}^T}}.
+			\end{equation*}
+		\end{Definition}
+	
+		\begin{Definition}[Гауссовский случайный процесс]{Лекции Н.Н.Шамарова от 2023 года. Лекция №10}
+			Случайный процесс называется гауссовским, если $\forall t \in \mathscr{P}_{\text{fin} \neq \varnothing}(T)$ распределение $\mu_t$ является гауссовским, где $\mu_t$ -- маргинальное для всего процесса распределение, относящееся непосредственно к $t$.
+		\end{Definition}
+
+		Задачи статистического оценивания тех или иных характеристик распределений вероятностей стационарных случайных последовательностей возникают в самых разнообразных областях науки (геофизика, медицина, экономика и прочие). 
+		
+		Приведем оценку ковариационной функции стационарной случайной последовательности.
+		
+		Итак, пусть $\xi = (\xi_n)$, $n \in \mathbb{Z}$, стационарная в широком смысле случайная последовательность. Как было сказано выше, не умаляя общности, положим $\mathbb{E}\xi_n = 0$. Поскольку тогда $R(n) = \mathbb{E}\xi_{k + n}\xi_k$, то в качестве оценки этой величины по результатам $N$ наблюдений $x_0$, $x_1$, $\ldots$, $x_{N-1}$ естественно взять величину
+		\begin{equation*}
+			\hat{R}_N(n; x) = \frac{1}{N - n}\sum\limits_{k = 0}^{N - n - 1} x_{n+k} x_k, \hspace{20mm} 0 \leqslant n < N.
+		\end{equation*}
+	
+		Эта оценка является несмещенной в том смысле, что при $0 \leqslant n < N$:
+		\begin{equation*}
+			\begin{split}
+			\mathbb{E} \hat{R}_N(n; \xi) & = \mathbb{E}\left(\frac{1}{N-n}\sum\limits_{k = 0}^{N - n - 1} \xi_{n+k} \xi_k\right) = \frac{1}{N-n}\sum\limits_{k = 0}^{N - n - 1} \mathbb{E} \xi_{n+k} \xi_k = \\
+			& = \frac{1}{N-n}\sum\limits_{k = 0}^{N-n-1}R(n) = R(n) \cdot \frac{N-n-1 + 1}{N-n} = R(n).
+			\end{split}
+		\end{equation*}
+	
+		Теперь рассмотрим вопрос о состоятельности данной оценки, то есть необходимо получить условия, при которых
+		\begin{equation*}
+			\mathbb{E} \left| \hat{R}_N(n; \xi) - R(n)\right|^2 \longrightarrow 0, \ \  N \rightarrow \infty.
+		\end{equation*}
+	
+		В этом нам поможет следующее предложение.
+		
+		\begin{Proposal}{А.Н.Ширяев Вероятность, стр. 429}
+			Пусть случайная стационарная последовательность $\xi = (\xi_n), n \in \mathbb{Z}$ такова, что $\mathbb{E}\xi_0 = m$. Тогда
+			\begin{equation}
+				\frac{1}{n} \sum\limits_{k=0}^{n-1} R(k) \longrightarrow 0 \  \Longleftrightarrow \  \frac{1}{n}\sum\limits_{k=0}^{n-1} \xi_k \stackrel{L^2}{\longrightarrow} m,
+				\label{GAUSSIAN_SEQUENCE_COV_FUNC_PROP}
+			\end{equation}
+		
+		\noindent где $R(n) = \mathbb{E}(\xi_n - \mathbb{E}\xi_n)(\xi_0 - \mathbb{E}\xi_0)$.
+		\end{Proposal}
+	
+		Продолжим оценку. Подставим в \eqref{GAUSSIAN_SEQUENCE_COV_FUNC_PROP} вместо $\xi_k$ величины $\xi_{n+k}\xi_k$ и, предполагая у рассматриваемой последовательности $\xi = (\xi_n)$ существование четвертого момента ($\mathbb{E}\xi_0^4 < \infty$), находим, что условие
+		
+		\begin{equation*}
+			\frac{1}{N}\sum\limits_{k = 0}^{N-1}\mathbb{E}\left[\xi_{n+k}\xi_k - \mathbb{E}\xi_{n+k}\xi_k\right]\left[\xi_n\xi_0 - \mathbb{E}\xi_n\xi_0\right] \longrightarrow 0, \hspace{20mm} N \rightarrow \infty
+		\end{equation*}
+	
+		\noindent эквивалентно
+		\begin{equation*}
+			\frac{1}{N}\sum\limits_{k=0}^{N-1}\xi_{n+k}\xi_k \stackrel{L^2}{\longrightarrow} \mathbb{E}\xi_{n+k}\xi_k, \hspace{20mm} N \rightarrow \infty
+		\end{equation*}
+	
+		\noindent Или, если вспомнить определение ковариационной функции $R(n)$:
+		\begin{equation*}
+			\begin{split}
+			\frac{1}{N}\sum\limits_{k=0}^{N-1}\mathbb{E}\left[\xi_{n+k}\xi_k - R(n)\right]\left[\xi_n\xi_0 - R(n)\right] \stackrel[N \rightarrow \infty]{}{\longrightarrow} 0 \  &\Longleftrightarrow \  \hat{R}_{N+n}(n; \xi) \stackrel[N \rightarrow \infty]{L^2}{\longrightarrow} R(n) \  \\
+			&\Longleftrightarrow \  \hat{R}_N(n; \xi) \stackrel[N \rightarrow \infty]{L^2}{\longrightarrow} R(n).
+			\end{split}
+		\end{equation*}
+	
+
+		Перед тем, как будем рассматривать непосредственно гауссовские последовательности, подготовим несколько вспомогательных необходимых для нас предложений.
+		
+		\begin{Proposal}{А.Н.Ширяев Вероятность, стр. 312}
+			Пусть $\xi \thicksim \mathscr{N}(m, \sigma^2)$. Тогда если $s_n$ -- семиинварианты (полуинварианты, кумулянты) распределения, то $s_1 = m$, $s_2 = \sigma^2$, $s_n = 0$, $n \geqslant 3$.
+		\end{Proposal}
+		
+		\begin{Proof}
+			Характеристическая функция для нашей величины $\varphi_\xi(t) = e^{imt - \frac{\sigma^2 t^2}{2}}$. Тогда $\ln(\varphi_\xi(t)) = imt - \frac{\sigma^2 t^2}{2} \Longrightarrow s_1 = m$, $s_2 = \sigma^2$, $s_n = 0$, $n \geqslant 3$.
+		\end{Proof}
+		\newline		
+
+		\begin{Proposal}{А.Н.Ширяев Вероятность, стр. 312}
+			Пусть $\xi = (\xi_1, \ldots, \xi_n)$ -- случайный вектор с нулевым средним. Тогда существует следующая связь между смешанными семиинвариантами и моментами:
+			\begin{equation*}
+				s_\xi(1, 2, 3, 4) = m_\xi(1, 2, 3, 4) - m_\xi(1, 2) m_\xi(3, 4) - m_\xi(1, 3) m_\xi(2, 4) - m_\xi(1, 4) m_\xi(2, 3).
+			\end{equation*}
+		\end{Proposal}
+	
+		\begin{Proof}
+			Имеем следующую цепочку равенств: $s_\xi(1) = m_\xi(1) = s_\xi(2) = m_\xi(2) = s_\xi(3) = m_\xi(3) = s_\xi(4) = m_\xi(4) = 0$.
+			
+			Тогда:
+			\begin{equation*}
+				s_\xi(1, 2) = m_\xi(1, 2) - m_\xi(1) m_\xi (2) = m_\xi(1, 2).
+			\end{equation*}
+		
+			Аналогично
+			\begin{itemize}
+				\item $s_\xi(1, 2) = m_\xi(1, 2) - m_\xi(1) m_\xi (2) = m_\xi(1, 2)$;
+				
+				\item $s_\xi(1, 3) = m_\xi(1, 3) - m_\xi(1) m_\xi (3) = m_\xi(1, 3)$;
+				
+				\item $s_\xi(1, 4) = m_\xi(1, 4) - m_\xi(1) m_\xi (4) = m_\xi(1, 4)$;
+				
+				\item $s_\xi(2, 3) = m_\xi(2, 3) - m_\xi(2) m_\xi (3) = m_\xi(2, 3)$;
+				
+				\item $s_\xi(2, 4) = m_\xi(2, 4) - m_\xi(2) m_\xi (4) = m_\xi(2, 4)$;
+			\end{itemize}
+		
+			Для трёх:
+			\begin{equation*}
+				\begin{split}
+				s_\xi(1, 2, 3) = m_\xi(1, 2, 3) &- s_\xi(1, 2)s_\xi(3) - \\ 
+				&- s_\xi(1, 3)s_\xi(2) - \\ 
+				&- s_\xi(2, 3)s_\xi(1) - s_\xi(1)s_\xi(2)s_\xi(3) = m_\xi(1, 2, 3).
+				\end{split}
+			\end{equation*}
+		
+			Тогда окончательно:
+			\begin{equation*}
+				\begin{split}
+					s_\xi(1, 2, 3, 4) = m_\xi(1, 2, 3, 4) &- s_\xi(1, 2, 3)s_\xi(4) - \\
+					&- s_\xi(1, 2, 4)s_\xi(3) - \\
+					&- s_\xi(1, 3, 4)s_\xi(2) - \\
+					&- s_\xi(2, 3, 4)s_\xi(1) - \\ &- s_\xi(1, 2)s_\xi(3, 4) - s_\xi(1, 3)s_\xi(2, 4) - s_\xi(1, 4)s_\xi(2, 3) - \\
+					&- s_\xi(1)(\ldots) - s_\xi(2)(\ldots) - s_\xi(3)(\ldots) - s_\xi(4)(\ldots) =
+				\end{split}
+			\end{equation*}
+			\begin{equation*}
+				=  m_\xi(1, 2, 3, 4) - m_\xi(1, 2)m_\xi(3, 4) - m_\xi(1, 3)m_\xi(2, 4) - m_\xi(1, 4)m_\xi(2, 3).
+			\end{equation*}
+		\end{Proof}
+
+
+
+		\subsection{Непосредственно гауссовская последовательность}
+		Теперь уже предположим, что исходная последовательность $\xi = (\xi_n)$ является гауссовской (с нулевым средним и ковариацией $R(n)$). Тогда, продолжая полученные результаты и применяя выводы из двух предложений выше, получим следующее:
+		
+		\begin{equation*}
+			\begin{split}
+			&\mathbb{E}\left[\xi_{n+k}\xi_k - R(n)\right]\left[\xi_n\xi_0 - R(n)\right] = \mathbb{E}\xi_{n+k}\xi_k\xi_n\xi_0 - R(n) \cdot \mathbb{E}\xi_{n+k}\xi_k - \\ 
+			&- R(n) \cdot \mathbb{E}\xi_n\xi_0 + R^2(n) = \mathbb{E}\xi_{n+k}\xi_k\xi_n\xi_0 - R^2(n) - R^2(n) + R^2(n) = \\
+			&= \mathbb{E}\xi_{n+k}\xi_k\xi_n\xi_0 - R^2(n) = \\
+			&= \mathbb{E}\xi_{n+k}\xi_k \cdot \mathbb{E}\xi_n\xi_0 + \mathbb{E}\xi_{n+k}\xi_n \cdot \mathbb{E}\xi_k\xi_0 + \mathbb{E}\xi_{n+k}\xi_0 \cdot \mathbb{E}\xi_k\xi_n - R^2(n) = \\
+			&= R^2(n) + R^2(k) + R(n+k)R(n-k) - R^2(n) = R^2(k) + R(n+k)R(n-k).
+			\end{split}
+		\end{equation*}
+	
+		Поэтому в гауссовском случае состоятельность оценки эквивалентна
+		\begin{equation}
+			\frac{1}{N}\sum\limits_{k=0}^{N-1}\left[R^2(k) + R(n+k)R(n-k)\right] \stackrel[N \rightarrow \infty]{\longrightarrow}{} 0.
+			\label{GAUSSIAN_SEQUENCE_COV_FUNC_EQU}
+		\end{equation}
+	
+		\noindent Поскольку
+		\begin{equation*}
+			\begin{split}
+			|R(n+k)R(n-k)| = |R(n+k)| \cdot |R(n-k)| &\leqslant \frac{1}{2}\left(|R(n+k)|^2 + |R(n-k)|^2\right) \\ 
+			&\leqslant |R(n+k)|^2 + |R(n-k)|^2,
+			\end{split}
+		\end{equation*}
+		\noindent то из условия
+		\begin{equation}
+			\frac{1}{N}\sum\limits_{k=0}^{N-1}R^2(k) \longrightarrow 0, \ \ \  N \rightarrow \infty
+			\label{GAUSSIAN_SEQUENCE_COV_FUNC_SUFFICIENCY}
+		\end{equation}
+	
+		\noindent вытекает и условие \eqref{GAUSSIAN_SEQUENCE_COV_FUNC_EQU}. В свою очередь, если \eqref{GAUSSIAN_SEQUENCE_COV_FUNC_EQU} верно для $n = 0$, то выполняется условие \eqref{GAUSSIAN_SEQUENCE_COV_FUNC_SUFFICIENCY}.
+		
+		Таким образом доказана следующая теорема.
+		
+		\begin{Theorem}{А.Н.Ширяев Вероятность, стр. 432}
+			Пусть $\xi = (\xi_n)$ -- гауссовская стационарная последовательность с $\mathbb{E}\xi_n = 0$ и ковариационной функцией $R(n)$. Тогда выполнение условия \eqref{GAUSSIAN_SEQUENCE_COV_FUNC_SUFFICIENCY} является необходимым и достаточным для того, чтобы при любом $n \geqslant 0$ оценка $\hat{R}_N(n; x)$ была состоятельной в среднеквадратичном смысле.
+		\end{Theorem}
+	
+		\begin{Remark}{А.Н.Ширяев Вероятность, стр. 432}
+			Если воспользоваться спектральным представлением ковариационной функции, то получим
+			
+			\begin{equation*}
+				\frac{1}{N}\sum\limits_{k = 0}^{N-1} R^2(k) = \int\limits_{-\pi}^{\pi} \int\limits_{-\pi}^{\pi} \frac{1}{N} \sum\limits_{k = 0}^{N-1} e^{i(\lambda - \nu)k} F(d\lambda)F(d\nu) = \int\limits_{-\pi}^{\pi} \int\limits_{-\pi}^{\pi} f_N(\lambda, \nu) F(d\lambda)F(d\nu),
+			\end{equation*}
+			
+			\noindent где 
+			\begin{equation*}
+				f_N(\lambda, \nu) = \begin{cases*}
+					1, \hspace{3.5cm} \lambda = 0, \\
+					\displaystyle\frac{1 - e^{i(\lambda - \nu)N}}{N\left[1 - e^{i(\lambda - \nu)}\right]}, \hspace{1.1cm} \lambda \neq \nu.
+				\end{cases*}
+			\end{equation*}
+		
+			\noindent Но при $N \rightarrow \infty$
+			\begin{equation*}
+				f_N(\lambda, \nu) \longrightarrow f(\lambda, \nu) = \begin{cases*}
+					1, \hspace{2cm} \lambda = \nu, \\
+					0, \hspace{2cm} \lambda \neq \nu.
+				\end{cases*}
+			\end{equation*}
+		
+			\noindent Поэтому 
+			\begin{equation*}
+				\frac{1}{N}\sum\limits_{k=0}^{N-1} R^2(k) \longrightarrow \int\limits_{-\pi}^{\pi} \int\limits_{-\pi}^{\pi} f(\lambda, \nu) F(d\lambda)F(d\nu) = \int\limits_{-\pi}^{\pi}F(\{\lambda\}) F(d\lambda) = \sum\limits_{\lambda} F^2(\{\lambda\}),
+			\end{equation*}
+			\noindent где сумма по $\lambda$ не более чем счетна, поскольку мера $F$ конечна.
+			
+			\noindent Тем самым условие \eqref{GAUSSIAN_SEQUENCE_COV_FUNC_SUFFICIENCY} эквивалентно условию
+			\begin{equation*}
+				\sum\limits_{\lambda} F^2(\{\lambda\}) = 0,
+			\end{equation*}
+			
+			\noindent означающему, что спектральная функция $F(\lambda) = F([-\pi, \lambda])$ является непрерывной.
+		\end{Remark}

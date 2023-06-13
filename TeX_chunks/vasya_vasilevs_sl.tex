@@ -1,0 +1,153 @@
+
+\section{Моментные характеристики второго порядка для случайных процессов}
+
+\textbf{Автор:} Гончаренко Валентина Павловна, Б-01-009
+
+\subsection{Моменты}
+\cite{ShamarovDRP11} $\alpha$-й \textbf{абсолютный момент распределения} ($\alpha \in \mathds{R}$) $\mu$ -- это выражение $\int\limits_{\mathds{R}}^{} |x|^\alpha \mu(dx)$. Если $\alpha$ - четное целое, то $\int\limits_{\mathds{R}}^{} x^\alpha \mu(dx)$ тоже называется $\alpha$-ым \textbf{моментом распределения}, но не абсолютным.
+
+\begin{center}
+\textbf{Неравество Коши-Буняковского}    
+\end{center}
+
+Пусть $\mu: \mathfrak{A} \rightarrow [0,N] (N < \infty); \mu$ -- $\sigma$-аддитивна на $\sigma$-алгебре $\mathfrak{A}$ с единицей $E = \bigcup \mathfrak{A} = \mathfrak{A}.$
+
+\begin{proposition} если $f: E \rightarrow \mathds{R}$ (измерима), $\int\limits_{E}^{} f^2 \mu < \infty$, то $\int\limits_{E}^{} |f| \mu < \infty$.
+\end{proposition}
+
+\begin{proof} 
+\ \\
+\indent$\odot\quad|f| \leqslant max (1, f^2) \leqslant 1 + f^2$ 
+
+$\odot\quad0 \leqslant f_{\pm} \leqslant |f|$
+
+$\odot\quad \text{ч.т.д.}$
+\end{proof}
+
+\begin{proposition} если еще и $g: E \rightarrow \mathds{R}$ (измерима), $\int\limits_{E}^{} g^2 \mu < \infty$, то $ \exists \int\limits_{E}^{} fg \mu$ и $|\int\limits_{E}^{} fg \mu| \leqslant \sqrt{\int\limits_{E}^{} f^2 \mu} \sqrt{\int\limits_{E}^{} g^2 \mu}$ 
+\end{proposition}
+
+\begin{proof} 
+\ \\
+\indent$\odot\quad$ $0 \leqslant (f \pm \lambda g)^2 = f^2 \pm 2 \lambda fg + \lambda^2 g^2$, $\forall \lambda \in \mathds{R}$
+
+$\odot\quad$ $|fg| = |f||g| = \sqrt{|f|^2 |g|^2} \leqslant \dfrac{1}{2} (f^2 + g^2)$
+
+$\odot\quad$ $0 \leqslant \int\limits_{E}^{} (f \pm \lambda g)^2 \mu \equiv \lambda^2 \int\limits_{E}^{} g^2 \mu \pm 2\lambda \int\limits_{E}^{} fg \mu + \int\limits_{E}^{} f^2 \mu$ 
+
+$\odot\quad$ $\dfrac{D}{4} \leqslant 0$: $(\int\limits_{E}^{} fg \mu)^2 - (\int\limits_{E}^{} g^2 \mu)(\int\limits_{E}^{} f^2 \mu) \leqslant 0$
+
+$\odot\quad$ \text{Заменяем $f$ на $|f|$, $g$ на $|g|$:}\quad $|\int\limits_{E}^{} fg \mu| \leqslant \int\limits_{E}^{} |f||g| \mu \leqslant ||f||_{L_{2} (\mu)}||g||_{L_{2} (\mu)}$
+
+$\odot\quad$ $||f||_{L_{\text{p}} (\mu)} = \sqrt[p]{\int\limits_{E}^{} |f|^p \mu}$
+
+$\odot\quad$ \text{ч.т.д.} 
+\end{proof}
+
+\subsection{Математическое ожидание}
+
+\cite{ShamarovDRP11} $\forall t \in T$ \textbf{математическое ожидание} вещественной случайной величины $\upxi_\text{t}$ с распределением $\mathds{P}_\text{t} \equiv \mathds{P}_\text{\{t\}}$ (будем рассматривать одномерное распределение для удобства выкладок) - это функция $\int\limits_{\mathds{R}}^{} x\mathds{P}_\text{t}(dx)$, если функция $f \equiv id\mathds{R}: \mathds{R} \ni x \rightarrow f(x) = x$ интегрируема в смысле Лебега по $\mathds{P}_\text{t}$.
+
+\begin{example}$\rho_\text{\{t\}} (x) = \dfrac{1}{\pi (x^2 + 1)}$ -- величина с данной плотностью распределения не имеет математического ожидания (распределение Коши).
+\end{example}
+
+
+\begin{corollary}(из неравенства Коши-Буняковского:) $\int x^2 \mathds{P_\text{t}} (dx) < \infty \Longrightarrow \int |x| \mathds{P_\text{t}} (dx) \equiv |\int 1 \cdot |x| \cdot \mathds{P_\text{t}} (dx)| \leqslant \sqrt{\int 1^2 \mathds{P_\text{t}}} \sqrt{\int x^2 \mathds{P_\text{t}}} \Longrightarrow \exists \int x \mathds{P_\text{t}} (dx) = \mathds{E}\upxi_\text{t} \equiv \mathds{M}\upxi_\text{t}$ -- математическое ожидание случайной величины.
+\end{corollary}
+
+\subsection{Дисперсия}
+
+\cite{ShamarovDRP11} Если 2-й момент существует для распределения $\mathds{P_\text{t}}$, то $\int (x - \mathds{E}\upxi_\text{t})^2 \mathds{P_\text{t}} = \mathds{D}\upxi_\text{t}$ -- \textbf{дисперсия} в момент времени $t$. 
+
+$\mathds{D}\upxi_\text{t} = \int (x - \mathds{E}\upxi_\text{t})^2 \mathds{P_\text{t}} = \int x^2 \mathds{P_\text{t}} - (\mathds{E}\upxi_\text{t})^2 = \mathds{E}({\upxi_\text{t}})^2 - (\mathds{E}\upxi_\text{t})^2$, то есть для вычисления дисперсии случайной величины нужно из математического ожидания её квадрата вычесть квадрат её математического ожидания.
+
+\begin{remark} в случае процесса среднее значение и дисперсия в любой момент времени (если они существуют) являются функциями $T \rightarrow \mathds{R}$. 
+\end{remark}
+ 
+\subsection{Ковариационная функция}
+
+\cite{ShamarovDRP11} Пусть $t \in T \longmapsto \mathds{D}\upxi_\text{t} \in \mathds{R}$ -- конечная функция, тогда \textbf{ковариацией} процесса называется функция 
+\begin{equation*}
+    T^2 \equiv T \times T \ni (s,t) \longmapsto Cov(\upxi_\text{s}, \upxi_\text{t}) \equiv \left\{
+    \begin{aligned}
+        & \int\limits_{{\mathds{R}}^2}^{} (x - \mathds{E}\upxi_\text{s})(x - \mathds{E}\upxi_\text{t}) \mathds{P_\text{\{s,t\}}} (dx,dy) & \text{, если } t \neq s \\
+        & \mathds{D}\upxi_\text{s} = \mathds{D}\upxi_\text{t} & \text{, если } t = s \\
+    \end{aligned}
+    \right.
+\end{equation*}
+
+Равносильное обозначение: $Cov(\upxi_\text{s}, \upxi_\text{t}) = \mathds{E}((\upxi_\text{s} - \mathds{E}\upxi_\text{s})(\upxi_\text{t} - \mathds{E}\upxi_\text{t}))$. 
+
+\vspace{4pt}
+
+ \begin{definition}~\cite{MillerRPET2001} Пусть $t_0 \in T$ -- фиксированный момент. Случайная величина $\upxi_{\text{t}_0}(w) = \upxi(t_0, w)$ называется \textbf{сечением} случайного процесса в точке $t_0 \in T$.
+\end{definition}
+
+ \begin{definition}~\cite{MillerRPET2001} Неслучайная функция $R_{\xi}(t, \tau), t, \tau \in T$, определяемая соотношением
+$$
+\begin{aligned}
+& R_{\xi}(t, \tau)=\mathbf{c o v}\{\xi(t), \xi(\tau)\}=\mathbf{M}\left\{\left(\xi(t)-m_{\xi}(t)\right)\left(\xi(\tau)-m_{\xi}(\tau)\right)\right\}= \\
+& =\mathbf{M}\{\xi(t) \xi(\tau)\}-m_{\xi}(t) m_{\xi}(\tau)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x_{1} x_{2} d F_{\xi}\left(x_{1}, x_{2} ; t, \tau\right)-m_{\xi}(t) m_{\xi}(\tau),
+\end{aligned}
+$$
+называется \textbf{ковариационной} функцией случайного процесса $\xi(t)$.
+\end{definition}
+
+ \begin{remark}~\cite{MillerRPET2001} При любых $t, \tau \in T$ функция $R_{\xi}(t, \tau)$ численно равна ковариации сечений случайного процесса $\xi_{t}(\omega)$ и $\xi_{\tau}(\omega)$ в точках $t, \tau \in T$ и характеризует степень линейной зависимости между сечениями. Для вычисления $R_{\xi}(t, \tau)$ необходимо знать двумерное распределение $F_{\xi}\left(x_{1}, x_{2} ; t, \tau\right)$ процесса $\xi(t)$. Заметим также, что
+
+$$
+D_{\xi}(t)=R_{\xi}(t, t), \quad t \in T
+$$
+
+Из неравенства Коши-Буняковского следует, что для существования $m_{\xi}(t)$, $D_{\xi}(t)$ и $R_{\xi}(t, \tau)$ при всех $t, \tau \in T$ достаточно выполнения условия
+
+$$
+\mathbf{M}\left\{|\xi(t)|^{2}\right\}<\infty \quad \forall t \in T \quad \quad (*)
+$$
+\end{remark}
+
+ \begin{remark}~\cite{MillerRPET2001} Если распределения $F_{\xi}(x ; t)$ и $F_{\xi}\left(x_{1}, x_{2} ; t, \tau\right)$ имеют плотности распре- деления $p_{\xi}(x ; t)$ и $p_{\xi}\left(x_{1}, x_{2} ; t, \tau\right)$, то
+
+$$
+\begin{gathered}
+m_{\xi}(t)=\int_{-\infty}^{\infty} x p_{\xi}(x ; t) d x, \quad D_{\xi}(t)=\int_{-\infty}^{\infty} x^{2} p_{\xi}(x ; t) d x-m_{\xi}^{2}(t) \\
+R_{\xi}(t, \tau)=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x_{1} x_{2} p_{\xi}\left(x_{1}, x_{2} ; t, \tau\right) d x_{1} d x_{2}-m_{\xi}(t) m_{\xi}(\tau)
+\end{gathered}
+$$
+\end{remark}
+
+ \begin{definition}{\cite{MillerRPET2001}} Случайный процесс $\xi(t)$, $t \in T$, удовлетворяющий условию $(*)$, называется процессом с конечными моментами второго порядка или \textbf{гильбертовым} случайным процессом.
+\end{definition}
+
+ \begin{definition}~\cite{MillerRPET2001} Пусть $\xi(t)=X(t)+i Y(t)-$ комплексный процесс, где $X(t), Y(t), t \in T$ - некоторые действительные случайные процессы, а $i^{2}=-1$. Если 
+
+$$
+\mathbf{M}\left\{|\xi(t)|^{2}\right\}=\mathbf{M}\{\xi(t) \overline{\xi(t)}\}=\mathbf{M}\left\{X^{2}(t)+Y^{2}(t)\right\}<\infty \quad \forall t \in T,
+$$
+то процесс $\xi(t)$ называется \textbf{комплексным гильбертовым процессом}.
+
+Функция
+
+$$
+R_{\xi}(t, \tau)=\mathbf{M}\left\{\left(\xi(t)-m_{\xi}(t)\right) \overline{\left(\xi(\tau)-m_{\xi}(\tau)\right)}\right\}, \quad t, \tau \in T,
+$$
+где $\overline{\{\cdot\}}$ означает комплексное сопряжение, называется \textbf{ковариационной функцией комплексного случайного процесса} $\xi(t)$.
+\end{definition}
+
+ \begin{definition}~\cite{MillerRPET2001} Пусть заданы два комплексных процесса $\xi(t)$, $\eta(t), t \in T$. Детерминированная функция
+
+$$
+R_{\xi \eta}(t, \tau)=\operatorname{\textbf{cov}}\{\xi(t), \eta(\tau)\}=\mathbf{M}\left\{\left(\xi(t)-m_{\xi}(t)\right) \overline{\left(\eta(\tau)-m_{\eta}(\tau)\right)}\right\}, \quad t, \tau \in T
+$$
+называется \textbf{взаимной ковариационной функцией процессов} $\xi$ и $\eta$.
+\end{definition}
+
+ \begin{remark}~\cite{MillerRPET2001} Функция $R_{\xi \eta}(t, \tau)$ существует, если $\xi(t)$ и $\eta(t)-$ гильбертовы процессы.
+\end{remark}
+
+\subsection{Корреляционная функция}
+
+\cite{ShamarovDRP11} $\pluto\text{:} \quad T^2 = T \times T \ni (s,t) \longmapsto \dfrac{Cov(\upxi_\text{s}, \upxi_\text{t})}{\sqrt{\mathds{D}\upxi_\text{s}} \sqrt{\mathds{D}\upxi_\text{t}}}$
+
+
+

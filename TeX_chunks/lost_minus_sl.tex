@@ -1,0 +1,405 @@
+
+
+\section{Примеры применения фильтра Калмана для прогнозирования значений процесса авторегрессии - скользящего среднего, алгоритмы рекуррентного оценивания параметра}
+
+ \textbf{Автор:} Иванов Иван, Б-01-008
+
+В схеме, предложенной Калманом и Бьюси, синтезирование оптимального фильтра осуществляется рекуррентным способом, что дает возможность реализации с помощью цифровых вычислительных устройств. Есть и другие причины, обусловившие широкое применение фильтра Калмана––Бьюси.
+Одна из них состоит в том, что он «работает» и без предположения стационарности последовательностей ($\theta$, $\xi$).
+Ниже будет рассматриваться не только традиционная схема Калмана–Бьюси, но также и ее обобщения, состоящие в том, что в рекуррентных уравнениях, определяющих ($\theta$, $\xi$), коэффициенты могут зависеть от всех прошлых наблюдаемых данных.
+
+Итак, будем предполагать, что ($\theta$, $\xi$) = (($\theta_n$), ($\xi_n$)) есть частично наблюдаемая последовательность, причем
+
+$$\theta_n = (\theta_1(n), ..., \theta_k(n)), \hspace{1cm} \xi_n = (\xi_1(n), ..., \xi_k(n)), \hspace{1cm} n \in \mathbb{N}$$
+управляются рекуррентными уравнениями:
+\begin{align}
+\label{eq:first}
+\begin{split}
+& \theta_{n + 1} = a_0(n, \xi) + a_1(n, \xi) \theta_n + b_0(n, \xi) \varepsilon_1(n + 1) + b_1(n, \xi) \varepsilon_2(n + 1) \\
+& \xi_{n + 1} = A_0(n, \xi) + A_1(n, \xi) \theta_n + B_0(n, \xi) \varepsilon_1(n + 1) + B_1(n, \xi) \varepsilon_2(n + 1)
+\end{split}
+\end{align}
+
+Здесь $\varepsilon_1(n) = (\varepsilon_{11}(n), ..., \varepsilon_{1k}(n))$, $\varepsilon_2(n) = (\varepsilon_{21}(n), ..., \varepsilon_{2l}(n))$ – независимые гауссовские векторы с независимыми компонентами, каждая из которых имеет нормальное распределение с параметрами 0 и 1; $a_0 (n, \xi) = (a_{01} (n, \xi), ..., a_{0k} (n, \xi))$  и $A_0 (n, \xi) = (A_{01} (n, \xi), ..., A_{0l} (n, \xi))$ – вектор-функции, где зависимость от $\xi = (\xi_0, \xi_1, ...)$ входит неупреждающим образом, т.е. для фиксированного $n$ $a_{01} (n, \xi), ..., A_{0l} (n, \xi)$ зависят \\ лишь от $\xi_0, ..., \xi_n$; матричные функции
+
+$$
+b_1(n, \varepsilon) = || b_{ij}^{(1)} (n, \varepsilon) ||, \hspace{1cm} b_2(n, \varepsilon) = || b_{ij}^{(2)} (n, \varepsilon) ||,
+$$
+$$
+B_1(n, \varepsilon) = || B_{ij}^{(1)} (n, \varepsilon) ||, \hspace{1cm} B_2(n, \varepsilon) = || B_{ij}^{(2)} (n, \varepsilon) ||,
+$$
+$$
+a_1(n, \varepsilon) = || a_{ij}^{(1)} (n, \varepsilon) ||, \hspace{1cm} A_1(n, \varepsilon) = || A_{ij}^{(1)} (n, \varepsilon) ||
+$$
+имеют порядок $k \times k$, $k \times l$, $l \times k$, $l \times l$, $k \times k$, $l \times k$, соответственно, и также неупреждающим образом зависят от $\xi$. Предполагается также, что вектор начальных данных $(\theta_0, \xi_0)$ не зависит от последовательностей $\varepsilon_1 = \varepsilon_1(n)$ и $\varepsilon_2 = \varepsilon_2(n)$.
+Для простоты изложения указание на зависимость коэффициентов от $\xi$ в дальнейшем часто будет опускаться.
+
+Чтобы система (\ref{eq:first}) имела решение с конечным вторым моментом, будем предполагать, что $\mathbf{E}(||\theta_0||^2 + ||\varepsilon_0||^2) < \infty$ $\left(||x||^2 = \sum\limits_{i=1}^{k} x_i^2, x = (x_1, ..., x_k) \right)$, $|a_{ij}^{(1)} (n, \varepsilon)| \leqslant C$, $|A_{ij}^{(1)} (n, \varepsilon)| \leqslant C$, и если $g(n, \varepsilon)$ – любая из функций $a_{0j}, A_{0j}, b_{ij}^{(1)}, b_{ij}^{(2)}, B_{ij}^{(1)}, B_{ij}^{(2)} $, то $\mathbf{E}|g(n, \varepsilon)|^2 < \infty, n = 0, 1, ...$ В этих допущениях последовательность $(\theta, \xi)$ такова, что и $\mathbf{E}(||\theta_n||^2 + ||\varepsilon_n||^2) < \infty, n \geqslant 1$.
+
+Пусть, далее, $\mathscr{F}^{\xi}_n = \sigma\{\xi_0, ..., \xi_n\}$ - наименьшая $\sigma$-алгебра, порожденная величинами $\xi_0, ..., \xi_n$, и
+$$m_n = \mathbf{E}(\theta_n\mid\mathscr{F}^{\xi}_n), \hspace{1cm} \gamma_n = \mathbf{E} \left[(\theta_n - m_n)(\theta_n - m_n)^*\mid \mathscr{F}^{\xi}_n \right], \hspace{1cm} n \in \mathbb{N}$$
+
+Нетрудно показать (подробнее можно посмотреть в \S 8 гл.II А.Н. Ширяев "Вероятность"), что вектор $m_n = (m_1(n), ..., m_k(n))$ является оптимальной в среднеквадратичном смысле оценкой вектора $\theta_n = (\theta_1(n), ..., \theta_k(n))$, а матрицей ошибок оценивания является $\gamma_n$ $= \mathbf{E} \left[(\theta_n - m_n)(\theta_n - m_n)^*\mid \mathscr{F}^{\xi}_n \right]$(т.е нам даны $\theta_0, \xi_0$ остальное оценивается). Отыскание этих величин для произвольных последовательностей $(\theta, \xi)$, управляемых уравнениями (\ref{eq:first}), является весьма трудной задачей. Однако при одном дополнительном предположении относительно $(\theta_0, \xi_0)$, состоящем в том, что условное распределение $P (\theta_0 \leqslant a\mid\xi_0)$ является \textit{гауссовским},
+\begin{align}
+\label{eq:second}
+\mathbf{P} (\theta_0 \leqslant a\mid\xi_0) = \frac{1}{\sqrt{2 \pi \gamma_0}} \int \limits_{-\infty}^{a} e^{-\frac{(x - m_0)^2}{2 \gamma_0^2}} dx,
+\end{align}
+с параметрами $m_0 = m_0(\xi_0), \gamma_0 = \gamma_0(\xi_0)$ для $m_n$ и $\gamma_n$ можно вывести систему рекуррентных уравнений, включающих в себя и так называемые уравнения \textit{фильтра Калмана-Бьюси}.
+
+Прежде всего установим один важный вспомогательный результат.
+
+\begin{lemma}
+	При сделанных выше предположениях относительно коэффициентов системы \eqref{eq:first} и условии \eqref{eq:second} последовательность $(\theta, \xi)$ является условно-гауссовской, т. е. условная функция распределения
+	$$\mathbf{P}(\theta_0 \leqslant a_0, ..., \theta_n \leqslant a_n \mid \mathscr{F}^{\xi}_n)$$
+	есть (\textbf{P}-почти наверное (далее п.н)) функция распределения $n$-мерного гауссовского вектора, среднее значение и матрица ковариаций которого зависят от
+	$(\xi_0, ..., \xi_n)$.
+\end{lemma}
+\begin{proof}
+	Ограничимся доказательством гауссовости лишь распределения $\mathbf{P}(\theta_n \leqslant a \mid \mathscr{F}^{\xi}_n)$, что достаточно для вывода уравнений для $m_n$ и $\gamma_n$. Прежде всего заметим, что из \eqref{eq:first} следует, что условное распределение
+	$$\mathbf{P}(\theta_{n + 1} \leqslant a, \xi_{n + 1} \leqslant x \mid \mathscr{F}^{\xi}_n, \theta_n = b)$$
+	является гауссовским с вектором средних значений
+	$$\mathbb{A}_0 + \mathbb{A}_1 b = 
+	\begin{pmatrix}
+	a_0 + a_1 b\\
+	A_0 + A_1 b
+	\end{pmatrix}$$
+	и матрицей ковариации
+	$$\mathbb{B} = 
+	\begin{pmatrix}
+	b \circ b & b \circ B\\
+	(b \circ B)^* & B \circ B
+	\end{pmatrix}$$
+	где $b \circ b = b_1 b_1^* + b_2 b_2^*, b \circ B = b_1 B_1^* + b_2 B_2^*, B \circ B = B_1 B_1^* + B_2 B_2^*$.
+	
+	Обозначим $\zeta_n = (\theta_n, \xi_n)$ и $t = (t_1, ..., t_{k+l})$. Тогда
+	\begin{align}
+	\label{eq:third}
+	& \mathbf{E} \left[ \exp\{ it^*\zeta_{n + 1}\} \mid \mathscr{F}^\xi_n, \theta_n\right] = \exp \left\{ it^* \left( \mathbb{A}_0(n, \xi) + \mathbb{A}_1(n, \xi)\theta_n\right) - \frac{1}{2} t^* \mathbb{B}(n, \xi)t\right\}
+	\end{align}
+	Допустим теперь, что утверждение леммы справедливо для некоторого $n \geqslant 0$. Тогда
+	\begin{align}
+	\label{eq:fourth}
+	& \mathbf{E} \left[ \exp\{ it^*\mathbb{A}_1(n, \xi)\theta_n\} \mid \mathscr{F}^\xi_n\right] = \exp \left\{ it^* \mathbb{A}_1(n, \xi)m_n - \frac{1}{2} t^* \left(\mathbb{A}_1(n, \xi)\gamma_n \mathbb{A}_1^*(n, \xi) \right) t\right\}
+	\end{align}
+	Докажем, что формула \eqref{eq:fourth} останется верной и при замене $n$ на $n + 1$.
+	
+	Из \eqref{eq:third} и \eqref{eq:fourth} имеем
+	\begin{multline*}
+	\mathbf{E} \left[ \exp\{ it^*\zeta_{n + 1}\} \mid \mathscr{F}^\xi_n\right] = \exp \bigg\{ it^* \left( \mathbb{A}_0(n, \xi) + \mathbb{A}_1(n, \xi)m_n\right) - \\
+	- \frac{1}{2} t^* \mathbb{B}(n, \xi)t - \frac{1}{2} t^* \left(\mathbb{A}_1(n, \xi)\gamma_n \mathbb{A}_1^*(n, \xi) \right) t\bigg\}
+	\end{multline*}
+	Поэтому условные распределения
+	\begin{align}
+	\label{eq:fifth}
+	& \mathbf{P} (\theta_{n + 1} \leqslant a, \xi_{n + 1} < x \mid \mathscr{F}_n^\xi)
+	\end{align}
+	являются гауссовскими.
+	Можно проверить, что существует такая матрица $C$, что вектор
+	$$\eta =  \left[\theta_{n + 1} - \mathbf{E} (\theta_{n + 1} \mid \mathscr{F}^\xi_n)\right] - C \left[\xi_{n + 1} - \mathbf{E} (\xi_{n + 1} \mid \mathscr{F}^\xi_n)\right]$$
+	обладает тем свойством, что (\textbf{P} - п.н.)
+	$$\mathbf{E} \left[\eta \left( \xi_{n + 1} - \mathbf{E}(\xi_{n + 1} \mid \mathscr{F}^\xi_n) \right)^* \mid \mathscr{F}^\xi_n \right] = 0$$
+	Отсюда следует, что условно-гауссовские векторы $\eta$ и $\xi_{n + 1}$, рассматриваемые при условии $\mathscr{F}^\xi_n$, являются независимыми, т.е. (\textbf{P} - п.н.)
+	$$\mathbf{P} (\eta \in A, \xi_{n + 1} \in B \mid \mathscr{F}^\xi_n) = \mathbf{P} (\eta \in A \mid \mathscr{F}^\xi_n) \cdot \mathbf{P} (\xi_{n + 1} \in B \mid \mathscr{F}^\xi_n)$$
+	для любых $A \in \mathscr{B} (R^k), B \in \mathscr{B} (R^l)$
+	
+	Поэтому, если $s = (s_1, ..., s_k)$, то
+	\begin{multline}
+	\label{eq:sixth}
+	\mathbf{E} \left[ \exp\{ is^*\theta_{n + 1}\} \mid \mathscr{F}^\xi_n, \xi_{n + 1}\right] = \\
+	= \mathbf{E} \left\{ \exp\left( is^*\left[\mathbf{E}(\theta_{n + 1} \mid \mathscr{F}^\xi_n) + \eta + C \left[\xi_{n + 1} - \mathbf{E}(\xi_{n + 1} \mid \mathscr{F}^\xi_n)\right]\right]\right)\mid \mathscr{F}^\xi_n, \xi_{n + 1} \right\} = \\
+	= \exp\left\{ is^*\left[\mathbf{E}(\theta_{n + 1} \mid \mathscr{F}^\xi_n) + C \left[\xi_{n + 1} - \mathbf{E}(\xi_{n + 1})\right]\right]\right\}\mathbf{E} \left[\exp(is^* \eta)\mid \mathscr{F}^\xi_n), \xi_{n + 1} \right] = \\
+	= \exp\left\{ is^*\left[\mathbf{E}(\theta_{n + 1} \mid \mathscr{F}^\xi_n) + C \left[\xi_{n + 1} - \mathbf{E}(\xi_{n + 1})\right]\right]\right\}\mathbf{E} \left(\exp(is^* \eta)\mid \mathscr{F}^\xi_n) \right)
+	\end{multline}
+	Согласно \eqref{eq:fifth}, условное распределение $\mathbf{P} (\eta \leqslant y \mid \mathscr{F}^\xi_n)$ является гауссовским. Вместе с \eqref{eq:sixth} это доказывает, что условное распределение $\mathbf{P} (\theta_{n + 1} \leqslant a \mid \mathscr{F}^\xi_{n + 1})$ также является гауссовским.
+\end{proof}
+
+\begin{theorem}\label{lost_minus_theor_1}
+	Пусть $(\theta, \xi)$ - частично наблюдаемая последовательность, удовлетворяющая \eqref{eq:first} и \eqref{eq:second}. Тогда $(m_n, \gamma_n)$ подчиняются следующим рекуррентным уравнениям:
+	\begin{align}
+	\label{eq:seventh}
+	& m_{n + 1} = [a_0 + a_1 m_n] + [b \circ B + a_1 \gamma_n A_1^*] [B \circ B + A_1 \gamma_n A_1^*]^{\bigoplus} \times [\xi_{n + 1} - A_0 - A_1 m_n],
+	\end{align}
+	\begin{align}
+	\label{eq:eigth}
+	& \gamma_{n + 1} = [a_1 \gamma_n a_1^*+ b \circ b] - [b \circ B + a_1 \gamma_n A_1^*] \times [B \circ B + A_1 \gamma_n A_1^*]^{\bigoplus} \cdot [b \circ B + a_1 \gamma_n A_1^*].
+	\end{align}
+	, где $\bigoplus$ "псевдообращение" оно и будет использоваться в дальнейшем:
+	\begin{align*}
+	f^{\bigoplus}_\xi (\lambda) = 
+	\begin{cases}
+	[f_\xi(\lambda)]^{-1}, \hspace{0.2cm} &f_\xi(\lambda) > 0, \\
+	0, \hspace{0.2cm} &f_\xi(\lambda) = 0.
+	\end{cases}
+	\end{align*}
+\end{theorem}
+	
+\begin{proof}
+	Из \eqref{eq:first}
+	\begin{gather}
+	\label{eq:ninth}
+	\mathbf{E}\left(\theta_{n + 1} \mid \mathscr{F}^\xi_n\right) = a_0 + a_1 m_n, \hspace{1cm} \mathbf{E}\left(\xi_{n + 1} \mid \mathscr{F}^\xi_n\right) = A_0 + A_1 m_n
+	\end{gather}
+	и
+	\begin{align}
+	\label{eq:tenth}
+	\begin{split}
+	& \theta_{n + 1} - \mathbf{E}\left(\theta_{n + 1} \mid \mathscr{F}^\xi_n\right) = a_1 \left[\theta_n - m_n \right] + b_1 \varepsilon_1 (n + 1) + b_2 \varepsilon_2 (n + 1)\\
+	& \xi_{n + 1} - \mathbf{E}\left(\xi_{n + 1} \mid \mathscr{F}^\xi_n\right) = A_1 \left[\theta_n - m_n \right] + B_1 \varepsilon_1 (n + 1) + B_2 \varepsilon_2 (n + 1)
+	\end{split}
+	\end{align}
+	Обозначим
+	\begin{align*}
+	\begin{split}
+	d_{11} = \mathbf{cov}\left(\theta_{n + 1}, \theta_{n + 1} \mid \mathscr{F}^\xi_n\right) = \mathbf{E}\left\{\left[\theta_{n + 1} - \mathbf{E}\left(\theta_{n + 1} \mid \mathscr{F}^\xi_n\right)\right] \left[\theta_{n + 1} - \mathbf{E}\left(\theta_{n + 1} \mid \mathscr{F}^\xi_n\right) \right]^* \mid \mathscr{F}^\xi_n\right\} \\
+	d_{12} = \mathbf{cov}\left(\theta_{n + 1}, \xi_{n + 1} \mid \mathscr{F}^\xi_n\right) = \mathbf{E}\left\{\left[\theta_{n + 1} - \mathbf{E}\left(\theta_{n + 1} \mid \mathscr{F}^\xi_n\right)\right] \left[\xi_{n + 1} - \mathbf{E}\left(\xi_{n + 1} \mid \mathscr{F}^\xi_n\right) \right]^* \mid \mathscr{F}^\xi_n\right\} \\
+	d_{22} = \mathbf{cov}\left(\xi_{n + 1}, \xi_{n + 1} \mid \mathscr{F}^\xi_n\right) = \mathbf{E}\left\{\left[\xi_{n + 1} - \mathbf{E}\left(\xi_{n + 1} \mid \mathscr{F}^\xi_n\right)\right] \left[\xi_{n + 1} - \mathbf{E}\left(\xi_{n + 1} \mid \mathscr{F}^\xi_n\right) \right]^* \mid \mathscr{F}^\xi_n\right\}
+	\end{split}
+	\end{align*}
+	Тогда из \eqref{eq:tenth}
+	\begin{align}
+	\label{eq:eleventh}
+	d_{11} = a_1 \gamma_n a^*_1 + b \circ b, \hspace{0.5cm} d_{12} = a_1 \gamma_n A^*_1 + b \circ B, \hspace{0.5cm} d_{22} = A_1 \gamma_n A^*_1 + B \circ B
+	\end{align}
+	
+	В силу теоремы о нормальной корреляции
+	\begin{align*}
+	m_{n + 1} = \mathbf{E}\left(\theta_{n + 1} \mid \mathscr{F}^\xi_n, \xi_{n + 1}\right) = \mathbf{E}\left(\theta_{n + 1} \mid \mathscr{F}^\xi_n\right) + d_{12} d_{22}^{\bigoplus}\left(\xi_{n + 1} - \mathbf{E}\left(\xi_{n + 1} \mid \mathscr{F}^\xi_n\right)\right)
+	\end{align*}
+	и
+	\begin{align*}
+	\gamma_{n + 1} = \mathbf{cov}\left(\theta_{n + 1}, \theta_{n + 1} \mid \mathscr{F}^\xi_n, \xi_{n + 1}\right) = d_{11} - d_{12}d_{22}^{\bigoplus}d_{12}^*
+	\end{align*}
+	Подставляя сюда выражения для $\mathbf{E}\left(\theta_{n + 1} \mid \mathscr{F}^\xi_n\right)$, $\mathbf{E}\left(\xi_{n + 1} \mid \mathscr{F}^\xi_n\right)$ из \eqref{eq:ninth} и для
+	$d_{11}$, $d_{12}$, $d_{22}$ из \eqref{eq:eleventh}, получаем искомые рекуррентные уравнения \eqref{eq:seventh} и \eqref{eq:eigth}.
+\end{proof}
+
+\begin{corollary}
+	Если все коэффициенты $a_0(n, \xi), ..., B_2(n, \xi)$ в системе \eqref{eq:first} не зависят от $\xi$, то соответствующая схема называется схемой \textit{Калмана-Бьюси}, а уравнения \eqref{eq:seventh} и \eqref{eq:eigth} для $m_n$ и $\gamma_n$ – \textit{фильтром Калмана–Бьюси}. Важно подчеркнуть, что в этом случае условная матрица ошибок $\gamma_n$ совпадает с безусловной, т.е.
+	\begin{align*}
+	\gamma_n \equiv \mathbf{E}\gamma_n = \mathbf{E}\left[(\theta_n - m_n)(\theta_n - m_n)^*\right]
+	\end{align*}
+\end{corollary}
+
+\begin{corollary}
+	Предположим, что частично наблюдаемая последовательность $(\theta_n, \xi_n)$ такова, что для $\theta_n$ справедливо первое из уравнений в \eqref{eq:first}, а для $\xi_n$ – уравнение
+	\begin{align}
+	\label{eq:twelve}
+	\xi_n = \Tilde{A}_0(n - 1, \xi) + \Tilde{A}_1(n - 1, \xi) \theta_n + \Tilde{B}_1(n - 1, \xi) \varepsilon_1(n) + \Tilde{B}_2(n - 1, \xi) \varepsilon_2(n)
+	\end{align}
+	Тогда, очевидно,
+	\begin{multline*}
+	\xi_{n + 1} = \Tilde{A}_0(n, \xi) + \Tilde{A}_1(n, \xi) \big[a_0(n, \xi) + a_1(n, \xi) \theta_n + b_1 (n, \xi) \varepsilon_1 (n + 1) + \\
+	+ b_2 (n, \xi) \varepsilon_2 (n + 1)\big] + \Tilde{B}_1 (n, \xi) \varepsilon_1 (n + 1) + \Tilde{B}_2 (n, \xi) \varepsilon_2 (n + 1),
+	\end{multline*}
+	и, обозначая
+	\begin{alignat*}{2}
+	& A_0 = \Tilde{A}_0 + \Tilde{A}_1 a_0, \quad &&  A_1 = \Tilde{A}_1 a_1, \\
+	& B_1 = \Tilde{A}_1 b_1 + \Tilde{B}_1, \quad &&  B_2 = \Tilde{A}_2 b_2 + \Tilde{B}_2,
+	\end{alignat*}
+	получаем, что рассматриваемый случай также укладывается в схему \eqref{eq:first}, а $m_n$ и $\gamma_n$ удовлетворяют уравнениям \eqref{eq:seventh} и \eqref{eq:eigth}.
+\end{corollary}
+
+
+Обратимся к линейной схеме
+\begin{align}
+\label{eq:thirteenth}
+\begin{split}
+& \theta_{n + 1} = a_0 + a_1 \theta_n + a_2 \xi_n + b_1 \varepsilon_{11}(n + 1) + b_2 \varepsilon_{12}(n + 1), \\
+& \xi_{n + 1} = A_0 + A_1 \theta_n + A_2 \xi_n + B_1 \varepsilon_{21}(n + 1) + B_2 \varepsilon_{22}(n + 1),
+\end{split}
+\end{align}
+где все коэффициенты $a_0, ..., B_2$ могут зависеть от $n$ (но не от $\xi$), а $\varepsilon_{ij}(n)$ - независимые гауссовские случайные величины с $\mathbf{E}\varepsilon_{ij}(n) = 0$ и $\mathbf{E}\varepsilon^2_{ij}(n) = 1$.
+
+Пусть система \eqref{eq:thirteenth} решается при начальных значениях $(\theta_0, \xi_0)$ таких, что условное распределение $P(\theta_0 \leqslant a \mid \xi_0)$ является гауссовским с параметрами $m_0 = \mathbf{E}(\theta_0 \mid \xi_0)$ и $\gamma_0 = \mathbf{cov}(\theta_0, \theta_0 \mid \xi_0) = \mathbf{E}\gamma_0$. Тогда в силу теоремы о нормальной корреляции и \eqref{eq:seventh}, \eqref{eq:eigth} оптимальная оценка $m_n = \mathbf{E} (\theta_n \mid \mathscr{F}^\xi_n )$ является линейной функцией от $\xi_0, \xi_1, ..., \xi_n$.
+
+Это замечание позволяет доказать следующее важное утверждение о
+структуре оптимального линейного фильтра при отказе от предположения
+гауссовости.
+
+Для доказательства следующей теоремы понадобится следующая лемма, раскрывающая роль гауссовского случая при отыскании оптимальных линейных оценок.
+
+\begin{lemma}\label{lost_minus_lemma_2}
+	Пусть $(\alpha, \beta)$ – двумерный случайный вектор, $\mathbf{E} (\alpha^2 + \beta^2) < \infty$, а $(\Tilde{\alpha}, \Tilde{\beta})$ – двумерный гауссовский вектор с теми же первыми и вторыми моментами, что и у $(\alpha, \beta)$, т.е.
+	\begin{align*}
+	\mathbf{E} \Tilde{\alpha}^i = \mathbf{E} \alpha^i, \hspace{0.5cm} \mathbf{E} \Tilde{\beta}^i = \mathbf{E} \beta^i, \hspace{0.5cm} i = 1,2, \hspace{0.5cm} \mathbf{E}\Tilde{\alpha} \Tilde{\beta} = \mathbf{E}\alpha \beta 
+	\end{align*}
+	
+	Пусть $\lambda(b)$ – линейная функция от $b$ такая, что
+	\begin{align*}
+	\lambda(b) = \mathbf{E} (\Tilde{\alpha} \mid \Tilde{\beta} = b)
+	\end{align*}
+	Тогда $\lambda(\beta)$ является оптимальной (в среднеквадратическом смысле)
+	линейной оценкой $\alpha$ по $\beta$, т. е
+	\begin{align*}
+	\mathbf{E} (\alpha \mid \beta) = \lambda(\beta)
+	\end{align*}
+	При этом $\mathbf{E}\lambda(\beta) = \mathbf{E}\alpha$.
+\end{lemma}
+
+\begin{proof}
+	Прежде всего отметим, что существование линейной функции $\lambda(b)$, совпадающей с $\mathbf{E} (\Tilde{\alpha} \mid \Tilde{\beta} = b)$, вытекает из теоремы о нормальной корреляции. Далее, пусть $\overline{\lambda}(b)$ – какая-то другая линейная оценка. Тогда
+	\begin{align*}
+	\mathbf{E} [\Tilde{\alpha} - \overline{\lambda}(\Tilde{\beta})]^2 > \mathbf{E} [\Tilde{\alpha} - \lambda(\Tilde{\beta})]^2
+	\end{align*}
+	и в силу линейности оценок $\lambda(b)$ и $\overline{\lambda}(b)$ и условий леммы
+	\begin{align*}l
+	\mathbf{E} [\alpha - \overline{\lambda}(\beta)]^2 = \mathbf{E} [\Tilde{\alpha} - \overline{\lambda}(\Tilde{\beta})]^2 > \mathbf{E} [\Tilde{\alpha} - \lambda(\Tilde{\beta})]^2 = \mathbf{E} [\alpha - \lambda(\beta)]^2,
+	\end{align*}
+	что и доказывает оптимальность $\lambda(\beta)$ в классе линейных оценок. Наконец
+	\begin{align*}
+	\mathbf{E}\lambda(\beta) = \mathbf{E}\lambda(\Tilde{\beta}) = \mathbf{E}[\mathbf{E}(\Tilde{\alpha} \mid \Tilde{\beta})] = \mathbf{E}\Tilde{\alpha} = \mathbf{E}\alpha. 
+	\end{align*}
+\end{proof}
+
+\begin{theorem}\label{lost_minus_theor_2}
+	Пусть $(\theta, \xi) = (\theta_n, \xi_n)_{n \geqslant 0}$ – частично наблюдаемая последовательность, удовлетворяющая системе \eqref{eq:thirteenth}, где $\varepsilon_{ij} (n)$ – некоррелированные случайные величины с $\mathbf{E}\varepsilon_{ij} (n) = 0, \mathbf{E} \varepsilon^2_{ij} (n) = 1$, а компоненты вектора начальных значений $(\theta_0, \xi_0)$ имеют конечный второй момент. Тогда оптимальная линейная оценка $\hat{m}_n = \widehat{\mathbf{E}} (\theta_n \mid \xi_0, ..., \xi_n)$ удовлетворяет уравнениям \eqref{eq:seventh} с $a_0 (n, \xi) = a_0 (n) + a_2 (n)\xi_n$, $A_0 (n, \xi) = A_0 (n) + A_2 (n)\xi_n$, а матрица ошибок $\hat{\gamma}_n = \widehat{\mathbf{E}} \left[(\theta_n - \hat{m}_n) (\theta_n - \hat{m}_n)*\right]$ – уравнениям \eqref{eq:eigth} с начальными данными
+	\begin{align}
+	\label{eq:fourteenth}
+	\begin{split}
+	& \hat{m}_0 = \mathbf{cov}(\theta_0, \xi_0) \mathbf{cov}^{\bigoplus} (\xi_0, \xi_0) \cdot \xi_0, \\
+	& \hat{\gamma}_0 = \mathbf{cov}(\theta_0, \theta_0) - \mathbf{cov}(\theta_0, \xi_0) \mathbf{cov}^{\bigoplus} (\xi_0, \xi_0) \mathbf{cov}^* (\theta_0, \xi_0). 
+	\end{split}
+	\end{align}
+\end{theorem}
+
+\begin{proof}
+	Наряду с \eqref{eq:thirteenth} рассмотрим систему
+	\begin{align}
+	\label{eq:fifteenth}
+	\begin{split}
+	& \Tilde{\theta}_{n + 1} = a_0 + a_1 \Tilde{\theta}_n + a_2 \Tilde{\xi}_n + b_1 \Tilde{\varepsilon}_{11}(n + 1) + b_2 \Tilde{\varepsilon}_{12}(n + 1), \\
+	& \Tilde{\xi}_{n + 1} = A_0 + A_1 \Tilde{\theta}_n + A_2 \Tilde{\xi}_n + B_1 \Tilde{\varepsilon}_{21}(n + 1) + B_2 \Tilde{\varepsilon}_{22}(n + 1),
+	\end{split}
+	\end{align}
+	где  $\Tilde{\varepsilon}_{ij}(n)$ – независимые гауссовские случайные величины с $\mathbf{E}\Tilde{\varepsilon}_{ij}(n) = 0$ и $\mathbf{E}\Tilde{\varepsilon}_{ij}^2(n)=1$. Пусть также $(\Tilde{\theta}_0, \Tilde{\xi}_0)$ – гауссовский вектор, имеющий те же первые моменты и ковариации, что и $(\theta_0, \xi_0)$, и не зависящий от $\Tilde{\varepsilon}_{ij} (n)$. Тогда в силу линейности системы \eqref{eq:fifteenth} вектор $(\Tilde{\theta}_0, ..., \Tilde{\theta}_n, \Tilde{\xi}_0, ..., \Tilde{\xi}_n)$ является гауссовским, и, значит, утверждение теоремы следует из леммы \ref{lost_minus_lemma_2} (точнее, из ее очевидного многомерного аналога) и теоремы о нормальной корреляции. 
+\end{proof}
+
+\subsection*{Примеры}
+Рассмотрим несколько примеров, иллюстрирующих теоремы \ref{lost_minus_theor_1} и \ref{lost_minus_theor_2}
+\begin{example}
+	Пусть $\theta = (\theta_n)$ и $\eta = (\eta_n)$ – две стационарные (в широком
+	смысле) некоррелированные случайные последовательности с $\mathbf{E}\theta_n = \mathbf{E}\eta_n = 0$ и спектральными плотностями
+	\begin{align*}
+	f_{\theta}(\lambda) = \frac{1}{2 \pi} \cdot \frac{1}{|1 + b_1 e^{-i\lambda}|^2} \hspace{1cm} f_{\eta}(\lambda) = \frac{1}{2 \pi} \cdot \frac{1}{|1 + b_2 e^{-i\lambda}|^2},
+	\end{align*}
+	где $|b_1| < 1$, $|b_2| < 1$.
+	В дальнейшем будем интерпретировать $\theta$ как полезный сигнал, а $\eta$ – как шум и предполагать, что наблюдению подлежит последовательность $\xi = (\xi_n)$ с
+	\begin{align*}
+	\xi_n = \theta_n + \eta_n
+	\end{align*}
+
+	Можно показать, что найдутся (некоррелированные между собой) белые шумы $\varepsilon_1 = (\varepsilon_1 (n))$ и $\varepsilon_2 = (\varepsilon_2 (n))$ такие, что
+	\begin{align*}
+	\theta_{n+1} + b_1\theta_n = \varepsilon_1 (n + 1), \hspace{1cm} \eta_{n+1} + b_2\eta_n = \varepsilon_2 (n + 1)
+	\end{align*}
+	
+	Тогда
+	\begin{multline*}
+	\xi_{n+1} = \theta_{n+1} + \eta_{n+1} = -b_1\theta_n - b_2\eta_n + \varepsilon_1 (n + 1) + \varepsilon_2 (n + 1) = \\
+	= -b_2 (\theta_n + \eta_n) - \theta_n (b_1 - b_2) + \varepsilon_1 (n + 1) + \varepsilon_2 (n + 1) = \\
+	= -b_2\xi_n - (b_1 - b_2)\theta_n + \varepsilon_1 (n + 1) + \varepsilon_2 (n + 1)
+	\end{multline*}
+
+	Тем самым для $\theta$ и $\xi$ справедливы рекуррентные уравнения
+	\begin{align}
+	\label{eq:sixteenth}
+	\begin{split}
+	& \theta_{n+1} = -b_1\theta_n + \varepsilon_1 (n + 1), \\
+	& \xi_{n+1} = -(b_1 - b_2)\theta_n - b_2\xi_n + \varepsilon_1 (n + 1) + \varepsilon_2 (n + 1) 
+	\end{split}
+	\end{align}
+	и, согласно теореме \ref{lost_minus_theor_2}, $m_n = \mathbf{\hat{E}} (\theta_n \mid \xi_0, ..., \xi_n)$ и $\gamma_n = \mathbf{E} (\theta_n - m_n)^2$ удовлетворяют следующей системе рекуррентных уравнений оптимальной линейной фильтрации:
+	\begin{align}
+	\label{eq:seventeenth}
+	\begin{split}
+	& m_{n+1} = -b_1 m_n + \frac{b_1 (b_1 - b_2)\gamma_n}{2 + (b_1 - b_2)^2\gamma_n}[\xi_{n+1} + (b_1 - b_2)m_n + b_2 \xi_n],\\
+	& \gamma_{n+1} = b_1^2 \gamma_n + 1 - \frac{[1 + b_1 (b_1 - b_2)\gamma_n]^2}{2 + (b_1 - b_2)^2\gamma_n}.
+	\end{split}
+	\end{align}
+
+	Найдем начальные значения $m_0$ и $\gamma_0$, при которых должна решаться эта система. Обозначим $d_{11} = \mathbf{E}\theta^2_n, d_{12} = \mathbf{E}\theta_n \xi_n, d_{22} = \mathbf{E}\xi^2_n$. Тогда из \eqref{eq:sixteenth}
+	
+	\begin{align*}
+	& d_{11} = b^2_1 d_{11} + 1,\\
+	& d_{12} = b_1 (b_1 - b_2)d_{11} + b_1 b_2 d_{12} + 1,\\
+	& d_{22} = (b_1 - b_2)^2 d_{11} + b_2^2 d_{22} + 2b_2 (b_1 - b_2)d_{12} + 2,
+	\end{align*}
+	откуда
+	\begin{align*}
+	d_{11} = \frac{1}{1 - b^2_1}, \hspace{1cm} d_{12} = \frac{1}{1 - b^2_1}, \hspace{1cm}
+	d_{22} = \frac{2 - b_1^2 - b_2^2}{(1 - b^2_1)(1 - b^2_2)},
+	\end{align*}
+	что в силу \eqref{eq:fourteenth} приводит к следующим значениям начальных данных:
+	\begin{align}
+	\label{eq:eighteenth}
+	\begin{split}
+	& m_0 = \frac{d_{12}}{d_{22}}\xi_0 = \frac{1 - b^2_2}{2 - b_1^2 - b_2^2} \xi_0 \\
+	& \gamma_0 = d_{11} - \frac{d^2_{12}}{d_{22}} = \frac{1}{2 - b_1^2 - b_2^2}
+	\end{split}
+	\end{align}
+
+	Итак, оптимальная (в среднеквадратическом смысле) линейная оценка $m_n$ сигнала $\theta_n$ по $\xi_0, ..., \xi_n$ и среднеквадратическая ошибка $\gamma_n$ определяются из системы рекуррентных уравнений \eqref{eq:seventeenth}, решаемых при начальных условиях \eqref{eq:eighteenth}. Отметим, что уравнение для $\gamma_n$ не содержит случайных составляющих, и, следовательно, величины $\gamma_n$, необходимые для отыскания значений $m_n$, могут быть рассчитаны заранее – до решения самой задачи фильтрации.
+\end{example}
+
+\begin{example}
+	Этот пример поучителен с той точки зрения, что показывает, как результат теоремы \ref{lost_minus_theor_2} может быть применен для отыскания оптимального линейного фильтра в задаче, где последовательности $(\theta, \xi)$ подчиняются (нелинейной) системе, не совпадающей с системой \eqref{eq:thirteenth}. Пусть $\varepsilon_1 = (\varepsilon_1 (n))$ и $\varepsilon_2 = (\varepsilon_2 (n))$ – две независимые гауссовские последовательности, состоящие из независимых случайных величин с $\mathbf{E}\varepsilon_i (n) = 0$, $\mathbf{E}\varepsilon^2_i (n) = 1, n > 1$. Рассмотрим пару последовательностей $(\theta, \xi) = (\theta_n, \xi_n),
+	n > 0$, с
+	\begin{align}
+	\label{eq:nineteenth}
+	\begin{split}
+	& \theta_{n+1} = a\theta_n + (1 + \theta_n)\varepsilon_1 (n + 1), \\
+	& \xi_{n+1} = A\theta_n + \varepsilon_2 (n + 1).
+	\end{split}
+	\end{align}
+	
+	Будем считать, что $\theta_0$ не зависит от $(\varepsilon_1, \varepsilon_2)$ и $\theta_0 \backsim N (m_0, \gamma_0)$. Система \eqref{eq:nineteenth} является нелинейной, и непосредственное применение теоремы \ref{lost_minus_theor_2} невозможно. Однако если положить
+	\begin{align*}
+	\Tilde{\varepsilon}_1(n + 1) = \frac{1 + \theta_n}{\sqrt{\mathbf{E}(1+\theta_n)^2}} \varepsilon_1(n + 1)
+	\end{align*}
+	
+	то замечаем, что $\mathbf{E}\Tilde{\varepsilon}_1 (n) = 0$, $\mathbf{E}\Tilde{\varepsilon}_1 (n) \Tilde{\varepsilon}_1 (m) = 0$, $n \neq m$, $\mathbf{E}\Tilde{\varepsilon}_1^2 (n) = 0$. Поэтому наряду с \eqref{eq:nineteenth} исходная последовательность $(\theta, \xi)$ подчиняется также линейной системе
+	\begin{align}
+	\label{eq:twenty}
+	\begin{split}
+	\theta_{n+1} = a_1 \theta_n + b_1 (n) \Tilde{\varepsilon}_1 (n + 1), \\
+	\xi_{n+1} = A_1 \theta_n + \varepsilon_2 (n + 1), 
+	\end{split}
+	\end{align}
+	где $b_1 (n) = \sqrt{\mathbf{E} (1 + \theta_n)^2}$, a $\{\Tilde{\varepsilon}_1 (n)\}$ – некоторая последовательность некоррелированных случайных величин. Система \eqref{eq:twenty} является линейной системой типа \eqref{eq:thirteenth}, и, значит, оптимальная линейная оценка $\hat{m}_n =\mathbf{\widehat{E}} (\theta_n \mid \xi_0, ..., \xi_n)$ и ее ошибка $\hat{\gamma}_n$ могут быть определены в соответствии с теоремой \ref{lost_minus_theor_2} из системы \eqref{eq:seventh}, \eqref{eq:eigth}, принимающей в рассматриваемом случае следующий вид:
+
+	\begin{align*}
+	& m_{n+1} = a_1 \hat{m}_n + \frac{a_1 A_1 \hat{\gamma}_n}{1 + A_1^2 \hat{\gamma}_n} [\xi_{n+1} - A_1 \hat{m}_n], \\
+	& \hat{\gamma}_{n+1} = (a^2_1 \hat{\gamma}_n + b^2_1 (n)) - \frac{(a_1 A_1 \hat{\gamma}_n)^2}{1 + A^2_1 \hat{\gamma}_n},
+	\end{align*}
+	где $b_1 (n) = \sqrt{\mathbf{E} (1 + \theta_n)^2}$ должно быть найдено из первого уравнения системы \eqref{eq:nineteenth}.
+\end{example}
+
+\begin{example}
+	\textit{Оценка параметров}. Пусть $\theta = (\theta_1, ..., \theta_k)$ – гауссовский вектор с $\mathbf{E}\theta = m$ и $\mathbf{cov}(\theta, \theta) = \gamma$. Предположим, что (при известных $m$ и $\gamma$) ищется оптимальная оценка $\theta$ по результатам наблюдений за l-мерной последовательностью $\xi = (\xi_n)$, $n \geqslant 0$, с
+	
+	\begin{align}
+	\label{eq:21}
+	\xi_{n+1} = A_0 (n, \xi) + A_1 (n, \xi)\theta + B_1 (n, \xi)\varepsilon_1 (n + 1), \hspace{0.5cm}\xi_0 = 0
+	\end{align}
+	где $\varepsilon_1$ – те же, что и в системе \eqref{eq:first}. Тогда из \eqref{eq:seventh}, \eqref{eq:eigth} для $m_n = \mathbf{E}(\theta \mid \mathscr{F}^\xi_n)$ и $\gamma_n$ находим, что
+	\begin{equation}
+	\label{eq:22}
+	\begin{split}
+	m_{n+1} = m_n + \gamma_n A^*_1 (n, \xi) [(B_1 B^*_1) (n, \xi) + &A_1 (n, \xi) \gamma_n A^*_1 (n, \xi)]^{\bigoplus} \times \\
+	&\times [\xi_{n+1} - A_0 (n, \xi) - A_1 (n, \xi) m_n],\\
+	\gamma_{n+1} = \gamma_n - \gamma_n A^*_1 (n, \xi) [(B_1B^*_1) (n, \xi) + &A_1 (n, \xi)\gamma_n A^*_1 (n, \xi)]^{\bigoplus} A_1 (n, \xi)\gamma.
+	\end{split}
+	\end{equation}
+	Если матрицы $B_1 B^*_1$ являются невырожденными, то решения системы \eqref{eq:22} задаются формулами
+
+	\begin{equation}
+	\label{eq:23}
+	\begin{split}
+	m_{n + 1} = \Bigg[E + \gamma \sum\limits_{i = 0}^n A^*_1 (i, \xi)& (B_1B^*_1)^{-1} (i, \xi)A^*_1 (i, \xi) \Bigg] ^{-1} \times \\
+	& \times \Bigg[m + \gamma \sum\limits_{i = 0}^n A^*_1 (i, \xi) (B_1B^*_1)^{-1} (i, \xi) \left(\xi_{i + 1} - A_0(m, \xi)\right)\Bigg] \\
+	\gamma_{n + 1} = \Bigg[E + \gamma &\sum\limits_{i = 0}^n A^*_1 (i, \xi) (B_1B^*_1)^{-1} (i, \xi)A_1 (i, \xi) \Bigg]^{-1} \gamma,
+	\end{split}
+	\end{equation}
+	где $E$ – единичная матрица.
+\end{example}
+

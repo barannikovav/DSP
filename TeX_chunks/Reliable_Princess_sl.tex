@@ -1,0 +1,261 @@
+
+\section{Понятие оптимальной в среднем квадратичном оценки (векторной) случайной величины. Теорема о нормальной корреляции (в векторной формулировке)}
+
+\textbf{Автор:} Плисова Надежда Александровна, Б-01-004
+
+\subsection{Понятие оптимальной в среднем квадратичном оценки (векторной) случайной величины.}
+\begin{definition}  Условное математическое ожидание $\mathsf{E}(\xi,\mathscr{A})$ действительной случайной величины $\xi$ относительно $\sigma$-алгебры $\mathscr{A} \subset \mathscr{F}$ определяется как
+такая функция $\zeta: \Omega \rightarrow \mathbb{R}$, что
+
+
+1) является $\mathscr{A}|\mathscr{B}(\mathbb{R})$-измеримой;
+
+
+2) для каждого $C \in \mathscr{A}$ математические ожидания $\mathsf{E}\zeta1_C$ и $\mathsf{E}\xi1_C$ определены и
+$$\mathsf{E}\zeta1_C=\mathsf{E}\xi1_C.$$
+
+\end{definition}
+
+Начнем с простейших постановок задачи прогноза. Пусть дан $L^2$-процесс $X = \{X(t), t \in Т \}$,
+$Т \subset \mathbb{R}$. Требуется найти наилучшее приближение случайной величины $X (t)$ (по норме
+$\parallel \cdot\parallel $ пространства $L^2(\Omega)$), основываясь на предыстории процесса $X$ до некоторого
+момента $s < t$. Если считать, что мы располагаем всеми величинами у, измеримыми относительно
+$\sigma$-алгебры $\mathscr{F}_s$ = $\sigma \{X(u), u \leq s, u \in T\}$ и
+квадрат модуля которых интегрируем, т. е. рассматриваемые величины $у \in L^2 (\Omega, \mathscr{F}_s, Р)$,
+то дело сводится к отысканию величины
+
+$$\mathrm{inf}\{\parallel  X(t)-y\parallel :y\in L^2 (\Omega, \mathscr{F}_s, Р)\}$$
+и того значения $у$, на котором этот $\mathrm{inf}$ достигается (такой элемент существует).
+
+
+Согласно теории гильбертовых пространств $\textit{H}$ всякий элемент $L \subset H$ может
+быть представлен (для заданного подпространства $L \subset H$) , и единственным образом, в следующем виде: $х = у + z$, где $у \in L$ и $z \in L^\perp$- (ортогональное дополнение
+к $L$ в $\textit{H}$). Величина у обычно обозначается $Pr_L x$, где оператор $Pr_L$ называется \textit{ортопроектором} в $\textit{H}$ на $L$.
+
+
+Тем самым, беря $\textit{H} = L^2 (\Omega, \mathscr{F}, Р)\}$ и $L = L^2 (\Omega, \mathscr{F}_s, Р)$, находим, что
+
+$$\mathrm{inf}\{\parallel  X(t)-y\parallel \:y\in L^2 (\Omega, \mathscr{F}_s, Р)\} = \parallel  X(t)-Pr_{L^2 (\Omega, \mathscr{F}_s, Р)}X(t)\parallel  .$$
+
+
+Если $\sigma$-алгебра $\mathscr{A} \subset \mathscr{F}$ и случайная
+величина $Y \in L^2 (\Omega, \mathscr{F}, Р)$, то (Р-п.н.)
+
+$$Pr_{L^2 (\Omega, \mathscr{A}, Р)}Y = \mathsf{E}(Y|\mathscr{A}).$$
+Таким образом, \textbf{оптимальной в среднем квадратическом смысле оценкой для $X (t)$ по
+величинам пространства $L^2 (\Omega, \mathscr{F}, Р)$} является условное математическое ожидание
+$\mathsf{E}(X(t)|\mathscr{F}_s)$.\\
+
+
+Нахождение условного математического ожидания относительно $\sigma$-алгебры $\mathscr{F}_s$
+является, как правило, довольно сложной задачей. Однако если ограничиваться
+только линейным прогнозом, основанным на линейных комбинациях величин $Х_u$
+с $u \leq s$, $u \in T$ (и пределах таких величин в пространстве $L^2(\Omega)$), то задача существенно упрощается. Для ее решения весьма полезны методы теории гильбертовых
+пространств, позволяющие также получить и ряд интересных результатов о структуре некоторых важных классов стационарных процессов.
+
+
+Имея в виду изучение линейного прогноза, введем для $s \in T$ пространство $H_s(X)$
+как замыкание в среднем квадратическом линейной оболочки величин $X(u)$, $u \leq s$,
+$u \in T$, и положим
+
+$$H_{-\infty}(X) = \bigcap\limits_{s \in T} H_s(X), \quad  H(X) = L^2[X],$$
+где $L^2[X]$ — замыкание в $L^2(\Omega)$ линейной оболочки всех величин $X(u)$, $u \in T$. Ясно, что $H(X)$ — наименьшее подпространство $L^2(\Omega)$, содержащее все пространства
+$H_s(X)$,$s \in T$. Рассматриваемая нами задача линейного прогноза величины $X(t)$ по
+“прошлому” до момента времени $s$ ставится теперь как задача наилучшего приближения $X(t)$ (по норме пространства $L^2(\Omega)$) элементами пространства $H_s(X)$. При
+этом ошибкой линейного прогноза естественно называть величину
+
+$$\Delta(s, t) = \mathrm{inf}\{\parallel  X(t)-y\parallel :y\in H_s(X)\}.$$
+
+
+Решением поставленной выше задачи линейного прогноза является величина
+$P_sX(t)$, где для краткости $P_s$ обозначает ортопроектор $Pr_{H_s(X)}$ (в $H(X)$ на $H_s(X)$).
+
+
+Введенная ошибка линейного прогноза $\Delta(s, t)$ удовлетворяет следующему свойству:
+
+$$\Delta(s, t) = \Delta(s + u, t + u) \quad \text{при всех} \quad s, t, u \in T.$$
+(Достаточно заметить, что если $y = c_1X(s_1) + \dotsb 
++ c_nX(s_n) \in H_s(X)$ и $z = c_1X(s_1 + u) + \dotsb 
++ c_nX(s_n + u) \in H_{s+u}(X)$, где $c_k \in 
+\mathbb{C}, s_k \in T, s_k \leq s$ , то в силу 
+стационарности процесса $X$ имеем $\parallel  X(t) - y \parallel ^2 = 
+\parallel  X(t + u) - z\parallel ^2.$)
+
+
+Из этого следует, что величина $\Delta(s, s + u)$ не зависит от $s$ и, следовательно, можно
+положить
+
+$$\delta(u):=\Delta(s, s+u), \quad u \in T;$$
+при этом $\delta(u) = 0$ при $u \leq 0 (u \in T)$ и
+
+$$\delta(v) \leq \delta(u) \quad \text{для} \quad v \leq u \quad (v, u \in T).$$
+
+
+Смысл этого свойства вполне ясен: ошибка прогноза величины $X(t)$ по “прошлому”
+$H_s(X)$, где $s \leq t$ растет с убыванием $s$.
+
+
+
+\subsection{Теорема о нормальной корреляции (в векторной формулировке)}
+
+\begin{definition} что случайный вектор $\xi=(\xi_1, \ldots, \xi_n)$ называется \textbf{гауссовским (нормальным)}, если его характеристическая
+функция\footnote{При алгебраических операциях векторы $а$ считаются столбцами, а векторы $а^*$ — строками.} 
+
+$$\varphi_\xi(z)=\mathbf{M}exp[iz^*\xi], \quad z=(z_1, \ldots, z_n), \quad z^*\xi=\sum\limits_{i=1}^n z_i\xi_i,$$
+задается формулой
+$$\varphi_\xi(z)=exp[iz^*m-1/2z*Rz],$$
+где $m = (m_1, \ldots, m_n)$, a $R = \parallel R_{ij\parallel }$ — неотрицательно определённая симметрическая матрица порядка $(n\times n).$ Параметры $m$ и $R$
+имеют простой смысл. Вектор $m$ есть вектор средних значений,
+$m = \mathbf{M}\xi$, а матрица $R$ есть матрица ковариаций,
+$$R\equiv cov(\xi,\xi)=\mathbf{M}(\xi-m)(\xi-m)^*.$$
+
+$\mathbf{M}$ - математическое ожидание \\
+
+\end{definition}
+
+\textsc{Cвойства гауссовских векторов}:\\
+
+1. Если $\xi=(\xi_1, \ldots, \xi_n)$ — гауссовский вектор, $A_{m\times n}$— матрица и $а = (а_1, \ldots,a_m)$ — вектор, то случайный вектор $\eta=A\xi+a$ является гауссовским с
+$$\varphi_\eta(z)=exp\{iz^*(a+Am)-1/2z^*(ARA^*)z\}$$
+и
+$$\mathbf{M}\eta=a+Am, \quad cov(\eta,\eta)=Acov(\xi,\xi)A^*.$$\\
+
+
+2. Пусть $(\theta,\xi)=[(\theta_1,\ldots,\theta_k)(\xi_1,\ldots,\xi_l)]$ — гауссовский вектор с
+$m_\theta=\mathbf{M}\theta, m_\xi=\mathbf{M}\xi, D_{\theta\theta}=cov(\theta,\theta)=\mathbf{M}(\theta-m_\theta)(\theta-m_\theta)^*, D_{\xi\xi}=cov(\xi,\xi)=\mathbf{M}(\xi-m_\xi)(\xi-m_\xi)^*$ и $D_{\theta\xi}=cov(\theta,\xi)=\mathbf{M}(\theta-m_\theta)(\xi-m_\xi)^*$
+
+
+Если $D_{\theta\xi}=0$, то (гауссовские) векторы $\theta$ и $\xi$ независимы и
+$$\varphi_{(\theta,\xi)}(z_1,z_2)=\varphi_\theta(z_1)\varphi_\xi(z_2),$$
+где $z_1=(z_{11},\ldots, z_{1k})$, $z_2=(z_{21},\ldots, z_{2k})$ и
+
+$$\varphi_\theta(z_1)=exp[iz_1^*m_\theta-1/2z_1^*D_{\theta\theta}z_1],$$
+$$\varphi_\xi(z_2)=exp[iz_2^*m_\xi-1/2z_1^*D_{\xi\xi}z_2].$$\\
+
+3. Пусть $\xi=(\xi_1,\ldots,\xi_n$ — гауссовский вектор с $m=\mathbf{M}\xi$,
+$R=cov(\xi,\xi)$. Тогда найдется гауссовский вектор $\varepsilon=(\varepsilon_1,\ldots,\varepsilon_n)$
+с независимыми компонентами, $\mathbf{M}\varepsilon=0$ и $cov(\varepsilon,\varepsilon)=E_{(n\times n)}$
+такой, что
+$$\xi=R^{1/2}\varepsilon+m.$$\\
+
+
+4. Пусть $\xi_n, n=1,2,\ldots$ — последовательность гауссовских
+векторов, сходящаяся по вероятности к вектору $\xi$. Тогда $\xi$ также гауссовский вектор.\\
+
+
+\begin{theorem}[о нормальной корреляции] Пусть $(\theta, \xi) = ([\theta_1, \ldots, \theta_k], [\xi_1, \ldots, \xi_l])$- гауссовский вектор с
+
+$$m_{\theta}=\mathbf{M}\theta, \quad m_{\xi}=\mathbf{M}\xi,$$
+$$D_{\theta\theta}=cov(\theta, \theta), \quad D_{\theta\xi}=cov(\theta, \xi), \quad D_{\xi\xi}=cov(\xi, \xi).$$
+\centering{
+Тогда условное математическое ожидание $\mathbf{M}(\theta|\xi)$ и условная ковариация 
+}
+$$cov(\theta,\theta|\xi) = \mathbf{M} \{[\theta - \mathbf{M}(\theta|\xi][\theta - \mathbf{M}(\theta|\xi]^*|\xi\}$$
+\centering{
+задаются формулами
+}
+\begin{equation}\label{reliable_princess_eq_1}
+\mathbf{M}(\theta|\xi) = m_{\theta} + 
+D_{\theta\xi}D_{\xi\xi}^{+}(\xi-m_{\xi}),
+\end{equation}
+
+\begin{equation}\label{reliable_princess_eq_2}
+	cov(\theta,\theta|\xi) = D_{\theta\theta} - D_{\theta\xi}D_{\xi\xi}^{+}(D_{\theta\xi})^*.
+\end{equation}
+
+\end{theorem}
+
+
+\begin{proof} Положим
+
+\begin{equation}\label{reliable_princess_eq_3}
+\eta = (\theta - m_{\theta} + C(\xi - m_{\xi}),
+\end{equation}
+где матрицу $C_{(k\times l)}$ подберем таким образом, чтобы $\mathbf{M}\eta(\xi-m_\xi)^* = 0.$
+
+
+Если такая матрица существует, то она является решением
+линейной системы
+
+\begin{equation}\label{reliable_princess_eq_4}
+D_{\theta\xi} + CD_{\xi\xi}=0. 
+\end{equation}
+
+Если $D_{\xi\xi}$ — положительно определенная матрица, то
+\begin{equation}\label{reliable_princess_eq_5}
+C = - D_{\theta\xi}D_{\xi\xi}^{-1}. 
+\end{equation}
+В противном случае можно положить
+\begin{equation}\label{reliable_princess_eq_6}
+C = - D_{\theta\xi}D_{\xi\xi}^{+}.
+\end{equation}
+
+Согласно свойству 3° найдется гауссовский вектор $\varepsilon$ 
+с $\mathbf{M}\varepsilon=0$, $\mathbf{M}\varepsilon\varepsilon^*=E$ такой, что
+$$\xi-m_xi = D_{\xi\xi}^{1/2}\varepsilon.$$
+
+Тогда, обозначая $Т = D_{\xi\xi}^{1/2}$, получаем
+$$D_{\theta\xi} = \mathbf{M}[(\theta-m_\theta)(\xi-m_\xi)^*] = \mathbf{M}(\theta-m_\theta)\varepsilon^*T = d_{\theta\varepsilon}T,$$
+где $d_{\theta\varepsilon} = \mathbf{M}(\theta-m_\theta)\varepsilon^*.$ Следовательно,
+
+$$D_{\theta\xi} = d_{\theta\varepsilon}T, \quad 
+D_{\theta\xi}D_{\xi\xi}^+D_{\xi\xi} = 
+d_{\theta\varepsilon}T(TT)^+TT = d_{\theta\varepsilon}T,$$
+где мы воспользовались свойствами псевдообратных
+матриц, согласно которым
+
+$$D_{\xi\xi}^+ = (TT)^+ = T^+T^+,$$
+$$T(TT)^+TT = TT^+T^+TT = TT^+(T^+T)^*T = (TT^+)^2T = TT^+T = T,$$
+т.е
+
+$$D_{\theta\xi} = D_{\theta\xi}D_{\xi\xi}^+D_{\xi\xi},$$
+что и доказывает равенство (\ref{reliable_princess_eq_4}) c $C = - D_{\theta\xi}D_{\xi\xi}^{+}.$
+\end{proof}
+
+
+Итак, вектор
+\begin{equation}\label{reliable_princess_eq_7}
+\eta = (\theta-m_\theta) - D_{\theta\xi}D_{\xi\xi}(\xi - m_\xi) 
+\end{equation}
+обладает тем свойством, что $\mathbf{M}\eta(\xi-m_\xi)^* = 0.$
+
+
+Поскольку $(\theta, \xi)$ — гауссовский вектор, то таковым же
+является и вектор $\eta$. Более того, гауссовским будет и вектор
+$\eta, \theta)$, поскольку характеристическая функция
+$$\varphi_{(\eta, \xi)}(z_1,z_2) = \mathbf{M} exp 
+[iz_1^*\eta+iz_2^*\xi] = \mathbf{M} exp\{iz_1^*
+[(\theta-m_\theta)+C(\xi-m_\xi)]+iz_2^*\xi\}$$
+может быть записана в силу гауссовости вектора $(\theta,\xi)$ в виде $\varphi_\xi(z)=exp[iz^*m-1/2z^*Rz]$.
+
+
+Далее, $\mathbf{M}\eta = 0$ и $\mathbf{M}\eta(\xi-m_\xi)^* = 0.$ Поэтому согласно свойству 2° гауссовские векторы $\eta$ и $\xi$ независимы. Следовательно,
+$$\mathbf{M}(\eta|\xi) = \mathbf{M}\eta = 0 \quad \quad \text{(Р-п. н.),}$$
+что вместе с (\ref{reliable_princess_eq_7}) приводит к формуле (\ref{reliable_princess_eq_1}).
+
+
+Для доказательства представления (\ref{reliable_princess_eq_2}) заметим, что
+$\theta-\mathbf{M}(\eta|\xi)=\eta$, а в силу независимости $\xi$ и $\eta$
+\begin{equation}\label{reliable_princess_eq_8}
+cov(\theta, \theta|\xi) = \mathbf{M}(\eta\eta^*|\xi)=
+\mathbf{M}eta\eta^* \quad \quad \text{(Р-п. н.),} 
+\end{equation}
+
+Но согласно (\ref{reliable_princess_eq_7})
+\begin{equation}\label{reliable_princess_eq_9}
+	\begin{gathered}
+		\mathbf{M}\eta\eta^* = D_{\theta\theta} + D_{\theta\xi}D_{\xi\xi}^+D_{\xi\xi}D_{\xi\xi}^+D_{\theta\xi}-
+		2D_{\theta\xi}D_{\xi\xi}^+D_{\xi\xi}D_{\xi\xi}^+D_{\theta\xi}^*= \\
+		= D_{\theta\theta} - D_{\theta\xi}D_{\xi\xi}^+D_{\xi\xi}D_{\xi\xi}^+D_{\theta\xi}^* = 
+		D_{\theta\theta} - D_{\theta\xi}D_{\xi\xi}^+D_{\theta\xi}^*, 
+	\end{gathered}
+\end{equation}
+где мы воспользовались тем, что согласно свойству 1°:
+$\quad D_{\xi\xi}^+D_{\xi\xi}D_{\xi\xi}^+ = D_{\xi\xi}^+$\\
+
+
+Из (\ref{reliable_princess_eq_8}) и (\ref{reliable_princess_eq_9}) получаем искомое представление (\ref{reliable_princess_eq_2})
+для $cov(\theta,\theta|\xi)$.
+
+
+
